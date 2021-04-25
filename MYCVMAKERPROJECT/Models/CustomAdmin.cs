@@ -20,7 +20,7 @@ namespace MYCVMAKERPROJECT.Models
         public int DailyViews { get; set; }
         public int TotalViews { get; set; }
         public int TotalJobAlerts { get; set; }
-        public Nullable<System.Guid> UsersId { get; set; }
+        public Nullable<int> UsersId { get; set; }
 
         public virtual User User { get; set; }
     }

@@ -13,10 +13,14 @@ namespace MYCVMAKERPROJECT.Models
     public class PersonalWorkExperienceMetaData
     {
         public int Id { get; set; }
+        public string City { get; set; }
+        public string Employeer { get; set; }
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
         public string Description { get; set; }
         public string JobTitle { get; set; }
-        public Nullable<System.Guid> CompanyId { get; set; }
+        public Nullable<int> PersonalId { get; set; }
 
-        public virtual Company Company { get; set; }
+        public virtual Personal Personal { get; set; }
     }
 }

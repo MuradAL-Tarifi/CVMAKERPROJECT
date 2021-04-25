@@ -13,8 +13,8 @@ namespace MYCVMAKERPROJECT.Models
     public class NofiticationMetaData
     {
         public int Id { get; set; }
-        public Nullable<System.Guid> PersonalId { get; set; }
-        public Nullable<System.Guid> CompanyId { get; set; }
+        public Nullable<int> PersonalId { get; set; }
+        public Nullable<int> CompanyId { get; set; }
         public bool IsReaded { get; set; }
         public bool Submitted { get; set; }
 

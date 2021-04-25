@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace MYCVMAKERPROJECT.Models
 {
     [MetadataType(typeof(UsersMetaData))]
-    public partial class Users
+    public partial class User
     {
     }
     public class UsersMetaData
@@ -24,6 +24,15 @@ namespace MYCVMAKERPROJECT.Models
         public string FacebookLink { get; set; }
         public string Address { get; set; }
         public int PhoneNumber { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Admin> Admins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Company> Companies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HitCounter> HitCounters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Personal> Personals { get; set; }
     }
 
 }

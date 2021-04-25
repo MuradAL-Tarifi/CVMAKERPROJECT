@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MYCVMAKERPROJECT.Models
 {
-    [MetadataType(typeof(AdminMetaData))]
+    [MetadataType(typeof(CompanyProjectMetaData))]
 
     public partial class CompanyProject
     {
@@ -23,7 +23,7 @@ namespace MYCVMAKERPROJECT.Models
         public string DomainName { get; set; }
         public string InterfaceImage { get; set; }
         public string SubImage { get; set; }
-        public Nullable<System.Guid> CompanyId { get; set; }
+        public Nullable<int> CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
     }

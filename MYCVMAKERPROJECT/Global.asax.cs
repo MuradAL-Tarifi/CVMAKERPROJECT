@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MYCVMAKER.Controllers;
+using MYCVMAKERPROJECT.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;

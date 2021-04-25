@@ -26,7 +26,7 @@ namespace MYCVMAKERPROJECT.Models
         public string Address { get; set; }
         public string Degree { get; set; }
         public bool IsActive { get; set; }
-        public Nullable<System.Guid> CompanyId { get; set; }
+        public Nullable<int> CompanyId { get; set; }
 
         public virtual Company Company { get; set; }
     }

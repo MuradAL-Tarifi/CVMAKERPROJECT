@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
 using MYCVMAKERPROJECT.Models;
+using System.Net;
 
 namespace MYCVMAKER.Controllers
 {
@@ -15,6 +16,14 @@ namespace MYCVMAKER.Controllers
 
         public ActionResult Admin()
         {
+            //save
+            AdminController hc = new AdminController();
+            hc.AddCount(new HitCounter { IPAddress = Request.UserHostAddress, CreateDate = DateTime.Now });
+
+            object[] o = new object[2];
+            o = GetCount();
+            ViewBag.ViewDaily = o[0].ToString();
+            ViewBag.TotalView = o[1].ToString();
             return View();
         }
         public int PersonalCount()
@@ -53,21 +62,6 @@ namespace MYCVMAKER.Controllers
             return o;
         }
 
-        protected void Page_Load(object sender, EventArgs a)
-        {
-            object[] o = new object[2];
-            o = GetCount();
-            ViewBag.ViewDaily = o[0].ToString();
-            ViewBag.TotalView = o[1].ToString();
-        }
-
-        public ActionResult AddAdmin([Bind(Include = "UserName,UserEmail,UserState,Address,PhoneNumber")] User user)
-        {
-
-            return View();
-        }
-
-
         public ActionResult GetAdminList()
         {
             var AdminList = db.Users.Where(a => a.UserState == 1).ToList();
@@ -82,6 +76,66 @@ namespace MYCVMAKER.Controllers
         {
             var AdminList = db.Users.Where(a => a.UserState == 3).ToList();
             return Json(new { data = AdminList }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Users/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Id,UserName,UserPassword,UserEmail,UserState,Description,InstagramLink,GetHupLink,LinkedInLink,FacebookLink,Address,PhoneNumber")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("Admin");
+            }
+
+            return View("Admin");
+        }
+
+        // GET: Users/Edit/5
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
+        // POST: Users/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,UserName,UserPassword,UserEmail,UserState,Description,InstagramLink,GetHupLink,LinkedInLink,FacebookLink,Address,PhoneNumber")] User user)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Admin");
+            }
+            return View(user);
+        }
+
+        // GET: Users/Delete/5
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        // POST: Users/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int? DeleteById)
+        {
+            User user = db.Users.Find(DeleteById);
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Admin","Admin");
         }
     }
 }

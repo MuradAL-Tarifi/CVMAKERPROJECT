@@ -15,7 +15,7 @@ namespace MYCVMAKERPROJECT.Models
         public int Id { get; set; }
         public string IPAddress { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public Nullable<System.Guid> UsersId { get; set; }
+        public Nullable<int> UsersId { get; set; }
 
         public virtual User User { get; set; }
     }

@@ -17,7 +17,7 @@ namespace MYCVMAKERPROJECT.Models
         public string Description { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public Nullable<System.Guid> PersonalId { get; set; }
+        public Nullable<int> PersonalId { get; set; }
 
         public virtual Personal Personal { get; set; }
     }

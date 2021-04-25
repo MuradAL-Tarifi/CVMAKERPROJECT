@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8c21795779e3424bb90897ea6d7d20cb" Name="Diagram1">
+        <EntityTypeShape EntityType="CVMAKER_DBModel.Admin" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.CompanWorkExperience" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.Company" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.CompanyProject" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.CompanyService" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.CompanySkill" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.Education" Width="1.5" PointX="5.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.HitCounter" Width="1.5" PointX="3" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.JobAlert" Width="1.5" PointX="5.25" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.Nofitication" Width="1.5" PointX="8.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.Personal" Width="1.5" PointX="3" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.PersonalProject" Width="1.5" PointX="5.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.PersonalService" Width="1.5" PointX="5.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.PersonalSkill" Width="1.5" PointX="5.25" PointY="37.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.PersonalWorkExperience" Width="1.5" PointX="5.25" PointY="40.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CVMAKER_DBModel.User" Width="1.5" PointX="0.75" PointY="21.75" IsExpanded="true" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Admin_Users_UsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_CompanWorkExperience_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Company_Users_UsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_CompanyProject_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_CompanyServices_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_CompanySkills_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_JobAlert_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Nofitication_Company_CompanyId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Education_Personal_PersonalId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_HitCounter_Users_UsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Nofitication_Personal_PersonalId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_Personal_Users_UsersId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_PersonalProject_Personal_PersonalId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_PersonalServices_Personal_PersonalId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_PersonalSkills_Personal_PersonalId" ManuallyRouted="false" />
+        <AssociationConnector Association="CVMAKER_DBModel.FK_PersonalWorkExperience_Personal_PersonalId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

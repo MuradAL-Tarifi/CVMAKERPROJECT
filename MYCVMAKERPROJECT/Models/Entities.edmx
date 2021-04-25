@@ -1,0 +1,1220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CVMAKER_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ad_Name" Type="nvarchar(max)" />
+          <Property Name="UserPageViews" Type="int" Nullable="false" />
+          <Property Name="PersonalRegistration" Type="int" Nullable="false" />
+          <Property Name="EmployersRegistration" Type="int" Nullable="false" />
+          <Property Name="DailyViews" Type="int" Nullable="false" />
+          <Property Name="TotalViews" Type="int" Nullable="false" />
+          <Property Name="TotalJobAlerts" Type="int" Nullable="false" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="C_Name" Type="nvarchar(max)" />
+          <Property Name="C_JobTitle" Type="nvarchar(max)" />
+          <Property Name="C_Type" Type="nvarchar(max)" />
+          <Property Name="C_logo" Type="nvarchar(max)" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanyProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="Tools" Type="nvarchar(max)" />
+          <Property Name="DomainName" Type="nvarchar(max)" />
+          <Property Name="InterfaceImage" Type="nvarchar(max)" />
+          <Property Name="SubImage" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanyServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanySkills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Skill" Type="nvarchar(max)" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Degree" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="nvarchar(max)" />
+          <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="PersonalId" Type="int" />
+        </EntityType>
+        <EntityType Name="HitCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="JobAlert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="J_Description" Type="nvarchar(max)" />
+          <Property Name="J_location" Type="nvarchar(max)" />
+          <Property Name="J_CompanyIndustry" Type="nvarchar(max)" />
+          <Property Name="J_CompanyType" Type="nvarchar(max)" />
+          <Property Name="J_JobRole" Type="nvarchar(max)" />
+          <Property Name="ImplementType" Type="nvarchar(max)" />
+          <Property Name="MonthlySalaryRange" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NumberOfVacancies" Type="int" Nullable="false" />
+          <Property Name="Careerlevel" Type="nvarchar(max)" />
+          <Property Name="YearsOfExperience" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Degree" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Nofitication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonalId" Type="int" />
+          <Property Name="CompanyId" Type="int" />
+          <Property Name="IsReaded" Type="bit" Nullable="false" />
+          <Property Name="Submitted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_FirstName" Type="nvarchar(max)" />
+          <Property Name="P_LastName" Type="nvarchar(max)" />
+          <Property Name="P_JobTitle" Type="nvarchar(max)" />
+          <Property Name="P_FileCV" Type="nvarchar(max)" />
+          <Property Name="P_Image" Type="nvarchar(max)" />
+          <Property Name="P_Gender" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar(max)" />
+          <Property Name="Category" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="ClientName" Type="nvarchar(max)" />
+          <Property Name="Tools" Type="nvarchar(max)" />
+          <Property Name="DomainName" Type="nvarchar(max)" />
+          <Property Name="InterfaceImage" Type="nvarchar(max)" />
+          <Property Name="SubImage" Type="nvarchar(max)" />
+          <Property Name="PersonalId" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
+          <Property Name="PersonalId" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalSkills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Skill" Type="nvarchar(max)" />
+          <Property Name="PersonalId" Type="int" />
+        </EntityType>
+        <EntityType Name="PersonalWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Employeer" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="nvarchar(max)" />
+          <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
+          <Property Name="PersonalId" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="UserPassword" Type="nvarchar(max)" />
+          <Property Name="UserEmail" Type="nvarchar(max)" />
+          <Property Name="UserState" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="InstagramLink" Type="nvarchar(max)" />
+          <Property Name="GetHupLink" Type="nvarchar(max)" />
+          <Property Name="LinkedInLink" Type="nvarchar(max)" />
+          <Property Name="FacebookLink" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Admin_Users_UsersId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanWorkExperience_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanWorkExperience" Type="Self.CompanWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanWorkExperience">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Users_UsersId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyProject_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyProject" Type="Self.CompanyProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyProject">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyServices_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyServices" Type="Self.CompanyServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyServices">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanySkills_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanySkills" Type="Self.CompanySkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanySkills">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HitCounter_Users_UsersId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="HitCounter" Type="Self.HitCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HitCounter">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobAlert_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="JobAlert" Type="Self.JobAlert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobAlert">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nofitication_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nofitication_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personal_Users_UsersId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personal">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalProject_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalProject" Type="Self.PersonalProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalProject">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalServices_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalServices" Type="Self.PersonalServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalServices">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalSkills_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalSkills" Type="Self.PersonalSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalSkills">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalWorkExperience_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalWorkExperience" Type="Self.PersonalWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalWorkExperience">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CVMAKER_DBModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanWorkExperience" EntityType="Self.CompanWorkExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyProject" EntityType="Self.CompanyProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyServices" EntityType="Self.CompanyServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanySkills" EntityType="Self.CompanySkills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HitCounter" EntityType="Self.HitCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobAlert" EntityType="Self.JobAlert" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nofitication" EntityType="Self.Nofitication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalProject" EntityType="Self.PersonalProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalServices" EntityType="Self.PersonalServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalSkills" EntityType="Self.PersonalSkills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalWorkExperience" EntityType="Self.PersonalWorkExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_Users_UsersId" Association="Self.FK_Admin_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanWorkExperience_Company_CompanyId" Association="Self.FK_CompanWorkExperience_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanWorkExperience" EntitySet="CompanWorkExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Users_UsersId" Association="Self.FK_Company_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Company" EntitySet="Company" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyProject_Company_CompanyId" Association="Self.FK_CompanyProject_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyProject" EntitySet="CompanyProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyServices_Company_CompanyId" Association="Self.FK_CompanyServices_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyServices" EntitySet="CompanyServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanySkills_Company_CompanyId" Association="Self.FK_CompanySkills_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanySkills" EntitySet="CompanySkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Personal_PersonalId" Association="Self.FK_Education_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HitCounter_Users_UsersId" Association="Self.FK_HitCounter_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HitCounter" EntitySet="HitCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobAlert_Company_CompanyId" Association="Self.FK_JobAlert_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="JobAlert" EntitySet="JobAlert" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_Company_CompanyId" Association="Self.FK_Nofitication_Company_CompanyId">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Nofitication" EntitySet="Nofitication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_Personal_PersonalId" Association="Self.FK_Nofitication_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="Nofitication" EntitySet="Nofitication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personal_Users_UsersId" Association="Self.FK_Personal_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Personal" EntitySet="Personal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalProject_Personal_PersonalId" Association="Self.FK_PersonalProject_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="PersonalProject" EntitySet="PersonalProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalServices_Personal_PersonalId" Association="Self.FK_PersonalServices_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="PersonalServices" EntitySet="PersonalServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalSkills_Personal_PersonalId" Association="Self.FK_PersonalSkills_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="PersonalSkills" EntitySet="PersonalSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalWorkExperience_Personal_PersonalId" Association="Self.FK_PersonalWorkExperience_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personal" />
+            <End Role="PersonalWorkExperience" EntitySet="PersonalWorkExperience" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CVMAKER_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPageViews" Type="Int32" Nullable="false" />
+          <Property Name="PersonalRegistration" Type="Int32" Nullable="false" />
+          <Property Name="EmployersRegistration" Type="Int32" Nullable="false" />
+          <Property Name="DailyViews" Type="Int32" Nullable="false" />
+          <Property Name="TotalViews" Type="Int32" Nullable="false" />
+          <Property Name="TotalJobAlerts" Type="Int32" Nullable="false" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Admin_Users_UsersId" FromRole="Admin" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="CompanWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanWorkExperience_Company_CompanyId" FromRole="CompanWorkExperience" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="C_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="C_JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="C_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="C_logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="CompanWorkExperiences" Relationship="Self.FK_CompanWorkExperience_Company_CompanyId" FromRole="Company" ToRole="CompanWorkExperience" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Company_Users_UsersId" FromRole="Company" ToRole="Users" />
+          <NavigationProperty Name="CompanyProjects" Relationship="Self.FK_CompanyProject_Company_CompanyId" FromRole="Company" ToRole="CompanyProject" />
+          <NavigationProperty Name="CompanyServices" Relationship="Self.FK_CompanyServices_Company_CompanyId" FromRole="Company" ToRole="CompanyServices" />
+          <NavigationProperty Name="CompanySkills" Relationship="Self.FK_CompanySkills_Company_CompanyId" FromRole="Company" ToRole="CompanySkills" />
+          <NavigationProperty Name="JobAlerts" Relationship="Self.FK_JobAlert_Company_CompanyId" FromRole="Company" ToRole="JobAlert" />
+          <NavigationProperty Name="Nofitications" Relationship="Self.FK_Nofitication_Company_CompanyId" FromRole="Company" ToRole="Nofitication" />
+        </EntityType>
+        <EntityType Name="CompanyProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tools" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DomainName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InterfaceImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanyProject_Company_CompanyId" FromRole="CompanyProject" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="CompanyService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanyServices_Company_CompanyId" FromRole="CompanyServices" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="CompanySkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Skill" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_CompanySkills_Company_CompanyId" FromRole="CompanySkills" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Degree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalId" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_Education_Personal_PersonalId" FromRole="Education" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="HitCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IPAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_HitCounter_Users_UsersId" FromRole="HitCounter" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="JobAlert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="J_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="J_location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="J_CompanyIndustry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="J_CompanyType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="J_JobRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImplementType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MonthlySalaryRange" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="NumberOfVacancies" Type="Int32" Nullable="false" />
+          <Property Name="Careerlevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="YearsOfExperience" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_JobAlert_Company_CompanyId" FromRole="JobAlert" ToRole="Company" />
+        </EntityType>
+        <EntityType Name="Nofitication">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonalId" Type="Int32" />
+          <Property Name="CompanyId" Type="Int32" />
+          <Property Name="IsReaded" Type="Boolean" Nullable="false" />
+          <Property Name="Submitted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Nofitication_Company_CompanyId" FromRole="Nofitication" ToRole="Company" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_Nofitication_Personal_PersonalId" FromRole="Nofitication" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_FileCV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="P_Gender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Personal_PersonalId" FromRole="Personal" ToRole="Education" />
+          <NavigationProperty Name="Nofitications" Relationship="Self.FK_Nofitication_Personal_PersonalId" FromRole="Personal" ToRole="Nofitication" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Personal_Users_UsersId" FromRole="Personal" ToRole="Users" />
+          <NavigationProperty Name="PersonalProjects" Relationship="Self.FK_PersonalProject_Personal_PersonalId" FromRole="Personal" ToRole="PersonalProject" />
+          <NavigationProperty Name="PersonalServices" Relationship="Self.FK_PersonalServices_Personal_PersonalId" FromRole="Personal" ToRole="PersonalServices" />
+          <NavigationProperty Name="PersonalSkills" Relationship="Self.FK_PersonalSkills_Personal_PersonalId" FromRole="Personal" ToRole="PersonalSkills" />
+          <NavigationProperty Name="PersonalWorkExperiences" Relationship="Self.FK_PersonalWorkExperience_Personal_PersonalId" FromRole="Personal" ToRole="PersonalWorkExperience" />
+        </EntityType>
+        <EntityType Name="PersonalProject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tools" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DomainName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InterfaceImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalId" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_PersonalProject_Personal_PersonalId" FromRole="PersonalProject" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="PersonalService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalId" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_PersonalServices_Personal_PersonalId" FromRole="PersonalServices" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="PersonalSkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Skill" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalId" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_PersonalSkills_Personal_PersonalId" FromRole="PersonalSkills" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="PersonalWorkExperience">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Employeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalId" Type="Int32" />
+          <NavigationProperty Name="Personal" Relationship="Self.FK_PersonalWorkExperience_Personal_PersonalId" FromRole="PersonalWorkExperience" ToRole="Personal" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserState" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InstagramLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GetHupLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedInLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FacebookLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_Users_UsersId" FromRole="Users" ToRole="Admin" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Company_Users_UsersId" FromRole="Users" ToRole="Company" />
+          <NavigationProperty Name="HitCounters" Relationship="Self.FK_HitCounter_Users_UsersId" FromRole="Users" ToRole="HitCounter" />
+          <NavigationProperty Name="Personals" Relationship="Self.FK_Personal_Users_UsersId" FromRole="Users" ToRole="Personal" />
+        </EntityType>
+        <Association Name="FK_Admin_Users_UsersId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanWorkExperience_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanWorkExperience" Type="Self.CompanWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanWorkExperience">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Company_Users_UsersId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Company" Type="Self.Company" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Company">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyProject_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyProject" Type="Self.CompanyProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyProject">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyServices_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanyServices" Type="Self.CompanyService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyServices">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanySkills_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="CompanySkills" Type="Self.CompanySkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanySkills">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobAlert_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="JobAlert" Type="Self.JobAlert" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="JobAlert">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nofitication_Company_CompanyId">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HitCounter_Users_UsersId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="HitCounter" Type="Self.HitCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HitCounter">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nofitication_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Personal_Users_UsersId">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Personal">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalProject_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalProject" Type="Self.PersonalProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalProject">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalServices_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalServices" Type="Self.PersonalService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalServices">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalSkills_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalSkills" Type="Self.PersonalSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalSkills">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalWorkExperience_Personal_PersonalId">
+          <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
+          <End Role="PersonalWorkExperience" Type="Self.PersonalWorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalWorkExperience">
+              <PropertyRef Name="PersonalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CVMAKER_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="CompanWorkExperiences" EntityType="Self.CompanWorkExperience" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="CompanyProjects" EntityType="Self.CompanyProject" />
+          <EntitySet Name="CompanyServices" EntityType="Self.CompanyService" />
+          <EntitySet Name="CompanySkills" EntityType="Self.CompanySkill" />
+          <EntitySet Name="Educations" EntityType="Self.Education" />
+          <EntitySet Name="HitCounters" EntityType="Self.HitCounter" />
+          <EntitySet Name="JobAlerts" EntityType="Self.JobAlert" />
+          <EntitySet Name="Nofitications" EntityType="Self.Nofitication" />
+          <EntitySet Name="Personals" EntityType="Self.Personal" />
+          <EntitySet Name="PersonalProjects" EntityType="Self.PersonalProject" />
+          <EntitySet Name="PersonalServices" EntityType="Self.PersonalService" />
+          <EntitySet Name="PersonalSkills" EntityType="Self.PersonalSkill" />
+          <EntitySet Name="PersonalWorkExperiences" EntityType="Self.PersonalWorkExperience" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Admin_Users_UsersId" Association="Self.FK_Admin_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanWorkExperience_Company_CompanyId" Association="Self.FK_CompanWorkExperience_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanWorkExperience" EntitySet="CompanWorkExperiences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Company_Users_UsersId" Association="Self.FK_Company_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Company" EntitySet="Companies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyProject_Company_CompanyId" Association="Self.FK_CompanyProject_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyProject" EntitySet="CompanyProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyServices_Company_CompanyId" Association="Self.FK_CompanyServices_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyServices" EntitySet="CompanyServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanySkills_Company_CompanyId" Association="Self.FK_CompanySkills_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanySkills" EntitySet="CompanySkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobAlert_Company_CompanyId" Association="Self.FK_JobAlert_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="JobAlert" EntitySet="JobAlerts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_Company_CompanyId" Association="Self.FK_Nofitication_Company_CompanyId">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Nofitication" EntitySet="Nofitications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Personal_PersonalId" Association="Self.FK_Education_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="Education" EntitySet="Educations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HitCounter_Users_UsersId" Association="Self.FK_HitCounter_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HitCounter" EntitySet="HitCounters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_Personal_PersonalId" Association="Self.FK_Nofitication_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="Nofitication" EntitySet="Nofitications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Personal_Users_UsersId" Association="Self.FK_Personal_Users_UsersId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Personal" EntitySet="Personals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalProject_Personal_PersonalId" Association="Self.FK_PersonalProject_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="PersonalProject" EntitySet="PersonalProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalServices_Personal_PersonalId" Association="Self.FK_PersonalServices_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="PersonalServices" EntitySet="PersonalServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalSkills_Personal_PersonalId" Association="Self.FK_PersonalSkills_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="PersonalSkills" EntitySet="PersonalSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalWorkExperience_Personal_PersonalId" Association="Self.FK_PersonalWorkExperience_Personal_PersonalId">
+            <End Role="Personal" EntitySet="Personals" />
+            <End Role="PersonalWorkExperience" EntitySet="PersonalWorkExperiences" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CVMAKER_DBModelStoreContainer" CdmEntityContainer="CVMAKER_DBEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
+                <ScalarProperty Name="UserPageViews" ColumnName="UserPageViews" />
+                <ScalarProperty Name="PersonalRegistration" ColumnName="PersonalRegistration" />
+                <ScalarProperty Name="EmployersRegistration" ColumnName="EmployersRegistration" />
+                <ScalarProperty Name="DailyViews" ColumnName="DailyViews" />
+                <ScalarProperty Name="TotalViews" ColumnName="TotalViews" />
+                <ScalarProperty Name="TotalJobAlerts" ColumnName="TotalJobAlerts" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanWorkExperiences">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanWorkExperience">
+              <MappingFragment StoreEntitySet="CompanWorkExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+                <ScalarProperty Name="C_JobTitle" ColumnName="C_JobTitle" />
+                <ScalarProperty Name="C_Type" ColumnName="C_Type" />
+                <ScalarProperty Name="C_logo" ColumnName="C_logo" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyProjects">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanyProject">
+              <MappingFragment StoreEntitySet="CompanyProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Tools" ColumnName="Tools" />
+                <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+                <ScalarProperty Name="InterfaceImage" ColumnName="InterfaceImage" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyServices">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanyService">
+              <MappingFragment StoreEntitySet="CompanyServices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanySkills">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanySkill">
+              <MappingFragment StoreEntitySet="CompanySkills">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HitCounters">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.HitCounter">
+              <MappingFragment StoreEntitySet="HitCounter">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobAlerts">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.JobAlert">
+              <MappingFragment StoreEntitySet="JobAlert">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="J_Description" ColumnName="J_Description" />
+                <ScalarProperty Name="J_location" ColumnName="J_location" />
+                <ScalarProperty Name="J_CompanyIndustry" ColumnName="J_CompanyIndustry" />
+                <ScalarProperty Name="J_CompanyType" ColumnName="J_CompanyType" />
+                <ScalarProperty Name="J_JobRole" ColumnName="J_JobRole" />
+                <ScalarProperty Name="ImplementType" ColumnName="ImplementType" />
+                <ScalarProperty Name="MonthlySalaryRange" ColumnName="MonthlySalaryRange" />
+                <ScalarProperty Name="NumberOfVacancies" ColumnName="NumberOfVacancies" />
+                <ScalarProperty Name="Careerlevel" ColumnName="Careerlevel" />
+                <ScalarProperty Name="YearsOfExperience" ColumnName="YearsOfExperience" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nofitications">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.Nofitication">
+              <MappingFragment StoreEntitySet="Nofitication">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsReaded" ColumnName="IsReaded" />
+                <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personals">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="P_FirstName" ColumnName="P_FirstName" />
+                <ScalarProperty Name="P_LastName" ColumnName="P_LastName" />
+                <ScalarProperty Name="P_JobTitle" ColumnName="P_JobTitle" />
+                <ScalarProperty Name="P_FileCV" ColumnName="P_FileCV" />
+                <ScalarProperty Name="P_Image" ColumnName="P_Image" />
+                <ScalarProperty Name="P_Gender" ColumnName="P_Gender" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalProjects">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalProject">
+              <MappingFragment StoreEntitySet="PersonalProject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Tools" ColumnName="Tools" />
+                <ScalarProperty Name="DomainName" ColumnName="DomainName" />
+                <ScalarProperty Name="InterfaceImage" ColumnName="InterfaceImage" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalServices">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalService">
+              <MappingFragment StoreEntitySet="PersonalServices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalSkills">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalSkill">
+              <MappingFragment StoreEntitySet="PersonalSkills">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonalWorkExperiences">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalWorkExperience">
+              <MappingFragment StoreEntitySet="PersonalWorkExperience">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Employeer" ColumnName="Employeer" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CVMAKER_DBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserState" ColumnName="UserState" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InstagramLink" ColumnName="InstagramLink" />
+                <ScalarProperty Name="GetHupLink" ColumnName="GetHupLink" />
+                <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+                <ScalarProperty Name="FacebookLink" ColumnName="FacebookLink" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

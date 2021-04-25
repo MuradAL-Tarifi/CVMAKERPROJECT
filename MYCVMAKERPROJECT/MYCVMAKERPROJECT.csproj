@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -128,7 +128,22 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CompanWorkExperienceController.cs" />
+    <Compile Include="Controllers\CompanyCVController.cs" />
+    <Compile Include="Controllers\CompanyProjectController.cs" />
+    <Compile Include="Controllers\CompanyServicesController.cs" />
+    <Compile Include="Controllers\CompanySkillsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobAlertController.cs" />
+    <Compile Include="Controllers\NofiticationController.cs" />
+    <Compile Include="Controllers\PersonalCVController.cs" />
+    <Compile Include="Controllers\PersonalEducationController.cs" />
+    <Compile Include="Controllers\PersonalProjectController.cs" />
+    <Compile Include="Controllers\PersonalServicesController.cs" />
+    <Compile Include="Controllers\PersonalSkillsController.cs" />
+    <Compile Include="Controllers\PersonalWorkExperienceController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,6 +165,22 @@
     <Compile Include="Models\CompanySkill.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomAdmin.cs" />
+    <Compile Include="Models\CustomCompanWorkExperience.cs" />
+    <Compile Include="Models\CustomCompany.cs" />
+    <Compile Include="Models\CustomCompanyProject.cs" />
+    <Compile Include="Models\CustomCompanyServices.cs" />
+    <Compile Include="Models\CustomCompanySkills.cs" />
+    <Compile Include="Models\CustomEducation.cs" />
+    <Compile Include="Models\CustomHitCounter.cs" />
+    <Compile Include="Models\CustomJobAlert.cs" />
+    <Compile Include="Models\CustomNofitication.cs" />
+    <Compile Include="Models\CustomPersonal.cs" />
+    <Compile Include="Models\CustomPersonalProject.cs" />
+    <Compile Include="Models\CustomPersonalServices.cs" />
+    <Compile Include="Models\CustomPersonalSkills.cs" />
+    <Compile Include="Models\CustomPersonalWorkExperience.cs" />
+    <Compile Include="Models\CustomUsers.cs" />
     <Compile Include="Models\Education.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -202,14 +233,92 @@
     <Content Include="App_Data\CVMAKER_DB_log.ldf">
       <DependentUpon>CVMAKER_DB.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\adminstyle.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\comDetstyle.css" />
+    <Content Include="Content\comExpstyle.css" />
+    <Content Include="Content\CompanyChangePasswordstyle.css" />
+    <Content Include="Content\Companystyle.css" />
+    <Content Include="Content\comProjstyle.css" />
+    <Content Include="Content\comRegstyle.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\ForgotPasswordstyle.css" />
+    <Content Include="Content\InterFacestyle.css" />
+    <Content Include="Content\Loginstyle.css" />
+    <Content Include="Content\perDetstyle.css" />
+    <Content Include="Content\perExpstyle.css" />
+    <Content Include="Content\perProjstyle.css" />
+    <Content Include="Content\perRegstyle.css" />
+    <Content Include="Content\PersonalChangePassword.css" />
+    <Content Include="Content\Personalstyle.css" />
+    <Content Include="Content\responsive.css" />
+    <Content Include="Content\skins\color-1.css" />
+    <Content Include="Content\skins\color-2.css" />
+    <Content Include="Content\skins\color-3.css" />
+    <Content Include="Content\skins\color-4.css" />
+    <Content Include="Content\skins\color-5.css" />
+    <Content Include="Content\style-switcher.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img\1.jpg" />
+    <Content Include="img\2.jpg" />
+    <Content Include="img\3.png" />
+    <Content Include="img\a3.jpg" />
+    <Content Include="img\avatar1.png" />
+    <Content Include="img\avatar2.png" />
+    <Content Include="img\avatar3.png" />
+    <Content Include="img\avatar4.png" />
+    <Content Include="img\avatar5.png" />
+    <Content Include="img\bk.png" />
+    <Content Include="img\bkd.png" />
+    <Content Include="img\bkp.jpg" />
+    <Content Include="img\contact-img.png" />
+    <Content Include="img\fun-facts-img.png" />
+    <Content Include="img\home-img.png" />
+    <Content Include="img\Logo.png" />
+    <Content Include="img\not_1.png" />
+    <Content Include="img\not_2.png" />
+    <Content Include="img\not_3.png" />
+    <Content Include="img\not_4.png" />
+    <Content Include="img\portfolio\large\project-1\1.png" />
+    <Content Include="img\portfolio\large\project-1\2.png" />
+    <Content Include="img\portfolio\large\project-1\3.png" />
+    <Content Include="img\portfolio\large\project-1\4.png" />
+    <Content Include="img\portfolio\large\project-1\5.png" />
+    <Content Include="img\portfolio\large\project-1\6.png" />
+    <Content Include="img\portfolio\large\project-2\1.png" />
+    <Content Include="img\portfolio\large\project-2\2.png" />
+    <Content Include="img\portfolio\large\project-3\1.png" />
+    <Content Include="img\portfolio\large\project-3\2.png" />
+    <Content Include="img\portfolio\large\project-3\3.png" />
+    <Content Include="img\portfolio\large\project-3\4.png" />
+    <Content Include="img\portfolio\large\project-3\5.png" />
+    <Content Include="img\portfolio\large\project-4\1.png" />
+    <Content Include="img\portfolio\large\project-5\1.png" />
+    <Content Include="img\portfolio\large\project-6\1.png" />
+    <Content Include="img\portfolio\large\project-6\2.png" />
+    <Content Include="img\portfolio\large\project-6\3.png" />
+    <Content Include="img\portfolio\large\project-7\1.png" />
+    <Content Include="img\portfolio\large\project-7\2.png" />
+    <Content Include="img\portfolio\thumb\project-1.png" />
+    <Content Include="img\portfolio\thumb\project-2.png" />
+    <Content Include="img\portfolio\thumb\project-3.png" />
+    <Content Include="img\portfolio\thumb\project-4.png" />
+    <Content Include="img\portfolio\thumb\project-5.png" />
+    <Content Include="img\portfolio\thumb\project-6.png" />
+    <Content Include="img\portfolio\thumb\project-7.png" />
+    <Content Include="img\profile-pic.jpg" />
+    <Content Include="img\reviews\1.jpg" />
+    <Content Include="img\reviews\2.jpg" />
+    <Content Include="img\reviews\3.jpg" />
+    <Content Include="img\reviews\4.jpg" />
+    <Content Include="img\testimonial\1.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entities.Context.cs</LastGenOutput>
@@ -220,8 +329,12 @@
       <DependentUpon>Entities.edmx</DependentUpon>
       <LastGenOutput>Entities.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <EntityDeploy Include="Models\Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Entities.Designer.cs</LastGenOutput>
@@ -229,7 +342,10 @@
     <Content Include="Models\Entities.edmx.diagram">
       <DependentUpon>Entities.edmx</DependentUpon>
     </Content>
+    <Content Include="CVFile\cv.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\ChangePasswordmain.js" />
+    <Content Include="Scripts\Companymain.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -240,6 +356,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\PersoanReg.js" />
+    <Content Include="Scripts\Personalmain.js" />
+    <Content Include="Scripts\style-switcher.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -254,6 +373,34 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\CompanWorkExperience\CompanyWorkExperience.cshtml" />
+    <Content Include="Views\CompanyCV\CompanyCV.cshtml" />
+    <Content Include="Views\CompanyCV\CompanyForgotPassword.cshtml" />
+    <Content Include="Views\CompanyProject\CompanyProject.cshtml" />
+    <Content Include="Views\PersonalCV\PersonalCV.cshtml" />
+    <Content Include="Views\PersonalCV\PersonalForgotPassword.cshtml" />
+    <Content Include="Views\PersonalProject\PersonalProject.cshtml" />
+    <Content Include="Views\PersonalWorkExperience\PersonalWorkExperience.cshtml" />
+    <Content Include="Views\Users\CompanyDet.cshtml" />
+    <Content Include="Views\Users\CompanyReg.cshtml" />
+    <Content Include="Views\Users\ForgotPassword.cshtml" />
+    <Content Include="Views\Users\HomePage.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\PersonalDet.cshtml" />
+    <Content Include="Views\Users\PersonalReg.cshtml" />
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

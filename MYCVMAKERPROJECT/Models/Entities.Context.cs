@@ -41,5 +41,7 @@ namespace MYCVMAKERPROJECT.Models
         public virtual DbSet<PersonalSkill> PersonalSkills { get; set; }
         public virtual DbSet<PersonalWorkExperience> PersonalWorkExperiences { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<MYCVMAKERPROJECT.Models.UsersMetaData> UsersMetaDatas { get; set; }
     }
 }

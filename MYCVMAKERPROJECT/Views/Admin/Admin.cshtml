@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewData["Title"] = "Admin";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <link rel="icon" href="icon_path" type="image/icon type">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- Import lib -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- End import lib -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/adminstyle.css">
+  
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    
+
+</head>
+<body class="overlay-scrollbar">
+    <!-- main content -->
+    <div class="wrapper">
+        <div class="row">
+            <div class="col-3 col-m-6 col-smeb-6">
+                <div class="counter bg-warning">
+                    <p>
+                        <i class="fa fa-eye"></i>
+                    </p>
+                    <h3>Personal Registration</h3>
+                    <p>@Html.Action("PersonalCount")</p>
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-smeb-6">
+                <div class="counter bg-success">
+                    <p>
+                        <i class="fa fa-eye"></i>
+                    </p>
+                    <h3>Employers Registration</h3>
+                    <p>@Html.Action("CompanyCount")</p>
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-smeb-6">
+                <div class="counter bg-primary">
+                    <p>
+                        <i class="fa fa-eye"></i>
+                    </p>
+                    <h3> daily views</h3>
+                    <p>
+                        @ViewBag.ViewDaily
+                    </p>
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-smeb-6">
+                <div class="counter bg-success">
+                    <p>
+                        <i class="fa fa-eye"></i>
+                    </p>
+                    <h3>Total Views</h3>
+                    <p>
+                        @ViewBag.TotalView
+                    </p>
+                </div>
+            </div>
+            <div class="col-3 col-m-6 col-smeb-6">
+                <div class="counter bg-danger">
+                    <p>
+                        <i class="fa fa-eye"></i>
+                    </p>
+                    <h3>How many employers have uploaded the job alert</h3>
+                    <p>@Html.Action("JobAlertCount")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Admin</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table id="AdminTable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>UserName</th>
+                            <th>UserPassword</th>
+                            <th>UserEmail</th>
+                            <th>Address</th>
+                            <th>PhoneNumber</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Comapny</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table id="ComapnyTable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>UserName</th>
+                            <th>UserPassword</th>
+                            <th>UserEmail</th>
+                            <th>Address</th>
+                            <th>PhoneNumber</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Personal</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table id="PersonalTable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>UserID</th>
+                            <th>UserName</th>
+                            <th>UserPassword</th>
+                            <th>UserEmail</th>
+                            <th>Address</th>
+                            <th>PhoneNumber</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- import script -->
+    <script src="~/Scripts/admin.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#AdminTable").DataTable(
+                {
+                    "ajax": {
+                        "url": "/Admin/GetAdminList",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Id" },
+                        { "data": "UserName" },
+                        { "data": "UserPassword" },
+                        { "data": "UserEmail" },
+                        { "data": "Address" },
+                        { "data": "PhoneNumber" }
+                    ]
+                });
+        });
+        $(document).ready(function () {
+            $("#ComapnyTable").DataTable(
+                {
+                    "ajax": {
+                        "url": "/Admin/GetCompanyList",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Id" },
+                        { "data": "UserName" },
+                        { "data": "UserPassword" },
+                        { "data": "UserEmail" },
+                        { "data": "Address" },
+                        { "data": "PhoneNumber" }
+                    ]
+                });
+        });
+        $(document).ready(function () {
+            $("#PersonalTable").DataTable(
+                {
+                    "ajax": {
+                        "url": "/Admin/GetPersonalList",
+                        "type": "GET",
+                        "datatype": "json"
+                    },
+                    "columns": [
+                        { "data": "Id" },
+                        { "data": "UserName" },
+                        { "data": "UserPassword" },
+                        { "data": "UserEmail" },
+                        { "data": "Address" },
+                        { "data": "PhoneNumber" }
+
+                    ]
+                });
+        });
+    </script>
+    <!-- end import script -->
+</body>
+</html>
+

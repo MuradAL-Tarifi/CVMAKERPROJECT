@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "CompanyReg";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <title>Rej</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/comRegstyle.css">
+</head>
+
+<body>
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg">
+        <a href="#" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Collection of nav links, forms, and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Why us</a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Web Design</a>
+                        <a href="#" class="dropdown-item">Web Development</a>
+                        <a href="#" class="dropdown-item">Graphic Design</a>
+                        <a href="#" class="dropdown-item">Digital Marketing</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-item nav-link active">Team</a>
+                <a href="#" class="nav-item nav-link active">Clients Saying</a>
+                <a href="#" class="nav-item nav-link">Contact</a>
+
+            </div>
+
+            <div class="navbar-nav ml-auto action-buttons">
+
+                <a href="#" class="btn btn-1 nav-item nav-link mr-4 ">For Seekers</a>
+                <a href="#" class="btn btn-1 nav-item nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                <a href="#" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar end -->
+    <!-- Header Start -->
+    <section class="trial-block shadow3" id="ContactUs">
+        <div class="height450">
+            <div class="social-overlap process-scetion mt100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-10">
+                            <div class="social-bar">
+                                <div class="social-icons mb-3 iconpad text-center">
+                                    <a href="CompanyReg.html" id="reg" class="slider-nav-item active" onclick="activeshadowreg()"><span class="material-icons">app_registration</span></a>
+                                    <a href="CompanyDet.html" id="det" class="slider-nav-item " onclick="activeshadowdet()"><span class="material-icons">account_circle</span></a>
+                                    <a href="CompanyExp.html" id="exp" class="slider-nav-item " onclick="activeshadowexp()"><span class="material-icons">description</span></a>
+                                    <a href="CompanyProject.html" id="proj" class="slider-nav-item " onclick="activeshadowproj()"><span class="material-icons">camera</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Header end -->
+    <!-- Form Reg -->
+    <section class="reg">
+        <div class="container">
+            <div class="title">Registration</div>
+            <div class="content">
+                <form action="#">
+                    <div class="user-details">
+                        <div class="input-box full">
+                            <span class="details">UserName</span>
+                            <input type="text" required>
+                        </div>
+                        <div class="input-box full">
+                            <span class="details">Email</span>
+                            <input type="text" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Password</span>
+                            <input type="text" required>
+                        </div>
+                        <div class="input-box">
+                            <span class="details">Confirm Password</span>
+                            <input type="text" required>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="button">
+            <input type="submit" value="Register Now">
+        </div>
+    </section>
+    <!-- Form Reg end-->
+    <!-- script -->
+    <script src="~/js/PersoanReg.js"></script>
+</body>
+
+</html>
+

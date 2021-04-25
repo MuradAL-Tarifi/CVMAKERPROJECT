@@ -1,0 +1,612 @@
+﻿    @model CompanyViewModel
+@{
+    ViewData["Title"] = "CompanyCV";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <title>Personal Portfolio Website</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="~/css/font-awesome.css">
+    <!-- main css -->
+    <link rel="stylesheet" type="text/css" href="~/css/Companystyle.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" type="text/css" href="~/css/responsive.css">
+    <!-- default color skin -->
+    <link rel="stylesheet" type="text/css" href="~/css/skins/color-1.css">
+    <!-- style switcher - for demo purposes only -->
+
+    <link rel="stylesheet" type="text/css" class="alternate-style" title="color-1" href="~/css/skins/color-1.css">
+    <link rel="stylesheet" type="text/css" class="alternate-style" title="color-2" href="~/css/skins/color-2.css" disabled>
+    <link rel="stylesheet" type="text/css" class="alternate-style" title="color-3" href="~/css/skins/color-3.css" disabled>
+    <link rel="stylesheet" type="text/css" class="alternate-style" title="color-4" href="~/css/skins/color-4.css" disabled>
+    <link rel="stylesheet" type="text/css" class="alternate-style" title="color-5" href="~/css/skins/color-5.css" disabled>
+    <link rel="stylesheet" type="text/css" href="~/css/style-switcher.css">
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+<body class="dark">
+
+    <!-- preloader start -->
+    <div class="preloader">
+        <div class="box">
+            <div></div><div></div><div></div>
+        </div>
+    </div>
+    <!-- preloader end -->
+    <!-- navigation menu end -->
+    <!-- home section start -->
+    <section class="home-section section active" id="home">
+
+        <!-- navigation menu start -->
+        <nav class="navbar navbar-expand-xl navbar-dark">
+            <a href="#" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+                <div class="navbar-nav ml-auto">
+                    <a href="#home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
+                    <a href="#portfolio" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
+                    <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
+                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">17</span></i><span>Notifications</span></a>
+
+                    <div class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
+                        <div class="dropdown-menu">
+                            <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
+                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
+                            <div class="divider dropdown-divider"></div>
+                            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row full-screen align-items-center">
+
+                <div class="home-text">
+                    <p>Hello</p>
+                    <h2>I'm Murad Awad</h2>
+                    <h1>Web Designer & Developer</h1>
+                    <a href="#about" class="link-item btn-1 outer-shadow hover-in-shadow">More About Me</a>
+                    <a href="#addEmployeeModal" data-toggle="modal" class="link-item btn-1 outer-shadow hover-in-shadow">Upload Post For Job</a>
+                </div>
+                <div class="home-img">
+                    <div class="img-box inner-shadow">
+                        <img src="~/img/profile-pic.jpg" class="outer-shadow" alt="profile-pic">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- home section end -->
+    <div class="notifi-box" id="box">
+        <h2>Notifications <span>17</span></h2>
+        <div class="notifi-item unread" id="0" onclick="unread(this);">
+            <img src="~/img/avatar1.png" alt="img">
+            <div class="text">
+                <h4>Elias Abdurrahman</h4>
+                <p>lorem1 ipsum dolor sit amet</p>
+            </div>
+        </div>
+
+        <div class="notifi-item unread" id="1" onclick="unread(this);">
+            <img src="~/img/avatar2.png" alt="img">
+            <div class="text">
+                <h4>John Doe</h4>
+                <p>lorem1 ipsum dolor sit amet</p>
+            </div>
+        </div>
+
+        <div class="notifi-item unread" id="2" onclick="unread(this);">
+            <img src="~/img/avatar3.png" alt="img">
+            <div class="text">
+                <h4>Emad Ali</h4>
+                <p>lorem1 ipsum dolor sit amet</p>
+            </div>
+        </div>
+
+        <div class="notifi-item unread" id="3" onclick="unread(this);">
+            <img src="~/img/avatar4.png" alt="img">
+            <div class="text">
+                <h4>Ekram Abu </h4>
+                <p>lorem1 ipsum dolor sit amet</p>
+            </div>
+        </div>
+
+        <div class="notifi-item unread" id="4" onclick="unread(this);">
+            <img src="~/img/avatar5.png" alt="img">
+            <div class="text">
+                <h4>Jane Doe</h4>
+                <p>lorem1 ipsum dolor sit amet</p>
+            </div>
+        </div>
+    </div>
+    <!-- about section start -->
+    <section class="about-section section active" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-heading="main info">About me</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="about-img">
+                    <div class="img-box inner-shadow">
+                        <img src="~/img/profile-pic.jpg" class="outer-shadow" alt="profile-pic">
+                    </div>
+                    <!-- social links start -->
+                    <div class="social-links">
+                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <!-- social links end -->
+                </div>
+                <div class="about-info">
+                    <p><span>Hi! My name is Murad Awad. I am a Web Developer.</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                    <p> cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                    <!-- <a href="cv.pdf" class="btn-1 outer-shadow hover-in-shadow">Download CV</a> -->
+                    <a href="#contact" class="link-item btn-1 outer-shadow hover-in-shadow">Hire Me</a>
+                </div>
+            </div>
+            <!-- about tabs start -->
+            <div class="row">
+                <div class="about-tabs">
+                    <span class="tab-item outer-shadow active" data-target=".skills">skills</span>
+                    <span class="tab-item" data-target=".experience">experience</span>
+                    <!-- <span class="tab-item" data-target=".education">education</span> -->
+                </div>
+            </div>
+            <!-- about tabs end -->
+            <!-- skills start -->
+            <div class="row">
+                <div class="skills tab-content active">
+                    <div class="row">
+                        <!-- skill item start -->
+                        @foreach (var skillItem in Model.CompanySkills)
+                        {
+                            <div class="skill-item">
+                                <p class="outer-shadow"></p>
+                            </div>
+                        }
+                        <!-- skill item end -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- skills end -->
+            <!-- experience start -->
+            <div class="row">
+                <div class="experience tab-content">
+                    <div class="row">
+                        <div class="timeline">
+                            <div class="row">
+                                <!-- timeline item start -->
+                                @foreach (var ExperienceItem in Model.CompanWorkExperience)
+                                {
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-inner outer-shadow">
+                                            <i class="fas fa-briefcase icon"></i>
+                                            <h3>full stack developer</h3>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- timeline item end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- experience end -->
+            <!--
+                   education start
+                     <div class="row">
+                      <div class="education tab-content">
+                         <div class="row">
+                            <div class="timeline">
+                               <div class="row">
+                                  timeline item start
+                                   <div class="timeline-item">
+                                      <div class="timeline-item-inner outer-shadow">
+                                         <i class="fas fa-graduation-cap icon"></i>
+                                         <span>2012 - 2014</span>
+                                         <h3>master in computer science</h3>
+                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                      </div>
+                                   </div>
+                                  timeline item end
+                                  timeline item start
+                                   <div class="timeline-item">
+                                      <div class="timeline-item-inner outer-shadow">
+                                         <i class="fas fa-graduation-cap icon"></i>
+                                         <span>2010 - 2012</span>
+                                         <h3>master in computer science</h3>
+                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                      </div>
+                                   </div>
+                                  timeline item end
+                                  timeline item start
+                                   <div class="timeline-item">
+                                      <div class="timeline-item-inner outer-shadow">
+                                         <i class="fas fa-graduation-cap icon"></i>
+                                         <span>2008 - 2010</span>
+                                         <h3>master in computer science</h3>
+                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                      </div>
+                                   </div>
+                                  timeline item end
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   education end -->
+        </div>
+    </section>
+    <!-- about section end -->
+    <!-- service section start -->
+    <section class="service-section section active" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-heading="Services">What i do</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- service item start -->
+                @foreach (var ServicesItem in Model.CompanyServices)
+                {
+                    <div class="service-item">
+                        <div class="service-item-inner outer-shadow">
+                            <div class="icon inner-shadow">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>Responsive design</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
+                        </div>
+                    </div>
+                }
+                <!-- service item end -->
+
+            </div>
+        </div>
+    </section>
+    <!-- service section end -->
+    <!-- portfolio section start -->
+    <section class="portfolio-section section active" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-heading="portfolio">Latest Works</h2>
+                </div>
+            </div>
+            <!-- portfolio filter start -->
+            <div class="row">
+                <div class="portfolio-filter">
+                    <span class="filter-item outer-shadow active" data-target="all">all</span>
+                    <span class="filter-item" data-target="web-application">web application</span>
+                    <span class="filter-item" data-target="photoshop">photoshop</span>
+                    <span class="filter-item" data-target="mobile-app">mobile app</span>
+                    <span class="filter-item" data-target="e-commerce">e commerce</span>
+                </div>
+            </div>
+            <!-- portfolio filter end -->
+            <!-- portfolio items start -->
+
+            <div class="row portfolio-items">
+                @foreach (var ServicesItem in Model.CompanyProject)
+                {
+                    <!-- portfolio item start -->
+                    <div class="portfolio-item" data-category="web-application">
+                        <div class="portfolio-item-inner outer-shadow">
+                            <div class="portfolio-item-img">
+                                <img src="/img/portfolio/thumb/project-1.png" alt="portfolio"
+                                     data-screenshots="../img/portfolio/large/project-1/1.png,
+                    ../img/portfolio/large/project-1/2.png,
+                    ../img/portfolio/large/project-1/3.png,
+                    ../img/portfolio/large/project-1/4.png,
+                    ../img/portfolio/large/project-1/5.png,
+                    ../img/portfolio/large/project-1/6.png">
+                                <!-- view project btn -->
+                                <span class="view-project">view project</span>
+                            </div>
+                            <p class="portfolio-item-title">personal portfolio</p>
+                            <!-- portfolio item details start -->
+                            <div class="portfolio-item-details">
+                                <div class="row">
+                                    <div class="description">
+                                        <h3>Project Brief:</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                                    </div>
+                                    <div class="info">
+                                        <h3>Project info</h3>
+                                        <ul>
+                                            <li>Date - <span>2020</span></li>
+                                            <li>Client - <span>xyz</span></li>
+                                            <li>Tools - <span>html, css, javascript</span></li>
+                                            <li>Web - <span><a href="#">www.domain.com</a></span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- portfolio item details end -->
+                        </div>
+                    </div>
+                    <!-- portfolio item end -->
+                }
+
+            </div>
+            <!-- portfolio items end -->
+        </div>
+    </section>
+    <!-- portfolio section end -->
+    <!-- testimonial section start -->
+    <section class="testimonial-section section active" id="testimonial">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-heading="testimonial">Client Speak</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="testi-box">
+                    <div class="testi-slider outer-shadow">
+                        <div class="testi-slider-container">
+                            <!-- testi item start -->
+                            <div class="testi-item active">
+                                <i class="fas fa-quote-left left"></i>
+                                <i class="fas fa-quote-right right"></i>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                <img src="~/img/testimonial/1.png" alt="testimonial">
+                                <span>Raj Himachal</span>
+                            </div>
+                            <!-- testi item end -->
+                            <!-- testi item start -->
+                            <div class="testi-item">
+                                <i class="fas fa-quote-left left"></i>
+                                <i class="fas fa-quote-right right"></i>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                <img src="~/img/testimonial/1.png" alt="testimonial">
+                                <span>soshiv upreti</span>
+                            </div>
+                            <!-- testi item end -->
+                            <!-- testi item start -->
+                            <div class="testi-item">
+                                <i class="fas fa-quote-left left"></i>
+                                <i class="fas fa-quote-right right"></i>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                <img src="~/img/testimonial/1.png" alt="testimonial">
+                                <span>gamer king</span>
+                            </div>
+                            <!-- testi item end -->
+                        </div>
+                    </div>
+                    <div class="testi-slider-nav">
+                        <span class="prev outer-shadow hover-in-shadow"><i class="fas fa-angle-left"></i></span>
+                        <span class="next outer-shadow hover-in-shadow"><i class="fas fa-angle-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- testimonial section end -->
+    <!-- contact section start -->
+    <section class="contact-section section active" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <h2 data-heading="contact">Get In Touch</h2>
+                </div>
+            </div>
+            <div class="row">
+                <!-- contact item start -->
+                <div class="contact-item">
+                    <div class="contact-item-inner outer-shadow">
+                        <i class="fas fa-phone"></i>
+                        <span>Phone</span>
+                        <p>078888888</p>
+                    </div>
+                </div>
+                <!-- contact item end -->
+                <!-- contact item start -->
+                <div class="contact-item">
+                    <div class="contact-item-inner outer-shadow">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                        <p>murad@gmail.com</p>
+                    </div>
+                </div>
+                <!-- contact item end -->
+                <!-- contact item start -->
+                <div class="contact-item">
+                    <div class="contact-item-inner outer-shadow">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Address</span>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                </div>
+                <!-- contact item end -->
+            </div>
+            <div class="row">
+                <div class="contact-form">
+                    <form>
+                        <div class="row">
+                            <div class="w-50">
+                                <div class="input-group outer-shadow hover-in-shadow">
+                                    <input type="text" placeholder="Name" class="input-control">
+                                </div>
+                                <div class="input-group outer-shadow hover-in-shadow">
+                                    <input type="text" placeholder="Email" class="input-control">
+                                </div>
+                                <div class="input-group outer-shadow hover-in-shadow">
+                                    <input type="text" placeholder="Subject" class="input-control">
+                                </div>
+                            </div>
+                            <div class="w-50">
+                                <div class="input-group outer-shadow hover-in-shadow">
+                                    <textarea class="input-control" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="submit-btn">
+                                <button type="submit" class="btn-1 outer-shadow hover-in-shadow">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- portfolio popup start -->
+    <div class="pp portfolio-popup">
+        <div class="pp-details">
+            <div class="pp-details-inner">
+                <div class="pp-title">
+                    <h2></h2>
+                    <p>Category - <span class="pp-project-category"></span></p>
+                </div>
+                <div class="pp-project-details">
+                </div>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="pp-main">
+            <div class="pp-main-inner">
+                <div class="pp-project-details-btn outer-shadow hover-in-shadow">Project Details <i class="fas fa-plus"></i></div>
+                <div class="pp-close outer-shadow hover-in-shadow">&times;</div>
+                <img src="../img/portfolio/large/project-1/1.png" alt="img" class="pp-img outer-shadow">
+                <div class="pp-counter"></div>
+            </div>
+            <div class="pp-loader">
+                <div></div>
+            </div>
+            <!-- pp navigation -->
+            <div class="pp-prev"><i class="fas fa-play"></i></div>
+            <div class="pp-next"><i class="fas fa-play"></i></div>
+        </div>
+    </div>
+    <!-- portfolio popup end -->
+    <!-- Add Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Job Description</label>
+                            <textarea class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="modal-title">Job Details</h4>
+                        </div>
+                        <div class="form-group">
+                            <label>Job Location</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Industry</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Type</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Job Role</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Emplement Type</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Monthly Salary Range</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of vacancies</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="modal-title">Preferred Candidate</h4>
+                        </div>
+                        <div class="form-group">
+                            <label>Career Level</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Years of Experience</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Degree</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- style switcher start-->
+    <div class="style-switcher outer-shadow">
+        <div class="style-switcher-toggler s-icon outer-shadow hover-in-shadow">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+        <div class="day-night s-icon outer-shadow hover-in-shadow">
+            <i class="fas"></i>
+        </div>
+
+        <h4>Theme Colors</h4>
+        <div class="colors">
+            <span class="color-1" onclick="setActiveStyle('color-1')"></span>
+            <span class="color-2" onclick="setActiveStyle('color-2')"></span>
+            <span class="color-3" onclick="setActiveStyle('color-3')"></span>
+            <span class="color-4" onclick="setActiveStyle('color-4')"></span>
+            <span class="color-5" onclick="setActiveStyle('color-5')"></span>
+        </div>
+    </div>
+    <!-- style switcher end -->
+    <!-- main js -->
+    <script src="~/js/Companymain.js"></script>
+    <!-- style switcher js -->
+    <script src="~/js/style-switcher.js"></script>
+</body>
+</html>
+
+

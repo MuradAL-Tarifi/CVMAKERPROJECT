@@ -52,6 +52,7 @@ namespace MYCVMAKER.Controllers
                 }
                 else if (userInfo.UserState == 3)
                 {
+
                     return RedirectToAction("PersonalCV", "PersonalCV");
                 }
                 else if (userInfo.UserState == 2)
@@ -87,7 +88,7 @@ namespace MYCVMAKER.Controllers
                 user.ConfirmPassword = ConfirmPassword;
                 db.Users.Add(user);
                 db.SaveChanges();
-                Session["Email"] = user.Id;
+                Session["PersoanlID"] = user.Id;
                 return RedirectToAction("PersonalDet");
             }
             else
@@ -101,10 +102,10 @@ namespace MYCVMAKER.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult PersonalDet(string FirstName, string LastName, string JobTitle, int PhoneNumber, string Address, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase CvFile, HttpPostedFileBase mediaFile)
+        public ActionResult PersonalDet(string FirstName, string LastName, string JobTitle, string gender, int PhoneNumber, string Address, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase CvFile, HttpPostedFileBase mediaFile)
         {
             var userstate = Session["UserState"];
-            var userId = Session["Email"];
+            var userId = Session["PersoanlID"];
             Personal personal = new Personal();
 
             var userInfo = db.Users.Where(x => x.Id == int.Parse((string)userId)).ToList().FirstOrDefault();
@@ -122,7 +123,9 @@ namespace MYCVMAKER.Controllers
                 personal.P_FirstName = FirstName;
                 personal.P_LastName = LastName;
                 personal.P_JobTitle = JobTitle;
+                personal.P_Gender = gender;
                 personal.UsersId = userInfo.Id;
+                
                 string cvpath = "";
                 if (CvFile != null)
                 {
@@ -137,11 +140,11 @@ namespace MYCVMAKER.Controllers
                     Imgpath = "~/CVFile/" + mediaFile.FileName;
                     mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
                 }
-                personal.P_FileCV = Imgpath;
+                personal.P_Image = Imgpath;
                 db.Entry(User).State = EntityState.Modified;
                 db.Personals.Add(personal);
                 db.SaveChanges();
-                return RedirectToAction("PersonalDet");
+                return RedirectToAction("PersonalWorkExperience", "PersonalWorkExperience"); ;
             }
             else
             {
@@ -152,9 +155,70 @@ namespace MYCVMAKER.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult CompanyReg(string UserName, string Email, string Password, string ConfirmPassword)
+        {
+            var userstate = Session["UserState"];
+            if (userstate.Equals("2"))
+            {
+                User user = new User();
+                user.UserName = UserName;
+                user.UserEmail = Email;
+                user.UserPassword = Password;
+                user.ConfirmPassword = ConfirmPassword;
+                db.Users.Add(user);
+                db.SaveChanges();
+                Session["ComapnyID"] = user.Id;
+                return RedirectToAction("CompanyDet");
+            }
+            else
+            {
+                return RedirectToAction("HomePage");
+            }
+        }
         public ActionResult CompanyDet()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult CompanyDet( string CoumpanyName, string JobTitle, int PhoneNumber, string CompanyLocation, string CompanyType, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase mediaFile)
+        {
+            var userstate = Session["UserState"];
+            var userId = Session["ComapnyID"];
+            Company company = new Company();
+
+            var userInfo = db.Users.Where(x => x.Id == int.Parse((string)userId)).ToList().FirstOrDefault();
+            if (userstate.Equals("3"))
+            {
+
+                userInfo.PhoneNumber = PhoneNumber;
+                userInfo.Address = CompanyLocation;
+                userInfo.Description = Description;
+                userInfo.GetHupLink = GitHupLink;
+                userInfo.LinkedInLink = LinkedinLink;
+                userInfo.FacebookLink = FaceBookLink;
+                userInfo.InstagramLink = InstagramLink;
+
+                company.C_Name = CoumpanyName;
+                company.C_JobTitle = JobTitle;
+                company.C_Type = CompanyType;
+                company.UsersId = userInfo.Id;
+                string Imgpath = "";
+                if (mediaFile != null)
+                {
+                    Imgpath = "~/CVFile/" + mediaFile.FileName;
+                    mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
+                }
+                company.C_logo = Imgpath;
+                db.Entry(User).State = EntityState.Modified;
+                db.Companies.Add(company);
+                db.SaveChanges();
+                return RedirectToAction("CompanyWorkExperience", "CompanyWorkExperience"); ;
+            }
+            else
+            {
+                return RedirectToAction("HomePage");
+            }
         }
         public ActionResult ForgotPassword()
         {
@@ -195,13 +259,13 @@ namespace MYCVMAKER.Controllers
 
             var fromEmail = new MailAddress("muradshaltaf123@gmail.com","Murad Awad");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "********************";//we set here real passwrod 
+            var fromEmailPassword = "********************";//we set here real passwrod for the email
             var userInfo = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
             userInfo.ConfirmPassword = userInfo.UserPassword;
             string subject = "We send you new password!"+ userInfo.UserEmail;
 
-            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" +userInfo.UserPassword;
+            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" +"Your New Password : "+userInfo.UserPassword;
 
             var smtp = new SmtpClient
             {

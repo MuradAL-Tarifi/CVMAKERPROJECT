@@ -199,9 +199,9 @@ namespace MYCVMAKER.Controllers
             var userInfo = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
             userInfo.ConfirmPassword = userInfo.UserPassword;
-            string subject = "We send you new password!"+ userInfo.UserPassword;
+            string subject = "We send you new password!"+ userInfo.UserEmail;
 
-            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.";
+            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" +userInfo.UserPassword;
 
             var smtp = new SmtpClient
             {

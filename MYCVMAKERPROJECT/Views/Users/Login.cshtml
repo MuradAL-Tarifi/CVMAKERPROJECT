@@ -1,4 +1,4 @@
-﻿
+﻿@model MYCVMAKERPROJECT.Models.User
 @{
     ViewData["Title"] = "Login";
     Layout = null;
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" type="text/css" href="~/css/Loginstyle.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Loginstyle.css" />
 </head>
 <body>
     <!-- Navbar Start -->
@@ -78,6 +78,8 @@
                                 <input type="password" name="phone" placeholder="Password" required="" />
                             </div>
                             <input class="button" type="submit" value="Sign in" />
+                            @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
+                            @Html.ValidationMessage("Wrong", new { @class = "text-danger" })
                             <div class="row clearfix bottom_row">
                                 <div class="col_half remember_me">
                                     <input name="" type="checkbox" value="" />Remember me

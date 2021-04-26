@@ -16,7 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/css/perRegstyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/perRegstyle.css">
 </head>
 
 <body>
@@ -88,34 +88,19 @@
                     <div class="user-details ">
                         <div class="input-box full">
                             <span class="details">UserName</span>
-                            <input type="text" required>
+                            <input type="text" id="UserName" required>
                         </div>
                         <div class="input-box full">
                             <span class="details">Email</span>
-                            <input type="text" required>
+                            <input type="text" id="Email" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Password</span>
-                            <input type="text" required>
+                            <input type="text"  id="Password" required>
                         </div>
                         <div class="input-box">
                             <span class="details">Confirm Password</span>
-                            <input type="text" required>
-                        </div>
-                    </div>
-                    <div class="gender-details">
-                        <input type="radio" name="gender" id="dot-1">
-                        <input type="radio" name="gender" id="dot-2">
-                        <span class="gender-title">Gender</span>
-                        <div class="category">
-                            <label for="dot-1">
-                                <span class="dot one"></span>
-                                <span class="gender">Male</span>
-                            </label>
-                            <label for="dot-2">
-                                <span class="dot two"></span>
-                                <span class="gender">Female</span>
-                            </label>
+                            <input type="text" id="ConfirmPassword"  required>
                         </div>
                     </div>
                 </form>
@@ -127,7 +112,7 @@
     </section>
     <!-- Form Reg end-->
     <!-- script -->
-    <script src="~/js/PersoanReg.js"></script>
+    <script src="~/Scripts/PersoanReg.js"></script>
 </body>
 
 </html>

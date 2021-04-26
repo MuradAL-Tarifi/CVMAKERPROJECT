@@ -18,7 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="~/css/perDetstyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/perDetstyle.css">
 </head>
 
 <body>
@@ -93,47 +93,62 @@
                         </div>
                         <div class="input-box width80">
                             <span class="details">First Name</span>
-                            <input type="text" required>
+                            <input type="text" required id="FirstName">
                         </div>
                         <div class="input-box width80">
                             <span class="details">Last Name</span>
-                            <input type="text" required>
+                            <input type="text" required id="LastName">
                         </div>
                         <div class="input-box ">
                             <span class="details">Job Title</span>
-                            <input type="text" required>
+                            <input type="text" required id="JobTitle">
                         </div>
                         <div class="input-box">
                             <span class="details">Phone Number</span>
-                            <input type="text" required>
+                            <input type="text" required id="PhoneNumber">
                         </div>
                         <div class="input-box full">
                             <span class="details">Address</span>
-                            <input type="text" required>
+                            <input type="text" required id="Address">
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea required></textarea>
+                            <textarea required id="Description"></textarea>
+                        </div>
+                        <div class="gender-details">
+                            <input type="radio" name="gender" id="dot-1" value="male">
+                            <input type="radio" name="gender" id="dot-2" value="female">
+                            <span class="gender-title">Gender</span>
+                            <div class="category">
+                                <label for="dot-1">
+                                    <span class="dot one"></span>
+                                    <span class="gender">Male</span>
+                                </label>
+                                <label for="dot-2">
+                                    <span class="dot two"></span>
+                                    <span class="gender">Female</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="input-box file">
                             <label>Upload Cv</label>
-                            <input type="file">
+                            <input type="file" id="CvFile">
                         </div>
                         <div class="input-box ">
                             <span class="details">GitHup Link</span>
-                            <input type="text" required>
+                            <input type="text" id="GitHupLink">
                         </div>
                         <div class="input-box ">
                             <span class="details">FaceBook Link</span>
-                            <input type="text" required>
+                            <input type="text" id="FaceBookLink">
                         </div>
                         <div class="input-box">
                             <span class="details">Linkedin Link</span>
-                            <input type="text" required>
+                            <input type="text" id="LinkedinLink">
                         </div>
                         <div class="input-box ">
                             <span class="details">Instagram Link</span>
-                            <input type="text" required>
+                            <input type="text" id="InstagramLink">
                         </div>
 
                     </div>
@@ -146,7 +161,7 @@
                 <span class="material-icons">
                     arrow_back
                 </span>
-                <input type="submit" value="Back">
+                <input type="button" value="Back">
             </div>
 
             <div class="next">
@@ -160,7 +175,7 @@
     </section>
     <!-- Form Reg end-->
     <!-- script -->
-    <script src="~/js/PersoanReg.js"></script>
+    <script src="~/Scripts/PersoanReg.js"></script>
 </body>
 
 </html>

@@ -42,11 +42,18 @@
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4 ">For Seekers</a>
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                <a href="#" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-
+                @using (Html.BeginForm("GoToPersonalReg", "Users", FormMethod.Get, new { id = "GoToPersonalRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToPersonalRegForm').submit()" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+                }
+                @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Get, new { id = "GoToLoginForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                }
+                @using (Html.BeginForm("GoToComapnyReg", "Users", FormMethod.Get, new { id = "GoToComapnyRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToComapnyRegForm').submit()" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
+                }
             </div>
         </div>
     </nav>
@@ -63,28 +70,35 @@
                         <div class="social_btn fb"><a href="#"><span><i class="fa fa-facebook" aria-hidden="true"></i></span>Sign in with Facebook</a></div>
                         <div class="social_btn tw"><a href="#"><span><i class="fa fa-twitter" aria-hidden="true"></i></span>Sign in with Twitter</a></div>
                         <div class="social_btn gplus"><a href="#"><span><i class="fa fa-google-plus" aria-hidden="true"></i></span>Sign in with Google+</a></div>
-                        <div class="row clearfix create_account">
-                            <div><a href="#">Create an account</a></div>
-                        </div>
                     </div>
                     <div class="col_half last">
-                        <form>
+                        <form method="post">
                             <div class="input_field">
                                 <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                <input type="email" name="email" placeholder="Email" required="" autocomplete="off" />
+                                <input type="email" name="email" placeholder="Email" required autocomplete="off" />
                             </div>
                             <div class="input_field">
                                 <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                <input type="password" name="phone" placeholder="Password" required="" />
+                                <input type="password" name="phone" placeholder="Password" required autocomplete="off" />
                             </div>
-                            <input class="button" type="submit" value="Sign in" />
+
+                            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "Login" }))
+                            {
+                                <input class="button" type="submit" value="Sign in" onclick="javascript:document.getElementById('Login').submit()"/>
+                            }
+
                             @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
                             @Html.ValidationMessage("Wrong", new { @class = "text-danger" })
                             <div class="row clearfix bottom_row">
                                 <div class="col_half remember_me">
                                     <input name="ReMe" type="checkbox" value="" />Remember me
                                 </div>
-                                <div class="col_half forgot_pw"><a href="#">Forgot password?</a></div>
+                                <div class="col_half forgot_pw">
+                                    @using (Html.BeginForm("ForgotPassword", "Users", FormMethod.Get, new { id = "ForgotPassword" }))
+                                    {
+                                        <a href="javascript:document.getElementById('ForgotPassword').submit()"> Forgot password?</a>
+                                    }
+                                </div>
                             </div>
                         </form>
                     </div>

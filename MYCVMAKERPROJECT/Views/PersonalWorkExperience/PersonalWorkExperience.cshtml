@@ -82,11 +82,11 @@
     <!-- Header end -->
     <!-- Form Reg -->
     <section class="reg">
-        <div class="container" id="ExperienceForm">
-            <div class="title"><i class="fa fa-briefcase"></i>Work Experience</div>
+        @* <div class="container" id="ExperienceForm">
+           <div class="title"><i class="fa fa-briefcase"></i>Work Experience</div>
             <div class="content">
                 <form action="#" id="Experience">
-                    <div class="user-details">
+                    <div class="user-details" id="Experiencesuser">
                         <div class="input-box ">
                             <span class="details">Job Title</span>
                             <input type="text">
@@ -153,10 +153,10 @@
             <div class="title"><i class="fa fa-briefcase"></i>Education and Qualification</div>
             <div class="content">
                 <form action="#" id="Education">
-                    <div class="user-details">
+                    <div class="user-details" id="Educationsuser">
                         <div class="input-box full">
                             <span class="details">Degree</span>
-                            <input type="text" required>
+                            <input type="text">
                         </div>
                         <div class="input-box margin0">
                             <span class="details">Start Date</span>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea required></textarea>
+                            <textarea ></textarea>
                         </div>
                     </div>
                 </form>
@@ -204,20 +204,20 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <div class="container" id="ServicesForm">
             <div class="title"><i class="fa fa-briefcase"></i>Services</div>
             <div class="content">
                 <form action="#" id="Services">
-                    <div class="user-details">
+                    <div class="user-details" id="Servicesuser">
                         <div class="input-box full">
                             <span class="details">Job Title</span>
-                            <input type="text" required>
+                            <input type="text" name="JobTitle">
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea required></textarea>
+                            <textarea name="Description"></textarea>
                         </div>
                     </div>
                 </form>
@@ -232,21 +232,21 @@
         <div class="container" id="SkillsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Skills</div>
             <div class="content">
-                <form action="#" id="Skills">
-                    <div class="user-details">
+                <form method="post" id="Skills">
+                    <div class="user-details" id="Skillsuser">
                         <div class="input-box ">
                             <span class="details">Skills</span>
-                            <input type="text" required>
+                            <input type="text" id="skill" name="skill">
                         </div>
                         <div class="input-box ">
                             <span class="details">Level</span>
-                            <input type="text" required>
+                            <input type="text" id="level" name="level">
                         </div>
                     </div>
                 </form>
                 <div class="buttonADD" id="button3">
                     <div class="next">
-                        <input type="submit" value="Add more fields" onclick="addNewSkillsForm()">
+                        <input type="button" value="Add more fields" onclick="addNewSkillsForm()">
                     </div>
                 </div>
             </div>
@@ -258,20 +258,24 @@
                 <span class="material-icons">
                     arrow_back
                 </span>
-                <input type="submit" value="Back">
+                <input type="button" value="Back">
             </div>
-
-            <div class="next">
-                <input type="submit" value="Next">
-                <span class="material-icons">
-                    arrow_forward
-                </span>
-            </div>
+            @using (Html.BeginForm("PersonalWorkExperience", "PersonalWorkExperience", FormMethod.Post, new { id = "PersonalWorkExperience" }))
+            {
+              <div class="next">
+                    <input type="button" value="Next" onclick="javascript:document.getElementById('PersonalWorkExperience').submit()">
+                    <span class="material-icons">
+                        arrow_forward
+                    </span>
+              </div>
+            }
         </div>
     </section>
     <!-- Form Reg end-->
     <!-- script -->
     <script src="~/Scripts/PersoanReg.js"></script>
+    <script>         
+    </script>
 </body>
 
 </html>

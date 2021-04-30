@@ -47,11 +47,18 @@
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4 ">For Seekers</a>
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                <a href="#" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-
+                @using (Html.BeginForm("GoToPersonalReg", "Users", FormMethod.Get, new { id = "GoToPersonalRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToPersonalRegForm').submit()" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+                }
+                @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Get, new { id = "GoToLoginForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                }
+                @using (Html.BeginForm("GoToComapnyReg", "Users", FormMethod.Get, new { id = "GoToComapnyRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToComapnyRegForm').submit()" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
+                }
             </div>
         </div>
     </nav>
@@ -84,32 +91,36 @@
         <div class="container">
             <div class="title">Registration</div>
             <div class="content">
-                <form action="#">
+                <form >
                     <div class="user-details ">
                         <div class="input-box full">
                             <span class="details">UserName</span>
-                            <input type="text" name="UserName" required>
+                            <input type="text" name="name" required autocomplete="off">
                         </div>
                         <div class="input-box full">
                             <span class="details">Email</span>
-                            <input type="text" name="Email" required>
+                            <input type="text" name="email" required autocomplete="off">
                         </div>
                         <div class="input-box">
                             <span class="details">Password</span>
-                            <input type="text"  name="Password" required>
+                            <input type="text" name="password" required autocomplete="off">
                         </div>
                         <div class="input-box">
                             <span class="details">Confirm Password</span>
-                            <input type="text" name="ConfirmPassword"  required>
+                            <input type="text" name="confirmpassword" required autocomplete="off">
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="button">
-            <input type="submit" value="Register Now">
-        </div>
-    </section>
+        @using (Html.BeginForm("PersonalReg", "Users", FormMethod.Post, new { id = "PersonalReg" }))
+        {
+    <div class="button">
+        <input type="submit" value="Register Now" onclick="javascript:document.getElementById('PersonalReg').submit()">
+    </div>
+        }
+           
+        </section>
     <!-- Form Reg end-->
     <!-- script -->
     <script src="~/Scripts/PersoanReg.js"></script>

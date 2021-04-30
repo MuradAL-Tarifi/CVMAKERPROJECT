@@ -12,5 +12,16 @@ namespace MYCVMAKER.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult PersonalWorkExperience(FormCollection fc)
+        {
+            string se = fc["JobTitle"];
+            string des = fc["Description"];
+            string skill = fc["skill"];
+            string leval = fc["level"];
+
+
+            return View();
+        }
     }
 }

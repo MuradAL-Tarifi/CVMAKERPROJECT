@@ -9,7 +9,7 @@ namespace MYCVMAKERPROJECT.Models
     [MetadataType(typeof(UsersMetaData))]
     public partial class User
     {
-        public string activationCode { get; set; }
+        public bool RememberMe { get; set; }
     }
     public class UsersMetaData
     {

@@ -8,6 +8,7 @@ namespace MYCVMAKER.Controllers
 {
     public class PersonalCVController : Controller
     {
+        [Authorize]
         public ActionResult PersonalCV()
         {
             return View();

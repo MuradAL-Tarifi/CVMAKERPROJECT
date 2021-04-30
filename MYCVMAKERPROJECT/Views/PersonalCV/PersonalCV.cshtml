@@ -85,7 +85,10 @@
                             <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
                             <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
                             <div class="divider dropdown-divider"></div>
-                            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                            @using (Html.BeginForm("Logout", "Users",FormMethod.Post, new { id="logoutForm"}))
+                            {
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                            }
                         </div>
                     </div>
                 </div>

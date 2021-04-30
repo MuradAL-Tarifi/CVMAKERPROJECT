@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using MYCVMAKERPROJECT.Models;
 
 namespace MYCVMAKER.Controllers
@@ -17,79 +18,119 @@ namespace MYCVMAKER.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult GoToLogin()
+        {
+            return RedirectToAction("Login");
+        }
+        [HttpPost]
         public ActionResult GoToComapnyReg()
         {
             Session["UserState"] = 2;
-            return RedirectToAction("Login");
+            return RedirectToAction("CompanyReg");
         }
+        [HttpPost]
         public ActionResult GoToPersonalReg()
         {
-            Session["UserState"] = 3;
-            return RedirectToAction("Login");
+            Session["UserState"] = "3";
+
+            return RedirectToAction("PersonalReg");
         }
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string email,string password)
+        public ActionResult Login(string email,string password,string RetrunUrl="")
         {
-            var userstate = Session["UserState"];
             
-            if (userstate!=null)
-            {
+            
+       
                 var userInfo = db.Users.Where(x => x.UserEmail == email && x.UserPassword == password).ToList().FirstOrDefault();
                 var isExist = IsEmailExist(userInfo.UserEmail);
+                
                 if (userInfo == null)
                 {
                     ModelState.AddModelError("Wrong", "User Name or Password wrong");
                     return View();
                 }
-                else if(isExist)
-                {
-                    ModelState.AddModelError("EmailExist", "Email already exist");
-                    return View();
-                }
                 else if (userInfo.UserState == 3)
                 {
 
-                    return RedirectToAction("PersonalCV", "PersonalCV");
+                    int timeout = userInfo.RememberMe ? 525600 : 20;
+                    var ticket = new FormsAuthenticationTicket(userInfo.UserEmail,userInfo.RememberMe,timeout);
+                    string encrypted = FormsAuthentication.Encrypt(ticket);
+                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName,encrypted);
+                    cookie.Expires=DateTime.Now.AddMinutes(timeout);
+                    cookie.HttpOnly = true;
+                    Response.Cookies.Add(cookie);
+
+                    if (Url.IsLocalUrl(RetrunUrl))
+                    {
+                        return Redirect(RetrunUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("PersonalCV", "PersonalCV");
+                    }
+         
                 }
                 else if (userInfo.UserState == 2)
                 {
-                    return RedirectToAction("CompanyCV", "CompanyCV");
+                    int timeout = userInfo.RememberMe ? 525600 : 20;
+                    var ticket = new FormsAuthenticationTicket(userInfo.UserEmail, userInfo.RememberMe, timeout);
+                    string encrypted = FormsAuthentication.Encrypt(ticket);
+                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                    cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                    cookie.HttpOnly = true;
+                    Response.Cookies.Add(cookie);
+
+                    if (Url.IsLocalUrl(RetrunUrl))
+                    {
+                        return Redirect(RetrunUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("CompanyCV", "CompanyCV");
+                    }
+
+                    
                 }
                 else
                 {
-                    return RedirectToAction("Admin", "Admin"); ;
+                    return RedirectToAction("Admin", "Admin");
                 }
                 
-            }
-            else
-            {
-                return RedirectToAction("HomePage");
-            }
+            
         }
-
+        [Authorize]
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Users", "Login");
+        }
         public ActionResult PersonalReg()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult PersonalReg(string UserName,string Email,string Password ,string ConfirmPassword )
+        public ActionResult PersonalReg(string name, string email, string password, string confirmpassword)
         {
             var userstate = Session["UserState"];
             if (userstate.Equals("3"))
              {
                 User user = new User();
-                user.UserName = UserName;
-                user.UserEmail = Email;
-                user.UserPassword = Password;
-                user.ConfirmPassword = ConfirmPassword;
+                user.UserName = name;
+                user.UserEmail = email;
+                user.UserPassword = password;
+                user.ConfirmPassword = confirmpassword;
                 db.Users.Add(user);
                 db.SaveChanges();
                 Session["PersoanlID"] = user.Id;
                 return RedirectToAction("PersonalDet");
+                
+
             }
             else
             {
@@ -220,6 +261,7 @@ namespace MYCVMAKER.Controllers
                 return RedirectToAction("HomePage");
             }
         }
+       [HttpGet]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -230,7 +272,7 @@ namespace MYCVMAKER.Controllers
             if (IsEmailExist(email))
             {
                 var userInfo = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
-                SendPasswrodLinkEmail(userInfo.UserEmail, userInfo.activationCode);
+                SendPasswrodLinkEmail(userInfo.UserEmail);
                 var message = "Send new paswword successfully done. has been sent to your email " + userInfo.UserEmail;
                 ViewBag.Message = message;
                 return View("Login");
@@ -252,9 +294,9 @@ namespace MYCVMAKER.Controllers
         }
 
         [NonAction]
-        public void SendPasswrodLinkEmail(string email,string activationCode)
+        public void SendPasswrodLinkEmail(string email)
         {
-            var verifyUrl = "/HomePage/ForgotPassword/"+activationCode;
+            var verifyUrl = "/HomePage/ForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
             var fromEmail = new MailAddress("muradshaltaf123@gmail.com","Murad Awad");
@@ -285,6 +327,7 @@ namespace MYCVMAKER.Controllers
             })
                 smtp.Send(message);
         }
+        [NonAction]
         public string CreateRandomPassword(int PasswordLength)
         {
             string _allowedChars = "0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ";

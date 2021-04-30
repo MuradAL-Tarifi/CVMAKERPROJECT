@@ -46,11 +46,18 @@
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4 ">For Seekers</a>
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                <a href="#" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-
+                @using (Html.BeginForm("GoToPersonalReg", "Users", FormMethod.Get, new { id = "GoToPersonalRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToPersonalRegForm').submit()" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+                }
+                @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Get, new { id = "GoToLoginForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                }
+                @using (Html.BeginForm("GoToComapnyReg", "Users", FormMethod.Get, new { id = "GoToComapnyRegForm" }))
+                {
+                    <a href="javascript:document.getElementById('GoToComapnyRegForm').submit()" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
+                }
             </div>
         </div>
     </nav>
@@ -106,7 +113,10 @@
             </div>
         </div>
         <div class="button">
-            <input type="submit" value="Register Now">
+            @using (Html.BeginForm("CompanyReg", "Users", FormMethod.Post, new { id = "CompanyReg" }))
+            {
+        <input type="submit" value="Register Now" onclick="javascript:document.getElementById('CompanyReg').submit()">
+            }
         </div>
     </section>
     <!-- Form Reg end-->

@@ -16,7 +16,7 @@ namespace MYCVMAKERPROJECT
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Users", action = "HomePage", id = UrlParameter.Optional }
             );
         }
     }

@@ -476,6 +476,7 @@ a {
  border-radius: 10px;
  position: relative;
  color: white;
+ margin-bottom:30px;
 }
 .reg .container::after {
   content: "";

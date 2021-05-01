@@ -98,7 +98,7 @@
                 Company Details
             </div>
             <div class="content">
-                <form action="#">
+                <form method="post">
                     <div class="user-details">
                         <div id="profile">
                             <div class="dashes"></div>
@@ -106,7 +106,7 @@
                         </div>
                         <div class="input-box width80">
                             <span class="details">Company Name</span>
-                            <input type="text" required  name="CompanyName">
+                            <input type="text" required name="CoumpanyName">
                         </div>
                         <div class="input-box ">
                             <span class="details">Job Title</span>
@@ -146,32 +146,28 @@
                         </div>
 
                     </div>
+                    <div class="button">
+                        <div class="back">
+                            <span class="material-icons">
+                                arrow_back
+                            </span>
+                            @using (Html.BeginForm("CompanyReg", "Users", FormMethod.Get, new { id = "CompanyReg" }))
+                            {
+                                <input type="submit" value="Back" onclick="javascript:document.getElementById('CompanyReg').submit()">
+                            }
+                        </div>
+
+                        <div class="next">
+                                <input type="submit" value="Next">
+                            <span class="material-icons">
+                                arrow_forward
+                            </span>
+                        </div>
+                    </div>
+                    <input type="file" id="mediaFile" name="mediaFile" />
                 </form>
             </div>
         </div>
-
-        <div class="button">
-            <div class="back">
-                <span class="material-icons">
-                    arrow_back
-                </span>
-                @using (Html.BeginForm("CompanyReg", "Users", FormMethod.Get, new { id = "CompanyReg" }))
-                {
-            <input type="submit" value="Back" onclick="javascript:document.getElementById('CompanyReg').submit()">
-                }
-            </div>
-
-            <div class="next">
-                @using (Html.BeginForm("CompanyDet", "Users", FormMethod.Post, new { id = "CompanyDet" }))
-                {
-            <input type="submit" value="Next" onclick="javascript:document.getElementById('CompanyDet').submit()">
-                }
-                <span class="material-icons">
-                    arrow_forward
-                </span>
-            </div>
-        </div>
-        <input type="file" id="mediaFile" />
     </section>
     <!-- Form Reg end-->
     <!-- script -->

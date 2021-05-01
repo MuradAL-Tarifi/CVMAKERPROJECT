@@ -92,7 +92,7 @@
         <div class="container">
             <div class="title">Personal Details</div>
             <div class="content">
-                <form action="#">
+                <form method="post" enctype="multipart/form-data">
                     <div class="user-details">
                         <div id="profile">
                             <div class="dashes"></div>
@@ -100,52 +100,52 @@
                         </div>
                         <div class="input-box width80">
                             <span class="details">First Name</span>
-                            <input type="text" required name="FirstName">
+                            <input type="text" name="FirstName"  autocomplete="off">
                         </div>
                         <div class="input-box width80">
                             <span class="details">Last Name</span>
-                            <input type="text" required name="LastName">
+                            <input type="text" name="LastName" autocomplete="off">
                         </div>
                         <div class="input-box ">
                             <span class="details">Job Title</span>
-                            <input type="text" required name="JobTitle">
+                            <input type="text" name="JobTitle" autocomplete="off">
                         </div>
                         <div class="input-box">
                             <span class="details">Phone Number</span>
-                            <input type="text" required name="PhoneNumber">
+                            <input type="text" name="PhoneNumber" autocomplete="off">
                         </div>
                         <div class="input-box full">
                             <span class="details">Address</span>
-                            <input type="text" required name="Address">
+                            <input type="text" name="Address" autocomplete="off">
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea required name="Description"></textarea>
+                            <textarea name="Description" autocomplete="off"></textarea>
                         </div>
 
                         <div class="input-box file">
                             <label>Upload Cv</label>
-                            <input type="file" name="CvFile">
+                            <input type="file" name="CvFile" autocomplete="off">
                         </div>
                         <div class="input-box ">
                             <span class="details">GitHup Link</span>
-                            <input type="text" name="GitHupLink">
+                            <input type="text" name="GitHupLink" autocomplete="off">
                         </div>
                         <div class="input-box ">
                             <span class="details">FaceBook Link</span>
-                            <input type="text" name="FaceBookLink">
+                            <input type="text" name="FaceBookLink" autocomplete="off">
                         </div>
                         <div class="input-box">
                             <span class="details">Linkedin Link</span>
-                            <input type="text" name="LinkedinLink">
+                            <input type="text" name="LinkedinLink" autocomplete="off">
                         </div>
                         <div class="input-box ">
                             <span class="details">Instagram Link</span>
-                            <input type="text" name="InstagramLink">
+                            <input type="text" name="InstagramLink" autocomplete="off">
                         </div>
                         <div class="gender-details">
-                            <input type="radio" name="gender" id="dot-1" value="male">
-                            <input type="radio" name="gender" id="dot-2" value="female">
+                            <input type="radio" name="gender" id="dot-1" value="M" autocomplete="off">
+                            <input type="radio" name="gender" id="dot-2" value="F" autocomplete="off">
                             <span class="gender-title">Gender</span>
                             <div class="category">
                                 <label for="dot-1">
@@ -159,32 +159,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="button">
+                        <div class="back">
+                            <span class="material-icons">
+                                arrow_back
+                            </span>
+                                <input type="button" value="Back">
+                        </div>
+
+                        <div class="next">
+                                <input type="submit" value="Next">
+                            <span class="material-icons">
+                                arrow_forward
+                            </span>
+                        </div>
+                    </div>
+                    <input type="file" id="mediaFile" name="mediaFile" />
                 </form>
             </div>
         </div>
-
-        <div class="button">
-            <div class="back">
-                <span class="material-icons">
-                    arrow_back
-                </span>
-                @using (Html.BeginForm("PersonalReg", "Users", FormMethod.Get, new { id = "PersonalReg" }))
-                {
-                <input type="button" value="Back" onclick="javascript:document.getElementById('PersonalReg').submit()">
-                }
-            </div>
-
-            <div class="next">
-                @using (Html.BeginForm("PersonalDet", "Users", FormMethod.Post, new { id = "PersonalDet" }))
-                {
-                  <input type="submit" value="Next" onclick="javascript:document.getElementById('PersonalDet').submit()">
-                }
-                <span class="material-icons">
-                    arrow_forward
-                </span>
-            </div>
-        </div>
-        <input type="file" id="mediaFile" />
     </section>
     <!-- Form Reg end-->
     <!-- script -->

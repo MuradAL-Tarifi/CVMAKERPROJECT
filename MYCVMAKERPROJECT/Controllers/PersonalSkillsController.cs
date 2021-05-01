@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace MYCVMAKER.Controllers
 {
-    public class PersonalSkillsController : Controller
+    public class CustomPersonalSkills : Controller
     {
         public ActionResult Index()
         {

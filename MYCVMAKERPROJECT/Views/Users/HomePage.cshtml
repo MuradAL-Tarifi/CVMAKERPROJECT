@@ -52,10 +52,9 @@
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-                @using (Html.BeginForm("GoToComapnyReg", "Users", FormMethod.Post, new { id = "GoToComapnyRegForm" }))
-                {
-                    <a href="javascript:document.getElementById('GoToComapnyRegForm').submit()" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
-                }
+
+                    <a href="@Url.Action("GoToComapnyReg","Users",null)" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+              
                 @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Post, new { id = "GoToLoginForm" }))
                 {
                 <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>

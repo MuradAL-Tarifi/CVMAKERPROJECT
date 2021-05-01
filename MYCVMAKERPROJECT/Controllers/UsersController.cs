@@ -23,10 +23,10 @@ namespace MYCVMAKER.Controllers
         {
             return RedirectToAction("Login");
         }
-        [HttpPost]
+        
         public ActionResult GoToComapnyReg()
         {
-            Session["UserState"] = 2;
+            Session["UserState"] = "2";
             return RedirectToAction("CompanyReg");
         }
         [HttpPost]
@@ -43,12 +43,7 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public ActionResult Login(string email,string password,string RetrunUrl="")
         {
-            
-            
-       
                 var userInfo = db.Users.Where(x => x.UserEmail == email && x.UserPassword == password).ToList().FirstOrDefault();
-                var isExist = IsEmailExist(userInfo.UserEmail);
-                
                 if (userInfo == null)
                 {
                     ModelState.AddModelError("Wrong", "User Name or Password wrong");
@@ -117,80 +112,113 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public ActionResult PersonalReg(string name, string email, string password, string confirmpassword)
         {
-            var userstate = Session["UserState"];
-            if (userstate.Equals("3"))
-             {
-                User user = new User();
-                user.UserName = name;
-                user.UserEmail = email;
-                user.UserPassword = password;
-                user.ConfirmPassword = confirmpassword;
-                db.Users.Add(user);
-                db.SaveChanges();
-                Session["PersoanlID"] = user.Id;
-                return RedirectToAction("PersonalDet");
-                
-
-            }
-            else
+            if (IsEmailExist(email))
             {
-                return RedirectToAction("HomePage");
+                ViewBag.mess = "This email is exist";
+                return View();
             }
+            else {
+                if (password==confirmpassword)
+                {
+                    
+                    User user = new User();
+                    user.UserName = name;
+                    user.UserEmail = email;
+                    user.UserPassword = password;
+                    user.ConfirmPassword = confirmpassword;
+                    user.UserState = 3;
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    Session["PersoanlID"] = user.Id;
+                    return RedirectToAction("PersonalDet");
+                }
+                else
+                {
+                    ViewBag.mess = "Password and confirmpassword not match";
+                    return View();
+                }
 
+
+            }
         }
         public ActionResult PersonalDet()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult PersonalDet(string FirstName, string LastName, string JobTitle, string gender, int PhoneNumber, string Address, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase CvFile, HttpPostedFileBase mediaFile)
+        public ActionResult PersonalDet(string FirstName, string LastName, string JobTitle, string gender, string PhoneNumber, string Address, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase CvFile, HttpPostedFileBase mediaFile)
         {
-            var userstate = Session["UserState"];
-            var userId = Session["PersoanlID"];
-            Personal personal = new Personal();
 
-            var userInfo = db.Users.Where(x => x.Id == int.Parse((string)userId)).ToList().FirstOrDefault();
-            if (userstate.Equals("3"))
+
+            try
             {
+                var userstate = Session["UserState"];
+                int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+                Personal personal = new Personal();
 
-                userInfo.PhoneNumber = PhoneNumber;
-                userInfo.Address = Address;
-                userInfo.Description = Description;
-                userInfo.GetHupLink = GitHupLink;
-                userInfo.LinkedInLink = LinkedinLink;
-                userInfo.FacebookLink = FaceBookLink;
-                userInfo.InstagramLink = InstagramLink;
+                var userInfo = db.Users.AsNoTracking().Where(x => x.Id == userId).ToList().FirstOrDefault();
+                if (userstate.Equals("3"))
+                {
 
-                personal.P_FirstName = FirstName;
-                personal.P_LastName = LastName;
-                personal.P_JobTitle = JobTitle;
-                personal.P_Gender = gender;
-                personal.UsersId = userInfo.Id;
+                    userInfo.PhoneNumber = int.Parse(PhoneNumber);
+                    userInfo.Address = Address;
+                    userInfo.Description = Description;
+                    userInfo.GetHupLink = GitHupLink;
+                    userInfo.LinkedInLink = LinkedinLink;
+                    userInfo.FacebookLink = FaceBookLink;
+                    userInfo.InstagramLink = InstagramLink;
+
+                    personal.P_FirstName = FirstName;
+                    personal.P_LastName = LastName;
+                    personal.P_JobTitle = JobTitle;
+                    personal.P_Gender = gender;
+                    personal.UsersId = userInfo.Id;
+
+                    string cvpath = "";
+                    if (CvFile != null)
+                    {
+                        cvpath = "/CVFile/" + CvFile.FileName;
+                        CvFile.SaveAs(Server.MapPath(cvpath));//save image to folder
+                    }
+                    personal.P_FileCV = cvpath;
+
+                    string Imgpath = "";
+                    if (mediaFile != null)
+                    {
+                        Imgpath = "/img/" + mediaFile.FileName;
+                        mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
+                    }
+                    personal.P_Image = Imgpath;
+                    personal.User = userInfo;
+                    db.Entry(userInfo).State = EntityState.Modified;
+                    db.Personals.Add(personal);
+                    db.SaveChanges();
+                    return RedirectToAction("PersonalWorkExperience", "PersonalWorkExperience");
+                }
+                else
+                    {
+                        return RedirectToAction("HomePage");
+                    }
                 
-                string cvpath = "";
-                if (CvFile != null)
-                {
-                    cvpath = "~/CVFile/" + CvFile.FileName;
-                    CvFile.SaveAs(Server.MapPath(cvpath));//save image to folder
-                }
-                personal.P_FileCV = cvpath;
-
-                string Imgpath = "";
-                if (mediaFile != null)
-                {
-                    Imgpath = "~/CVFile/" + mediaFile.FileName;
-                    mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
-                }
-                personal.P_Image = Imgpath;
-                db.Entry(User).State = EntityState.Modified;
-                db.Personals.Add(personal);
-                db.SaveChanges();
-                return RedirectToAction("PersonalWorkExperience", "PersonalWorkExperience"); ;
             }
-            else
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
-                return RedirectToAction("HomePage");
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
             }
+
         }
         public ActionResult CompanyReg()
         {
@@ -202,15 +230,23 @@ namespace MYCVMAKER.Controllers
             var userstate = Session["UserState"];
             if (userstate.Equals("2"))
             {
-                User user = new User();
-                user.UserName = UserName;
-                user.UserEmail = Email;
-                user.UserPassword = Password;
-                user.ConfirmPassword = ConfirmPassword;
-                db.Users.Add(user);
-                db.SaveChanges();
-                Session["ComapnyID"] = user.Id;
-                return RedirectToAction("CompanyDet");
+                if (Password == ConfirmPassword)
+                {
+                    User user = new User();
+                    user.UserName = UserName;
+                    user.UserEmail = Email;
+                    user.UserPassword = Password;
+                    user.ConfirmPassword = ConfirmPassword;
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                    Session["ComapnyID"] = user.Id;
+                    return RedirectToAction("CompanyDet");
+                }
+                else
+                {
+                    ViewBag.mess = "Password and confirmpassword not match";
+                    return View();
+                }
             }
             else
             {
@@ -225,13 +261,12 @@ namespace MYCVMAKER.Controllers
         public ActionResult CompanyDet( string CoumpanyName, string JobTitle, int PhoneNumber, string CompanyLocation, string CompanyType, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase mediaFile)
         {
             var userstate = Session["UserState"];
-            var userId = Session["ComapnyID"];
+            var userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
             Company company = new Company();
 
-            var userInfo = db.Users.Where(x => x.Id == int.Parse((string)userId)).ToList().FirstOrDefault();
-            if (userstate.Equals("3"))
+            var userInfo = db.Users.Where(x => x.Id == userId).ToList().FirstOrDefault();
+            if (userstate.Equals("2"))
             {
-
                 userInfo.PhoneNumber = PhoneNumber;
                 userInfo.Address = CompanyLocation;
                 userInfo.Description = Description;
@@ -301,10 +336,10 @@ namespace MYCVMAKER.Controllers
 
             var fromEmail = new MailAddress("muradshaltaf123@gmail.com","Murad Awad");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "********************";//we set here real passwrod for the email
-            var userInfo = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
+            var fromEmailPassword = "*******";//we set here real passwrod for the email
+            var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
-            userInfo.ConfirmPassword = userInfo.UserPassword;
+            db.SaveChanges();
             string subject = "We send you new password!"+ userInfo.UserEmail;
 
             string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" +"Your New Password : "+userInfo.UserPassword;
@@ -318,14 +353,15 @@ namespace MYCVMAKER.Controllers
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
             };
-
             using (var message = new MailMessage(fromEmail, toEmail)
             {
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true
             })
-                smtp.Send(message);
+
+            
+            smtp.Send(message);
         }
         [NonAction]
         public string CreateRandomPassword(int PasswordLength)

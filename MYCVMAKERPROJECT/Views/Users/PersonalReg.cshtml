@@ -91,7 +91,7 @@
         <div class="container">
             <div class="title">Registration</div>
             <div class="content">
-                <form >
+                <form method="post">
                     <div class="user-details ">
                         <div class="input-box full">
                             <span class="details">UserName</span>
@@ -103,22 +103,20 @@
                         </div>
                         <div class="input-box">
                             <span class="details">Password</span>
-                            <input type="text" name="password" required autocomplete="off">
+                            <input type="password" name="password" required autocomplete="off">
                         </div>
                         <div class="input-box">
                             <span class="details">Confirm Password</span>
-                            <input type="text" name="confirmpassword" required autocomplete="off">
+                            <input type="password" name="confirmpassword" required autocomplete="off">
                         </div>
                     </div>
+                    <div class="button">
+                        <input type="submit" value="Register Now">
+                    </div>
+                    @ViewBag.mess
                 </form>
             </div>
         </div>
-        @using (Html.BeginForm("PersonalReg", "Users", FormMethod.Post, new { id = "PersonalReg" }))
-        {
-    <div class="button">
-        <input type="submit" value="Register Now" onclick="javascript:document.getElementById('PersonalReg').submit()">
-    </div>
-        }
            
         </section>
     <!-- Form Reg end-->

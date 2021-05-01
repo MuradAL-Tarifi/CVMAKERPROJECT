@@ -79,14 +79,9 @@
                             </div>
                             <div class="input_field">
                                 <span><i class="fa fa-lock" aria-hidden="true"></i></span>
-                                <input type="password" name="phone" placeholder="Password" required autocomplete="off" />
+                                <input type="password" name="password" placeholder="Password" required autocomplete="off" />
                             </div>
-
-                            @using (Html.BeginForm("Login", "Users", FormMethod.Post, new { id = "Login" }))
-                            {
                                 <input class="button" type="submit" value="Sign in" onclick="javascript:document.getElementById('Login').submit()"/>
-                            }
-
                             @Html.ValidationMessage("EmailExist", new { @class = "text-danger" })
                             @Html.ValidationMessage("Wrong", new { @class = "text-danger" })
                             <div class="row clearfix bottom_row">

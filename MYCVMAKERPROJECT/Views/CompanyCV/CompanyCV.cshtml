@@ -156,10 +156,10 @@
                     </div>
                     <!-- social links start -->
                     <div class="social-links">
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="@Model.User.FacebookLink" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
+                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
+                        <a href="@Model.User.InstagramLink" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
+                        <a href="@Model.User.LinkedInLink" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <!-- social links end -->
                 </div>
@@ -237,7 +237,7 @@
             </div>
             <div class="row">
                 <!-- service item start -->
-                @foreach (var item2 in Model.CompanWorkExperience)
+                @foreach (var item2 in Model.CompanyServices)
                 {
                     <div class="service-item">
                         <div class="service-item-inner outer-shadow">
@@ -267,12 +267,6 @@
             <div class="row">
                 <div class="portfolio-filter">
                     <span class="filter-item outer-shadow active" data-target="all">all</span>
-
-
-                    @foreach (var item4 in Model.CompanyProject)
-                    {
-                        <span class="filter-item" data-target="web-application">@item4.Category</span>
-                    }
                 </div>
             </div>
             <!-- portfolio filter end -->
@@ -474,7 +468,7 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form id="jobalert">
                     <div class="modal-header">
                         <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -482,58 +476,68 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>Job Description</label>
-                            <textarea class="form-control" required></textarea>
+                            <textarea class="form-control" required name="J_Description"></textarea>
                         </div>
                         <div class="form-group">
                             <h4 class="modal-title">Job Details</h4>
                         </div>
+
                         <div class="form-group">
                             <label>Job Location</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="J_location">
+                        </div>
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <input type="text" class="form-control" required name="J_Title">
                         </div>
                         <div class="form-group">
                             <label>Company Industry</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="J_CompanyIndustry">
                         </div>
+
                         <div class="form-group">
                             <label>Company Type</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="J_CompanyType">
                         </div>
                         <div class="form-group">
                             <label>Job Role</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="J_JobRole">
                         </div>
                         <div class="form-group">
                             <label>Emplement Type</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="ImplementType">
                         </div>
                         <div class="form-group">
                             <label>Monthly Salary Range</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="MonthlySalaryRange">
                         </div>
                         <div class="form-group">
                             <label>Number of vacancies</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="NumberOfVacancies">
                         </div>
                         <div class="form-group">
                             <h4 class="modal-title">Preferred Candidate</h4>
                         </div>
                         <div class="form-group">
                             <label>Career Level</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="Careerlevel">
                         </div>
                         <div class="form-group">
                             <label>Years of Experience</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="YearsOfExperience">
                         </div>
                         <div class="form-group">
                             <label>Degree</label>
-                            <input type="text" class="form-control" required>
+                            <input type="text" class="form-control" required name="Degree">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" class="form-control" required name="Address">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-success" value="Add">
+                        <input type="submit" class="btn btn-success" value="Submit" id="save">
                     </div>
                 </form>
             </div>
@@ -564,6 +568,44 @@
     <script src="~/Scripts/Companymain.js"></script>
     <!-- style switcher js -->
     <script src="~/Scripts/style-switcher.js"></script>
+    <script>
+        $("body").on("click", "#save", function () {
+            //Loop through the Table rows and build a JSON array.
+            $("#save").hide();
+
+            var jobs = new Array();
+            $(" .modal-body").each(function () {
+                var row = $(this);
+                var job = {};
+                job.J_Description = row.find("textarea").eq(0).val();
+                job.J_Title = row.find("input").eq(0).val();
+                job.J_location = row.find("input").eq(1).val();
+                job.J_CompanyIndustry = row.find("input").eq(2).val();
+                job.J_CompanyType = row.find("input").eq(3).val();
+                job.J_JobRole = row.find("input").eq(4).val();
+                job.ImplementType = row.find("input").eq(5).val();
+                job.MonthlySalaryRange = row.find("input").eq(6).val();
+                job.NumberOfVacancies = row.find("input").eq(7).val();
+                job.Careerlevel = row.find("input").eq(8).val();
+                job.YearsOfExperience = row.find("input").eq(9).val();
+                job.Degree = row.find("input").eq(10).val();
+                job.Address = row.find("input").eq(11).val();
+                jobs.push(job);
+            });
+            $.ajax({
+                method: "POST",
+                url: "/CompanyCV/JobAlertSaveData",
+                data: JSON.stringify(jobs),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    alert("Data Saved.");
+                    $("#save").show();
+
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 

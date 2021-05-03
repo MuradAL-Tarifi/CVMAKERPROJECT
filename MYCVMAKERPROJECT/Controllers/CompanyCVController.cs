@@ -32,5 +32,28 @@ namespace MYCVMAKER.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult JobAlertSaveData(List<JobAlert> Jobs)
+        {
+            int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
+            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            {
+                //Check for NULL.
+                if (Jobs == null)
+                {
+                    Jobs = new List<JobAlert>();
+                }
+
+                //Loop and insert records.
+                foreach (JobAlert Job in Jobs)
+                {
+                    Job.CompanyId = userId;
+                    db.JobAlerts.Add(Job);
+                }
+                db.SaveChanges();
+
+                return View("CompanyCV");
+            }
+        }
     }
 }

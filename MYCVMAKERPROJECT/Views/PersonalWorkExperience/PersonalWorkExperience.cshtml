@@ -84,33 +84,33 @@
     <!-- Header end -->
     <!-- Form Reg -->
     <section class="reg">
-        @*<div class="container" id="ExperienceForm">
-           <div class="title"><i class="fa fa-briefcase"></i>Work Experience</div>
+        <div class="container" id="ExperienceForm">
+            <div class="title"><i class="fa fa-briefcase"></i>Work Experience</div>
             <div class="content">
-                <form action="#" id="Experience">
+                <form id="Experience">
                     <div class="user-details" id="Experiencesuser">
                         <div class="input-box ">
                             <span class="details">Job Title</span>
-                            <input type="text">
+                            <input type="text" autocomplete='off' name="JobTitle" class="JobTitle">
                         </div>
                         <div class="input-box ">
                             <span class="details">City/Town</span>
-                            <input type="text">
+                            <input type="text" autocomplete='off' name="City" class="City">
                         </div>
                         <div class="input-box full">
                             <span class="details">Employer</span>
-                            <input type="text">
+                            <input type="text" autocomplete='off' name="Employeer" class="Employeer">
                         </div>
                         <div class="input-box margin0">
                             <span class="details">Start Date</span>
-                            <select name="date" id="date" class="form-control">
+                            <select name="StartDate" id="date" class="form-control StartDate">
                                 <option value="15" selected>15</option>
                                 <option value="16">16</option>
                                 <option value="17">17</option>
                                 <option value="18">18</option>
                                 <option value="19">19</option>
                             </select>
-                            <select name="month" id="month" class="form-control">
+                            <select name="startMonth" id="month" class="form-control startMonth">
                                 <option value="Jan" selected>Jan</option>
                                 <option value="Feb">Feb</option>
                                 <option value="Mar">Mar</option>
@@ -119,15 +119,15 @@
                             </select>
                         </div>
                         <div class="input-box margin0">
-                            <span class="details">Start Date</span>
-                            <select name="date" id="date" class="form-control">
+                            <span class="details">End Date</span>
+                            <select name="EndDate" id="date" class="form-control EndDate">
                                 <option value="15" selected>15</option>
                                 <option value="16">16</option>
                                 <option value="17">17</option>
                                 <option value="18">18</option>
                                 <option value="19">19</option>
                             </select>
-                            <select name="month" id="month" class="form-control">
+                            <select name="EndMonth" id="month" class="form-control EndMonth">
                                 <option value="Jan" selected>Jan</option>
                                 <option value="Feb">Feb</option>
                                 <option value="Mar">Mar</option>
@@ -137,13 +137,14 @@
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea></textarea>
+                            <textarea autocomplete='off' name="Description" class="Description"></textarea>
                         </div>
                     </div>
                 </form>
                 <div class="buttonADD" id="button">
                     <div class="next">
-                        <input type="submit" value="Add more fields" onclick="addNewExperienceForm()">
+                        <input type="button" value="Add more fields" id="addwork">
+                        <input type="button" value="Save all data" id="savework">
                     </div>
                 </div>
             </div>
@@ -154,22 +155,22 @@
         <div class="container" id="EducationForm">
             <div class="title"><i class="fa fa-briefcase"></i>Education and Qualification</div>
             <div class="content">
-                <form action="#" id="Education">
+                <form id="Education">
                     <div class="user-details" id="Educationsuser">
                         <div class="input-box full">
                             <span class="details">Degree</span>
-                            <input type="text">
+                            <input type="text" autocomplete='off' name="Degree" class="Degree">
                         </div>
                         <div class="input-box margin0">
                             <span class="details">Start Date</span>
-                            <select name="date" id="date" class="form-control">
+                            <select name="StartDate" id="date" class="form-control StartDate">
                                 <option value="15" selected>15</option>
                                 <option value="16">16</option>
                                 <option value="17">17</option>
                                 <option value="18">18</option>
                                 <option value="19">19</option>
                             </select>
-                            <select name="month" id="month" class="form-control">
+                            <select name="startMonth" id="month" class="form-control startMonth">
                                 <option value="Jan" selected>Jan</option>
                                 <option value="Feb">Feb</option>
                                 <option value="Mar">Mar</option>
@@ -177,16 +178,16 @@
                                 <option value="May">May</option>
                             </select>
                         </div>
-                        <div class="input-box  margin0">
+                        <div class="input-box margin0">
                             <span class="details">End Date</span>
-                            <select name="date" id="date" class="form-control">
+                            <select name="EndDate" id="date" class="form-control EndDate">
                                 <option value="15" selected>15</option>
                                 <option value="16">16</option>
                                 <option value="17">17</option>
                                 <option value="18">18</option>
                                 <option value="19">19</option>
                             </select>
-                            <select name="month" id="month" class="form-control">
+                            <select name="EndMonth" id="month" class="form-control EndMonth">
                                 <option value="Jan" selected>Jan</option>
                                 <option value="Feb">Feb</option>
                                 <option value="Mar">Mar</option>
@@ -196,47 +197,48 @@
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea ></textarea>
+                            <textarea autocomplete='off' name="Description" class="Description"></textarea>
                         </div>
                     </div>
                 </form>
                 <div class="buttonADD" id="button1">
                     <div class="next">
-                        <input type="submit" value="Add more fields" onclick="addNewEducationForm()">
+                        <input type="submit" value="Add more fields" id="added">
+                        <input type="button" value="Save all data" id="saveed">
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <div class="container" id="ServicesForm">
             <div class="title"><i class="fa fa-briefcase"></i>Services</div>
             <div class="content">
-                <form action="#" id="Services">
+                <form id="Services">
                     <div class="user-details" id="Servicesuser">
                         <div class="input-box full">
-                            <span class="details">Job Title</span>
-                            <input type="text" name="JobTitle">
+                            <span class="details">Service</span>
+                            <input type="text" name="JobTitle" class="JobTitle" autocomplete='off'>
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea name="Description"></textarea>
+                            <textarea name="Description" class="Description" autocomplete='off'></textarea>
                         </div>
                     </div>
                 </form>
                 <div class="buttonADD" id="button2">
                     <div class="next">
-                        <input type="submit" value="Add more fields" onclick="addNewServicesForm()">
+                        <input type="button" value="Add more fields" id="addservices">
+                        <input type="button" value="Save all data" id="saveservices">
                     </div>
                 </div>
             </div>
-        </div>*@
+        </div>
 
         <div class="container" id="SkillsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Skills</div>
             <div class="content">
                 <form id="Skills">
                     <div class="user-details" id="Skillsuser">
-                        <div class="delete"></div>
                         <div class="input-box">
                             <span class="details">Skills</span>
                             <input type="text" name="skill" autocomplete="off" class="skill">
@@ -257,7 +259,7 @@
 
         <div class="button">
             <div class="back">
-                <span class="material-icons" >
+                <span class="material-icons">
                     arrow_back
                 </span>
                 <input type="button" value="Back">
@@ -275,6 +277,153 @@
     <!-- script -->
     <script src="~/Scripts/PersoanReg.js"></script>
     <script>
+        //WorkExperience
+        $(document).ready(function () {
+            var count = 1;
+            $('#addwork').click(function () {
+                count = count + 1;
+                var html_code = "<div class='user-details' id='row" + count + "'>";
+                html_code += "<div class='delete' style=' width: 100%; height: 30px; display: block;'><button type='button' name='remove' data-row='row" + count + "' class='btn-danger btn-xs remove' style='width:25px;height:25px'>-</button></div>";
+                html_code += "<div class='input-box'><span class='details'>Job Title</span><input type='text' autocomplete='off' name='JobTitle' class='JobTitle'></div>";
+                html_code += "<div class='input-box'><span class='details'>City/Town</span><input type='text' autocomplete='off' name='City' class='City'></div>";
+                html_code += "<div class='input-box full'><span class='details'>Employer</span><input type='text' autocomplete='off' name='Employeer' class='Employeer'></div>";
+                html_code += "<div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' class='form-control StartDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='StartMonth'  class='form-control StartMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
+                html_code += "</div>";
+                $('#Experience').append(html_code);
+            });
+        });
+        $(document).on('click', '.remove', function () {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
+        $("body").on("click", "#savework", function () {
+            //Loop through the Table rows and build a JSON array.
+            $("#savework").hide();
+            
+            var Works = new Array();
+            $("#Experience .user-details").each(function () {
+                var row = $(this);
+                var work = {};
+                work.JobTitle = row.find("input").eq(0).val();
+                work.City = row.find("input").eq(1).val();
+                work.Employeer = row.find("input").eq(2).val();
+                work.StartDate = row.find("select").eq(0).val();
+                work.StartMonth = row.find("select").eq(1).val();
+                work.EndDate = row.find("select").eq(2).val();
+                work.EndMonth = row.find("select").eq(3).val();
+                work.Description = row.find("textarea").eq(0).val();
+                Works.push(work);
+            });
+            $.ajax({
+                method: "POST",
+                url: "/PersonalWorkExperience/ExperienceSaveData",
+                data: JSON.stringify(Works),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    alert("Data Saved.");
+                    $("#savework").show();
+                   
+                }
+            });
+        });
+
+
+        //Education
+        $(document).ready(function () {
+            var count = 1;
+            $('#added').click(function () {
+                count = count + 1;
+                var html_code = "<div class='user-details' id='row" + count + "'>";
+                html_code += "<div class='delete' style=' width: 100%; height: 30px; display: block;'><button type='button' name='remove' data-row='row" + count + "' class='btn-danger btn-xs remove' style='width:25px;height:25px'>-</button></div>";
+                html_code += "<div class='input-box full'><span class='details'>Degree</span><input type='text' autocomplete='off' name='Degree' class='Degree'></div>";
+                html_code += "<div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' class='form-control StartDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='StartMonth'  class='form-control StartMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
+                html_code += "</div>";
+                $('#Education').append(html_code);
+            });
+        });
+        $(document).on('click', '.remove', function () {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
+        $("body").on("click", "#saveed", function () {
+            //Loop through the Table rows and build a JSON array.
+            $("#saveed").hide();
+            var Educations = new Array();
+            $("#Education .user-details").each(function () {
+                var row = $(this);
+                var Education = {};
+                Education.Degree = row.find("input").eq(0).val();
+                Education.Description = row.find("textarea").eq(0).val();
+                Education.StartDate = row.find("select").eq(0).val();
+                Education.StartMonth = row.find("select").eq(1).val();
+                Education.EndDate = row.find("select").eq(2).val();
+                Education.EndMonth = row.find("select").eq(3).val();
+                Educations.push(Education);
+            });
+            $.ajax({
+                method: "POST",
+                url: "/PersonalWorkExperience/EducationsSaveData",
+                data: JSON.stringify(Educations),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    alert("Data Saved.");
+                    $("#saveed").show(); 
+                }
+            });
+        });
+
+
+
+        //Services
+        $(document).ready(function () {
+            var count = 1;
+            $('#addservices').click(function () {
+                count = count + 1;
+                var html_code = "<div class='user-details' id='row" + count + "'>";
+                html_code += "<div class='delete' style=' width: 100%; height: 30px; display: block;'><button type='button' name='remove' data-row='row" + count + "' class='btn-danger btn-xs remove' style='width:25px;height:25px'>-</button></div>";
+                html_code += "<div class='input-box full'><span class='details'>Service</span><input type='text' autocomplete='off' name='JobTitle' class='JobTitle'></div>";
+                html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
+                html_code += "</div>";
+                $('#Services').append(html_code);
+            });
+        });
+        $(document).on('click', '.remove', function () {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
+        $("body").on("click", "#saveservices", function () {
+            //Loop through the Table rows and build a JSON array.
+            $("#saveservices").hide();
+            var Services = new Array();
+            $("#Services .user-details").each(function () {
+                var row = $(this);
+                var Service = {};
+                Service.JobTitle = row.find("input").eq(0).val();
+                Service.Description = row.find("textarea").eq(0).val();
+                Services.push(Service);
+            });
+            $.ajax({
+                method: "POST",
+                url: "/PersonalWorkExperience/ServicesSaveData",
+                data: JSON.stringify(Services),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    alert("Data Saved.");
+                    $("#saveservices").show();
+                }
+            });
+        });
+
+
+
+        //skills
         $(document).ready(function () {
             var count = 1;
             $('#add').click(function () {
@@ -287,18 +436,16 @@
                 $('#Skills').append(html_code);
             });
         });
-            $(document).on('click', '.remove', function () {
-                var delete_row = $(this).data("row");
-                $('#' + delete_row).remove();
-            });
-
-
+        $(document).on('click', '.remove', function () {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
         $("body").on("click", "#save", function () {
             //Loop through the Table rows and build a JSON array.
             $("#save").hide();
             $("#next").hide();
             var skills = new Array();
-            $(".user-details").each(function () {
+            $("#Skills .user-details").each(function () {
                 var row = $(this);
                 var skill = {};
                 skill.skill = row.find("input").eq(0).val();
@@ -320,7 +467,7 @@
         });
 
     </script>
- 
+
 </body>
 
 </html>

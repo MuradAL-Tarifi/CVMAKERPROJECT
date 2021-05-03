@@ -1,4 +1,4 @@
-﻿
+﻿@model MYCVMAKERPROJECT.ViewModel.PersonalViewModel
 @{
     ViewData["Title"] = "PersonalCV";
     Layout = null;
@@ -85,9 +85,9 @@
                             <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
                             <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
                             <div class="divider dropdown-divider"></div>
-                            @using (Html.BeginForm("Logout", "Users",FormMethod.Post, new { id="logoutForm"}))
+                            @using (Html.BeginForm("Logout", "Users", FormMethod.Post, new { id = "logoutForm" }))
                             {
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
                             }
                         </div>
                     </div>
@@ -100,13 +100,13 @@
             <div class="row full-screen align-items-center">
                 <div class="home-text">
                     <p>Hello</p>
-                    <h2>I'm Murad Awad</h2>
-                    <h1>Web Designer & Developer</h1>
+                    <h2>I'm @Model.Personal.P_FirstName @Model.Personal.P_LastName</h2>
+                    <h1>@Model.Personal.P_JobTitle</h1>
                     <a href="#about" class="link-item btn-1 outer-shadow hover-in-shadow">More About Me</a>
                 </div>
                 <div class="home-img">
                     <div class="img-box inner-shadow">
-                        <img src="~/img/profile-pic.jpg" class="outer-shadow" alt="profile-pic">
+                        <img src="~/img/@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
                     </div>
                 </div>
             </div>
@@ -115,42 +115,11 @@
     <!-- home section end -->
     <div class="notifi-box" id="box">
         <h2>Notifications <span>17</span></h2>
+        
         <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
             <img src="~/img/avatar1.png" alt="img">
             <div class="text">
                 <h4>Elias Abdurrahman</h4>
-                <p> ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="~/img/avatar2.png" alt="img">
-            <div class="text">
-                <h4>John Doe</h4>
-                <p> ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="~/img/avatar3.png" alt="img">
-            <div class="text">
-                <h4>Emad Ali</h4>
-                <p> ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="~/img/avatar4.png" alt="img">
-            <div class="text">
-                <h4>Ekram Abu </h4>
-                <p> ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="~/img/avatar5.png" alt="img">
-            <div class="text">
-                <h4>Jane Doe</h4>
                 <p> ipsum dolor sit amet</p>
             </div>
         </div>
@@ -167,21 +136,20 @@
             <div class="row">
                 <div class="about-img">
                     <div class="img-box inner-shadow">
-                        <img src="~/img/profile-pic.jpg" class="outer-shadow" alt="profile-pic">
+                        <img src="@Model.Personal.P_Image class="outer-shadow" alt="profile-pic">
                     </div>
                     <!-- social links start -->
                     <div class="social-links">
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="@Model.User.FacebookLink" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
+                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
+                        <a href="@Model.User.InstagramLink" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
+                        <a href="@Model.User.LinkedInLink" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <!-- social links end -->
                 </div>
                 <div class="about-info">
-                    <p><span>Hi! My name is Murad Awad. I am a Web Developer.</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                    <p> cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                    <a href="cv.pdf" class="btn-1 outer-shadow hover-in-shadow">Download CV</a>
+                    <p><span>Hi! My name is @Model.Personal.P_FirstName @Model.Personal.P_LastName. I am a @Model.Personal.P_JobTitle.</span>@Model.User.Description </p>
+                    <a href="@Model.Personal.P_FileCV" class="btn-1 outer-shadow hover-in-shadow">Download CV</a>
                     <a href="#contact" class="link-item btn-1 outer-shadow hover-in-shadow">Hire Me</a>
                 </div>
             </div>
@@ -199,64 +167,17 @@
                 <div class="skills tab-content active">
                     <div class="row">
                         <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>Html</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(50% - 14px)">
-                                    <span>50%</span>
-                                </div>
+                        @foreach (var item in Model.PersonalSkill)
+                        {
+                    <div class="skill-item">
+                        <p>@item.Skill</p>
+                        <div class="progress inner-shadow">
+                            <div class="progress-bar" style="width: calc(50% - 14px)">
+                                <span>@item.Level%</span>
                             </div>
                         </div>
-                        <!-- skill item end -->
-                        <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>javascript</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(60% - 14px)">
-                                    <span>60%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- skill item end -->
-                        <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>bootstrap</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(70% - 14px)">
-                                    <span>70%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- skill item end -->
-                        <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>jquery</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(80% - 14px)">
-                                    <span>80%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- skill item end -->
-                        <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>angular</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(90% - 14px)">
-                                    <span>90%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- skill item end -->
-                        <!-- skill item start -->
-                        <div class="skill-item">
-                            <p>php</p>
-                            <div class="progress inner-shadow">
-                                <div class="progress-bar" style="width: calc(100% - 14px)">
-                                    <span>100%</span>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                        }
                         <!-- skill item end -->
                     </div>
                 </div>
@@ -269,37 +190,18 @@
                         <div class="timeline">
                             <div class="row">
                                 <!-- timeline item start -->
+                                @foreach (var item in Model.PersonalWorkExperience)
+                                {
                                 <div class="timeline-item">
                                     <div class="timeline-item-inner outer-shadow">
                                         <i class="fas fa-briefcase icon"></i>
-                                        <span>Sep, 2018 - Present</span>
-                                        <h3>full stack developer</h3>
-                                        <h4>Company name, india</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <span>@item.StartMonth, @item.EndDate - Present</span>
+                                        <h3>@item.JobTitle</h3>
+                                        <h4>@item.Employeer, @item.City </h4>
+                                        <p>@item.Description</p>
                                     </div>
                                 </div>
-                                <!-- timeline item end -->
-                                <!-- timeline item start -->
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-briefcase icon"></i>
-                                        <span>Sep, 2016 - Oct, 2017</span>
-                                        <h3>web designer</h3>
-                                        <h4>Company name, india</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <!-- timeline item end -->
-                                <!-- timeline item start -->
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-briefcase icon"></i>
-                                        <span>Sep, 2014 - Jun, 2016</span>
-                                        <h3>web designer</h3>
-                                        <h4>Company name, india</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
+                                }
                                 <!-- timeline item end -->
                             </div>
                         </div>
@@ -314,34 +216,17 @@
                         <div class="timeline">
                             <div class="row">
                                 <!-- timeline item start -->
+                                @foreach (var item in Model.Education)
+                                {
                                 <div class="timeline-item">
                                     <div class="timeline-item-inner outer-shadow">
                                         <i class="fas fa-graduation-cap icon"></i>
-                                        <span>2012 - 2014</span>
-                                        <h3>master in computer science</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <span>@item.StartMonth, @item.StartDate - @item.EndMonth, @item.EndDate</span>
+                                        <h3>@item.Degree</h3>
+                                        <p>@item.Description</p>
                                     </div>
                                 </div>
-                                <!-- timeline item end -->
-                                <!-- timeline item start -->
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-graduation-cap icon"></i>
-                                        <span>2010 - 2012</span>
-                                        <h3>master in computer science</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                                <!-- timeline item end -->
-                                <!-- timeline item start -->
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-graduation-cap icon"></i>
-                                        <span>2008 - 2010</span>
-                                        <h3>master in computer science</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
+                                }
                                 <!-- timeline item end -->
                             </div>
                         </div>
@@ -362,70 +247,18 @@
             </div>
             <div class="row">
                 <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-mobile-alt"></i>
+                @foreach (var item in Model.PersonalService)
+                {
+                    <div class="service-item">
+                        <div class="service-item-inner outer-shadow">
+                            <div class="icon inner-shadow">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3>@item.JobTitle</h3>
+                            <p>@item.Description</p>
                         </div>
-                        <h3>Responsive design</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
                     </div>
-                </div>
-                <!-- service item end -->
-                <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-laptop-code"></i>
-                        </div>
-                        <h3>web design</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
-                    </div>
-                </div>
-                <!-- service item end -->
-                <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3>graphic design</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
-                    </div>
-                </div>
-                <!-- service item end -->
-                <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h3>clean code</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
-                    </div>
-                </div>
-                <!-- service item end -->
-                <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <h3>seo marketing</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
-                    </div>
-                </div>
-                <!-- service item end -->
-                <!-- service item start -->
-                <div class="service-item">
-                    <div class="service-item-inner outer-shadow">
-                        <div class="icon inner-shadow">
-                            <i class="fas fa-bullhorn"></i>
-                        </div>
-                        <h3>Great support</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. </p>
-                    </div>
-                </div>
+                }
                 <!-- service item end -->
             </div>
         </div>
@@ -443,252 +276,45 @@
             <div class="row">
                 <div class="portfolio-filter">
                     <span class="filter-item outer-shadow active" data-target="all">all</span>
-                    <span class="filter-item" data-target="web-application">web application</span>
-                    <span class="filter-item" data-target="photoshop">photoshop</span>
-                    <span class="filter-item" data-target="mobile-app">mobile app</span>
-                    <span class="filter-item" data-target="e-commerce">e commerce</span>
                 </div>
             </div>
             <!-- portfolio filter end -->
             <!-- portfolio items start -->
             <div class="row portfolio-items">
                 <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="web-application">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-1.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-1/1.png,
-                    ../img/portfolio/large/project-1/2.png,
-                    ../img/portfolio/large/project-1/3.png,
-                    ../img/portfolio/large/project-1/4.png,
-                    ../img/portfolio/large/project-1/5.png,
-                    ../img/portfolio/large/project-1/6.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">personal portfolio</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, javascript</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
+                @foreach (var item3 in Model.PersonalProject)
+                {
+                    <div class="portfolio-item" data-category="web-application">
+                        <div class="portfolio-item-inner outer-shadow">
+                            <div class="portfolio-item-img">
+                                <img src="@item3.InterfaceImage" alt="portfolio"
+                                     data-screenshots="@item3.SubImage">
+                                <!-- view project btn -->
+                                <span class="view-project">view project</span>
+                            </div>
+                            <p class="portfolio-item-title">@item3.ProjectName</p>
+                            <!-- portfolio item details start -->
+                            <div class="portfolio-item-details">
+                                <div class="row">
+                                    <div class="description">
+                                        <h3>Project Brief:</h3>
+                                        <p>@item3.Description</p>
+                                    </div>
+                                    <div class="info">
+                                        <h3>Project info</h3>
+                                        <ul>
+                                            <li>Date - <span>@item3.EndDate</span></li>
+                                            <li>Client - <span>@item3.ClientName</span></li>
+                                            <li>Tools - <span>@item3.Tools</span></li>
+                                            <li>Web - <span><a href="@item3.DomainName">@item3.DomainName</a></span></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                            <!-- portfolio item details end -->
                         </div>
-                        <!-- portfolio item details end -->
                     </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="web-application">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-2.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-2/1.png,
-                    ../img/portfolio/large/project-2/2.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">wedding couple</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, jquery</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="e-commerce">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-3.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-3/1.png,
-                    ../img/portfolio/large/project-3/2.png,
-                    ../img/portfolio/large/project-3/3.png,
-                    ../img/portfolio/large/project-3/4.png,
-                    ../img/portfolio/large/project-3/5.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">product landing page</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, bootstrap-4</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="web-application">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-4.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-4/1.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">personal portfolio</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, jquery</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="web-application">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-5.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-5/1.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">fitness & gym</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, jquery</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="web-application">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-6.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-6/1.png,
-                    ../img/portfolio/large/project-6/2.png,
-                    ../img/portfolio/large/project-6/3.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">quiz application</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>html, css, javascript</span></li>
-                                        <li>Web - <span><a href="#">www.domain.com</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
-                <!-- portfolio item start -->
-                <div class="portfolio-item" data-category="mobile-app">
-                    <div class="portfolio-item-inner outer-shadow">
-                        <div class="portfolio-item-img">
-                            <img src="/img/portfolio/thumb/project-7.png" alt="portfolio"
-                                 data-screenshots="../img/portfolio/large/project-7/1.png,
-                    ../img/portfolio/large/project-7/2.png">
-                            <!-- view project btn -->
-                            <span class="view-project">view project</span>
-                        </div>
-                        <p class="portfolio-item-title">xyz app</p>
-                        <!-- portfolio item details start -->
-                        <div class="portfolio-item-details">
-                            <div class="row">
-                                <div class="description">
-                                    <h3>Project Brief:</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
-                                </div>
-                                <div class="info">
-                                    <h3>Project info</h3>
-                                    <ul>
-                                        <li>Date - <span>2020</span></li>
-                                        <li>Client - <span>xyz</span></li>
-                                        <li>Tools - <span>java, android</span></li>
-                                        <li>play Store - <span><a href="#">xyz</a></span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- portfolio item details end -->
-                    </div>
-                </div>
-                <!-- portfolio item end -->
+                }<!-- portfolio item end -->
 
             </div>
             <!-- portfolio items end -->
@@ -759,7 +385,7 @@
                     <div class="contact-item-inner outer-shadow">
                         <i class="fas fa-phone"></i>
                         <span>Phone</span>
-                        <p>078888888</p>
+                        <p>@Model.User.PhoneNumber</p>
                     </div>
                 </div>
                 <!-- contact item end -->
@@ -768,7 +394,7 @@
                     <div class="contact-item-inner outer-shadow">
                         <i class="fas fa-envelope"></i>
                         <span>Email</span>
-                        <p>murad@gmail.com</p>
+                        <p>@Model.User.UserEmail</p>
                     </div>
                 </div>
                 <!-- contact item end -->
@@ -777,7 +403,7 @@
                     <div class="contact-item-inner outer-shadow">
                         <i class="fas fa-map-marker-alt"></i>
                         <span>Address</span>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <p>@Model.User.Address</p>
                     </div>
                 </div>
                 <!-- contact item end -->
@@ -814,40 +440,6 @@
         </div>
     </section>
     <!-- contact section end -->
-
-    <section class="change-passwrod section hide" id="change-passwrod">
-        <div class="container">
-            <div class="row">
-                <div class="section-title">
-                    <h2 data-heading="Change Password"></h2>
-                </div>
-            </div>
-
-            <div class="row middle">
-                <div class="change-form">
-                    <form>
-                        <div class="row">
-                            <div class="section-title">
-                                <h2>Send New Password</h2>
-                            </div>
-                        </div>
-                        <div class="row ">
-                            <div class="w-100">
-                                <div class="input-group outer-shadow hover-in-shadow">
-                                    <input type="text" placeholder="Email" class="input-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="submit-btn">
-                                <button type="submit" class="btn-2 outer-shadow hover-in-shadow">Get New Password</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- portfolio popup start -->
     <div class="pp portfolio-popup">

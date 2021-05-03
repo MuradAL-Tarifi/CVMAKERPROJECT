@@ -85,23 +85,23 @@
         <div class="container" id="ProjectsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Projects</div>
             <div class="content">
-                <form action="#" id="Projects">
+                <form id="Projects">
                     <div class="user-details" id="Projectssuser">
                         <div class="input-box full">
-                            <span class="details">Job Title</span>
-                            <input type="text" required>
+                            <span class="details">Client Name</span>
+                            <input type="text" autocomplete='off' name="ClientName" class="ClientName">
                         </div>
                         <div class="input-box full">
                             <span class="details">Category</span>
-                            <input type="text" required>
+                            <input type="text" autocomplete='off' name="Category" class="Category">
                         </div>
                         <div class="input-box full">
                             <span class="details">Description</span>
-                            <textarea required></textarea>
+                            <textarea autocomplete='off' name="Description" class="Description"></textarea>
                         </div>
-                        <div class="input-box full margin0">
+                        <div class="input-box margin0 full">
                             <span class="details">End Date</span>
-                            <select name="date" id="date" class="form-control ">
+                            <select name="EndDate" id="date" class="form-control EndDate">
                                 <option value="15" selected>15</option>
                                 <option value="16">16</option>
                                 <option value="17">17</option>
@@ -109,32 +109,32 @@
                                 <option value="19">19</option>
                             </select>
                         </div>
-                        <div class="input-box">
-                            <span class="details">Company Name</span>
-                            <input type="text" required>
+                        <div class="input-box ">
+                            <span class="details">Project Name</span>
+                            <input type="text" autocomplete='off' name="ProjectName" class="ProjectName">
                         </div>
                         <div class="input-box">
                             <span class="details">Tools</span>
-                            <input type="text" required>
+                            <input type="text" required autocomplete='off' name="Tools" class="Tools">
                         </div>
                         <div class="input-box full">
                             <span class="details">Domain Name</span>
-                            <input type="text" required>
+                            <input type="text" required autocomplete='off' name="DomainName" class="DomainName">
                         </div>
 
                         <div class="input-box file">
-                            <label>Cover Image</label>
-                            <input type="file">
+                            <label>Interface Image</label>
+                            <input type="file" autocomplete='off' name="InterfaceImage" class="InterfaceImage">
                         </div>
                         <div class="input-box file">
                             <label>Sub Image</label>
-                            <input type="file" multiple>
+                            <input type="file" multiple autocomplete='off' name="SubImage" class="SubImage">
                         </div>
                     </div>
                 </form>
                 <div class="buttonADD" id="button4">
                     <div class="next">
-                        <input type="submit" value="Add more fields" onclick="addNewProjectsForm()">
+                        <input type="button" value="Add more fields" id="addproject">
                     </div>
                 </div>
             </div>
@@ -146,12 +146,12 @@
                 <span class="material-icons">
                     arrow_back
                 </span>
-                <input type="submit" value="Back">
+                <input type="button" value="Back">
             </div>
 
             <div class="next">
-                <input type="submit" value="Finsh">
-                <span class="material-icons">
+                <input type="button" value="Finsh" id="save">
+                <span class="material-icons" id="next">
                     arrow_forward
                 </span>
             </div>
@@ -160,6 +160,66 @@
     <!-- Form Reg end-->
     <!-- script -->
     <script src="~/Scripts/PersoanReg.js"></script>
+    <script>
+
+        //Project
+        $(document).ready(function () {
+            var count = 1;
+            $('#addproject').click(function () {
+                count = count + 1;
+                var html_code = "<div class='user-details' id='row" + count + "'>";
+                html_code += "<div class='delete' style=' width: 100%; height: 30px; display: block;'><button type='button' name='remove' data-row='row" + count + "' class='btn-danger btn-xs remove' style='width:25px;height:25px'>-</button></div>";
+                html_code += "<div class='input-box full'><span class='details'>Client Name</span><input type='text' autocomplete='off' name='ClientName' class='ClientName'></div>";
+                html_code += "<div class='input-box full'><span class='details'>Category</span><input type='text' autocomplete='off' name='Category' class='Category'></div>";
+                html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
+                html_code += "<div class='input-box margin0 full'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select></div >";
+                html_code += "<div class='input-box '><span class='details'>Project Name</span><input type='text' autocomplete='off' name='ProjectName' class='ProjectName'></div>";
+                html_code += "<div class='input-box '><span class='details'>Tools</span><input type='text' autocomplete='off' name='Tools' class='Tools'></div>";
+                html_code += "<div class='input-box full'><span class='details'>Domain Name</span><input type='text' autocomplete='off' name='DomainName' class='DomainName'></div>";
+                html_code += "<div class='input-box file'><label>Interface Image</label><input type='file' autocomplete='off' name='InterfaceImage' class='InterfaceImage'></div>";
+                html_code += "<div class='input-box file'><label>Sub Image</label><input type='file' multiple autocomplete='off' name='SubImage' class='SubImage'></div>";
+                html_code += "</div>";
+                $('#Projects').append(html_code);
+            });
+        });
+        $(document).on('click', '.remove', function () {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
+        $("body").on("click", "#save", function () {
+            //Loop through the Table rows and build a JSON array.
+            $("#save").hide();
+            $("#next").hide();
+
+            var Projects = new Array();
+            $("#Projects .user-details").each(function () {
+                var row = $(this);
+                var Project = {};
+                Project.ClientName = row.find("input").eq(0).val();
+                Project.Category = row.find("input").eq(1).val();
+                Project.ProjectName = row.find("input").eq(2).val();
+                Project.Tools = row.find("input").eq(3).val();
+                Project.DomainName = row.find("input").eq(4).val();
+                Project.InterfaceImage = row.find("input").eq(5).val();
+                Project.SubImage = row.find("input").eq(6).val();
+                Project.EndDate = row.find("select").eq(0).val();
+                Project.Description = row.find("textarea").eq(0).val();
+                Projects.push(Project);
+            });
+            $.ajax({
+                method: "POST",
+                url: "/CompanyProject/ProjectsSaveData",
+                data: JSON.stringify(Projects),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+                    alert("Data Saved.");
+                    $("#save").show();
+                    $("#next").show();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

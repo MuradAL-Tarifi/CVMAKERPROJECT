@@ -15,6 +15,7 @@ namespace MYCVMAKERPROJECT.Models
     public partial class JobAlert
     {
         public int Id { get; set; }
+        public string J_Title { get; set; }
         public string J_Description { get; set; }
         public string J_location { get; set; }
         public string J_CompanyIndustry { get; set; }

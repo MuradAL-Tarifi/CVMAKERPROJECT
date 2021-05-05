@@ -49,18 +49,9 @@
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-                @using (Html.BeginForm("GoToPersonalReg", "Users", FormMethod.Get, new { id = "GoToPersonalRegForm" }))
-                {
-                    <a href="javascript:document.getElementById('GoToPersonalRegForm').submit()" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
-                }
-                @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Get, new { id = "GoToLoginForm" }))
-                {
-                    <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                }
-                @using (Html.BeginForm("GoToComapnyReg", "Users", FormMethod.Get, new { id = "GoToComapnyRegForm" }))
-                {
-                    <a href="javascript:document.getElementById('GoToComapnyRegForm').submit()" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-                }
+                <a href="@Url.Action("GoToComapnyReg","Users",null)" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+                <a href="@Url.Action("GoToLogin","Users",null)" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                <a href="@Url.Action("GoToPersonalReg","Users",null)" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
             </div>
         </div>
     </nav>

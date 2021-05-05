@@ -54,15 +54,8 @@
             <div class="navbar-nav ml-auto action-buttons">
 
                     <a href="@Url.Action("GoToComapnyReg","Users",null)" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
-              
-                @using (Html.BeginForm("GoToLogin", "Users", FormMethod.Post, new { id = "GoToLoginForm" }))
-                {
-                <a href="javascript:document.getElementById('GoToLoginForm').submit()" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                }
-                @using (Html.BeginForm("GoToPersonalReg", "Users", FormMethod.Post, new { id = "GoToPersonalRegForm" }))
-                {
-                    <a href="javascript:document.getElementById('GoToPersonalRegForm').submit()" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-                }
+                    <a href="@Url.Action("GoToLogin","Users",null)" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                    <a href="@Url.Action("GoToPersonalReg","Users",null)" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
             </div>
         </div>
     </nav>
@@ -234,16 +227,16 @@
                 <div class="contact-form">
                     <form>
                         <div class="input-group">
-                            <input type="text" placeholder="Name" class="form-control">
+                            <input type="text" placeholder="Name" class="form-control" name="Name">
                         </div>
                         <div class="input-group">
-                            <input type="text" placeholder="E-mail" class="form-control">
+                            <input type="text" placeholder="E-mail" class="form-control" name="mail">
                         </div>
                         <div class="input-group">
-                            <input type="text" placeholder="Phone" class="form-control">
+                            <input type="text" placeholder="Subject" class="form-control" name="Subject">
                         </div>
                         <div class="input-group">
-                            <textarea placeholder="Message" class="form-control"></textarea>
+                            <textarea placeholder="Message" class="form-control" name="Message"></textarea>
                         </div>
                         <button type="Submit" class="btn btn-1">send</button>
                     </form>
@@ -288,7 +281,7 @@
                         <div class="input-group">
                             <input type="text" placeholder="Your Email" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-1">send</button>
+                        <button type="button" class="btn btn-1" >send</button>
                     </form>
                 </div>
             </div>

@@ -339,7 +339,7 @@ namespace MYCVMAKER.Controllers
             var fromEmailPassword = "*******";//we set here real passwrod for the email
             var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
-            db.SaveChanges();
+            db.Entry(userInfo).State = EntityState.Modified;
             string subject = "We send you new password!"+ userInfo.UserEmail;
 
             string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" +"Your New Password : "+userInfo.UserPassword;
@@ -376,6 +376,43 @@ namespace MYCVMAKER.Controllers
             }
             return new string(chars);
         }
+        [HttpPost]
+        public ActionResult contact(string Name, string mail, string Subject, string Message)
+        {
+
+                try
+                {
+                    MailMessage msz = new MailMessage();
+                    msz.From = new MailAddress(mail);//Email which you are getting 
+                                                         //from contact us page 
+                    msz.To.Add("emailaddrss@gmail.com");//Where mail will be sent 
+                    msz.Subject = Subject;
+                    msz.Body = Name + "  "+Message;
+                    SmtpClient smtp = new SmtpClient();
+
+                    smtp.Host = "smtp.gmail.com";
+
+                    smtp.Port = 587;
+
+                    smtp.Credentials = new System.Net.NetworkCredential
+                    ("muradshaltaf123@gmail.com", "password");
+
+                    smtp.EnableSsl = true;
+
+                    smtp.Send(msz);
+
+                    ModelState.Clear();
+                    ViewBag.Message = "Thank you for Contacting us ";
+                }
+                catch (Exception ex)
+                {
+                    ModelState.Clear();
+                    ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
+                }
+
+            return View();
+        }
+
     }
 
 }

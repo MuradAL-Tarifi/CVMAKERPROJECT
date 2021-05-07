@@ -16,5 +16,6 @@ namespace MYCVMAKERPROJECT.ViewModel
         public List<PersonalService> PersonalService { get; set; }
         public List<PersonalSkill> PersonalSkill { get; set; }
         public List<Education> Education { get; set; }
+        public List<JobAlert> JobAlert { get; set; }
     }
 }

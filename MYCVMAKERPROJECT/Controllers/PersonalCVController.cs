@@ -14,13 +14,13 @@ namespace MYCVMAKER.Controllers
     public class PersonalCVController : Controller
     {
         private CVMAKER_DBEntities db = new CVMAKER_DBEntities();
-        [Authorize]
+        //[Authorize]
         public ActionResult PersonalCV()
         {
             PersonalViewModel PVM = new PersonalViewModel();
 
             //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
-            var id = 1;
+            var id = 28;
             PVM.Personal = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             PVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
             PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
@@ -29,8 +29,25 @@ namespace MYCVMAKER.Controllers
             PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-
+            PVM.JobAlert = db.JobAlerts.ToList();
             return View(PVM);
+        }
+        [HttpPost]
+        public JsonResult AutoComplete(string Prefix)
+       {
+
+            var Companies = (from Companie in db.Companies
+                             where Companie.C_Name.StartsWith(Prefix)
+                             select new
+                             {
+                                 label = Companie.C_Name,
+                                 val = Companie.Id
+                             }).ToList();
+
+            return Json(Companies);
+
+
+
         }
         public ActionResult PersonalForgotPassword()
         {

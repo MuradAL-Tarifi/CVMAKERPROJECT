@@ -29,7 +29,6 @@ namespace MYCVMAKER.Controllers
             Session["UserState"] = "2";
             return RedirectToAction("CompanyReg");
         }
-        [HttpPost]
         public ActionResult GoToPersonalReg()
         {
             Session["UserState"] = "3";
@@ -282,11 +281,11 @@ namespace MYCVMAKER.Controllers
                 string Imgpath = "";
                 if (mediaFile != null)
                 {
-                    Imgpath = "~/CVFile/" + mediaFile.FileName;
+                    Imgpath = "~/img/" + mediaFile.FileName;
                     mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
                 }
                 company.C_logo = Imgpath;
-                db.Entry(User).State = EntityState.Modified;
+                db.Entry(userInfo).State = EntityState.Modified;
                 db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("CompanyWorkExperience", "CompanyWorkExperience"); ;

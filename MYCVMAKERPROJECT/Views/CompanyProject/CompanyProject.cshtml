@@ -85,7 +85,7 @@
         <div class="container" id="ProjectsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Projects</div>
             <div class="content">
-                <form id="Projects">
+                <form id="Projects" >
                     <div class="user-details" id="Projectssuser">
                         <div class="input-box full">
                             <span class="details">Client Name</span>
@@ -194,6 +194,7 @@
             var Projects = new Array();
             $("#Projects .user-details").each(function () {
                 var row = $(this);
+                var path="";
                 var Project = {};
                 Project.ClientName = row.find("input").eq(0).val();
                 Project.Category = row.find("input").eq(1).val();
@@ -201,7 +202,16 @@
                 Project.Tools = row.find("input").eq(3).val();
                 Project.DomainName = row.find("input").eq(4).val();
                 Project.InterfaceImage = row.find("input").eq(5).val();
-                Project.SubImage = row.find("input").eq(6).val();
+                var img = row.find("input").get(6).files;
+                for (var i = 0; i < img.length; i++) {
+                    if (i == img.length - 1)
+                    {
+                        path = path + img[i].name + ",";
+                       
+                    } else
+                     path = path + img[i].name+",";
+                }
+                Project.SubImage = path;
                 Project.EndDate = row.find("select").eq(0).val();
                 Project.Description = row.find("textarea").eq(0).val();
                 Projects.push(Project);

@@ -24,10 +24,19 @@ namespace MYCVMAKER.Controllers
                 {
                     projects = new List<CompanyProject>();
                 }
-
+                
                 //Loop and insert records.
                 foreach (CompanyProject project in projects)
                 {
+                    //for (int i = 0; i < project.SubImage.Length; i++)
+                    //{
+                    //    //HttpPostedFileBase imgpath = project.SubImage[i];
+                    //    //string img = "/img/portfolio/large/project-" + i + "/"+project.SubImage[i];
+                    //    //HttpPostedFile.SaveAs(project.SubImage[i]);
+                    //    //project.SubImage[i].
+                    //}
+
+
                     project.CompanyId = userId;
                     db.CompanyProjects.Add(project);
                 }

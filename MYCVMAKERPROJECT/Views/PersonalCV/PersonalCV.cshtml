@@ -41,7 +41,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <body class="dark">
 
@@ -79,7 +81,7 @@
                     <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">17</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
                         <div class="dropdown-menu">
                             <!-- <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a> -->
                             <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
@@ -106,7 +108,7 @@
                 </div>
                 <div class="home-img">
                     <div class="img-box inner-shadow">
-                        <img src="~/img/@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
+                        <img src="@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
                     </div>
                 </div>
             </div>
@@ -115,15 +117,17 @@
     <!-- home section end -->
     <div class="notifi-box" id="box">
         <h2>Notifications <span>17</span></h2>
-        
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="~/img/avatar1.png" alt="img">
-            <div class="text">
-                <h4>Elias Abdurrahman</h4>
-                <p> ipsum dolor sit amet</p>
-            </div>
-        </div>
 
+        @foreach (var item in Model.JobAlert.Where(x => x.J_Title == Model.Personal.P_JobTitle))
+        {
+            <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
+                <img src="@item.Company.C_logo" alt="img">
+                <div class="text">
+                    <h4>@item.Company.C_Name</h4>
+                    <p> @item.J_Title</p>
+                </div>
+            </div>
+        }
     </div>
     <!-- about section start -->
     <section class="about-section section active" id="about">
@@ -136,7 +140,7 @@
             <div class="row">
                 <div class="about-img">
                     <div class="img-box inner-shadow">
-                        <img src="@Model.Personal.P_Image class="outer-shadow" alt="profile-pic">
+                        <img src="@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
                     </div>
                     <!-- social links start -->
                     <div class="social-links">
@@ -169,14 +173,14 @@
                         <!-- skill item start -->
                         @foreach (var item in Model.PersonalSkill)
                         {
-                    <div class="skill-item">
-                        <p>@item.Skill</p>
-                        <div class="progress inner-shadow">
-                            <div class="progress-bar" style="width: calc(50% - 14px)">
-                                <span>@item.Level%</span>
+                            <div class="skill-item">
+                                <p>@item.Skill</p>
+                                <div class="progress inner-shadow">
+                                    <div class="progress-bar" style="width: calc(50% - 14px)">
+                                        <span>@item.Level%</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
                         }
                         <!-- skill item end -->
                     </div>
@@ -192,15 +196,15 @@
                                 <!-- timeline item start -->
                                 @foreach (var item in Model.PersonalWorkExperience)
                                 {
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-briefcase icon"></i>
-                                        <span>@item.StartMonth, @item.EndDate - Present</span>
-                                        <h3>@item.JobTitle</h3>
-                                        <h4>@item.Employeer, @item.City </h4>
-                                        <p>@item.Description</p>
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-inner outer-shadow">
+                                            <i class="fas fa-briefcase icon"></i>
+                                            <span>@item.StartMonth, @item.EndDate - Present</span>
+                                            <h3>@item.JobTitle</h3>
+                                            <h4>@item.Employeer, @item.City </h4>
+                                            <p>@item.Description</p>
+                                        </div>
                                     </div>
-                                </div>
                                 }
                                 <!-- timeline item end -->
                             </div>
@@ -218,14 +222,14 @@
                                 <!-- timeline item start -->
                                 @foreach (var item in Model.Education)
                                 {
-                                <div class="timeline-item">
-                                    <div class="timeline-item-inner outer-shadow">
-                                        <i class="fas fa-graduation-cap icon"></i>
-                                        <span>@item.StartMonth, @item.StartDate - @item.EndMonth, @item.EndDate</span>
-                                        <h3>@item.Degree</h3>
-                                        <p>@item.Description</p>
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-inner outer-shadow">
+                                            <i class="fas fa-graduation-cap icon"></i>
+                                            <span>@item.StartMonth, @item.StartDate - @item.EndMonth, @item.EndDate</span>
+                                            <h3>@item.Degree</h3>
+                                            <p>@item.Description</p>
+                                        </div>
                                     </div>
-                                </div>
                                 }
                                 <!-- timeline item end -->
                             </div>
@@ -440,7 +444,6 @@
         </div>
     </section>
     <!-- contact section end -->
-
     <!-- portfolio popup start -->
     <div class="pp portfolio-popup">
         <div class="pp-details">
@@ -560,11 +563,41 @@
             </div>
         </div>
     </div>
-
     <!-- main js -->
     <script src="~/Scripts/Personalmain.js"></script>
     <!-- style switcher js -->
     <script src="~/Scripts/style-switcher.js"></script>
+
+    <script>
+        $(function () {
+            $("#search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/PersonalCV/AutoComplete/',
+                        data: "{ 'prefix': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#hfCustomer").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+    </script>
 </body>
 </html>
 

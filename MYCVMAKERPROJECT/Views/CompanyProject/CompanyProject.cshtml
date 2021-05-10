@@ -85,50 +85,53 @@
         <div class="container" id="ProjectsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Projects</div>
             <div class="content">
-                <form id="Projects" >
+                <form id="Projects" enctype="multipart/form-data" >
                     <div class="user-details" id="Projectssuser">
                         <div class="input-box full">
-                            <span class="details">Client Name</span>
-                            <input type="text" autocomplete='off' name="ClientName" class="ClientName">
-                        </div>
-                        <div class="input-box full">
-                            <span class="details">Category</span>
-                            <input type="text" autocomplete='off' name="Category" class="Category">
-                        </div>
-                        <div class="input-box full">
-                            <span class="details">Description</span>
-                            <textarea autocomplete='off' name="Description" class="Description"></textarea>
-                        </div>
-                        <div class="input-box margin0 full">
-                            <span class="details">End Date</span>
-                            <select name="EndDate" id="date" class="form-control EndDate">
-                                <option value="15" selected>15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                            </select>
-                        </div>
-                        <div class="input-box ">
-                            <span class="details">Project Name</span>
-                            <input type="text" autocomplete='off' name="ProjectName" class="ProjectName">
-                        </div>
-                        <div class="input-box">
-                            <span class="details">Tools</span>
-                            <input type="text" required autocomplete='off' name="Tools" class="Tools">
-                        </div>
-                        <div class="input-box full">
-                            <span class="details">Domain Name</span>
-                            <input type="text" required autocomplete='off' name="DomainName" class="DomainName">
-                        </div>
+                                <span class="details">Client Name</span>
+                                <input type="text" autocomplete='off' name="ClientName" class="ClientName">
+                            </div>
+                            <div class="input-box full">
+                                <span class="details">Category</span>
+                                <input type="text" autocomplete='off' name="Category" class="Category">
+                            </div>
+                            <div class="input-box full">
+                                <span class="details">Description</span>
+                                <textarea autocomplete='off' name="Description" class="Description"></textarea>
+                            </div>
+                            <div class="input-box margin0 full">
+                                <span class="details">End Date</span>
+                                <select name="EndDate" id="date" class="form-control EndDate">
+                                    <option value="15" selected>15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                </select>
+                            </div>
+                            <div class="input-box ">
+                                <span class="details">Project Name</span>
+                                <input type="text" autocomplete='off' name="ProjectName" class="ProjectName">
+                            </div>
+                            <div class="input-box">
+                                <span class="details">Tools</span>
+                                <input type="text" required autocomplete='off' name="Tools" class="Tools">
+                            </div>
+                            <div class="input-box full">
+                                <span class="details">Domain Name</span>
+                                <input type="text" required autocomplete='off' name="DomainName" class="DomainName">
+                            </div>
 
-                        <div class="input-box file">
-                            <label>Interface Image</label>
-                            <input type="file" autocomplete='off' name="InterfaceImage" class="InterfaceImage">
-                        </div>
+                            <div class="input-box file">
+                                <label>Interface Image</label>
+                                <input type="file" autocomplete='off' name="Image" class="InterfaceImage" id="Image">
+                            </div>
                         <div class="input-box file">
                             <label>Sub Image</label>
-                            <input type="file" multiple autocomplete='off' name="SubImage" class="SubImage">
+                            <input type="file" multiple id="Image2" name="Image2">
+                        </div>
+
+                        <div id="showimage">
                         </div>
                     </div>
                 </form>
@@ -157,6 +160,8 @@
             </div>
         </div>
     </section>
+
+    @*<button type="button" onclick="location.href='@Url.Action("MyAction", "MyController")'" />*@
     <!-- Form Reg end-->
     <!-- script -->
     <script src="~/Scripts/PersoanReg.js"></script>
@@ -186,49 +191,66 @@
             var delete_row = $(this).data("row");
             $('#' + delete_row).remove();
         });
+
+
         $("body").on("click", "#save", function () {
             //Loop through the Table rows and build a JSON array.
             $("#save").hide();
             $("#next").hide();
+        var Projects = new Array();
+        $("#Projects .user-details").each(function () {
+            var row = $(this);
+            var Project = {};
+            Project.ClientName = row.find("input").eq(0).val();
+            Project.Category = row.find("input").eq(1).val();
+            Project.ProjectName = row.find("input").eq(2).val();
+            Project.Tools = row.find("input").eq(3).val();
+            Project.DomainName = row.find("input").eq(4).val();
+            //Project.InterfaceImage = row.find("input").get(5).files;
 
-            var Projects = new Array();
-            $("#Projects .user-details").each(function () {
-                var row = $(this);
-                var path="";
-                var Project = {};
-                Project.ClientName = row.find("input").eq(0).val();
-                Project.Category = row.find("input").eq(1).val();
-                Project.ProjectName = row.find("input").eq(2).val();
-                Project.Tools = row.find("input").eq(3).val();
-                Project.DomainName = row.find("input").eq(4).val();
-                Project.InterfaceImage = row.find("input").eq(5).val();
-                var img = row.find("input").get(6).files;
-                for (var i = 0; i < img.length; i++) {
-                    if (i == img.length - 1)
-                    {
-                        path = path + img[i].name + ",";
-                       
-                    } else
-                     path = path + img[i].name+",";
-                }
-                Project.SubImage = path;
-                Project.EndDate = row.find("select").eq(0).val();
-                Project.Description = row.find("textarea").eq(0).val();
-                Projects.push(Project);
-            });
-            $.ajax({
-                method: "POST",
-                url: "/CompanyProject/ProjectsSaveData",
-                data: JSON.stringify(Projects),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function () {
-                    alert("Data Saved.");
-                    $("#save").show();
-                    $("#next").show();
-                }
-            });
+            //Project.SubImage = row.find("input").eq(6).val();
+            Project.EndDate = row.find("select").eq(0).val();
+            Project.Description = row.find("textarea").eq(0).val();
+            Projects.push(Project);
         });
+        $.ajax({
+            method: "POST",
+            url: "/CompanyProject/ProjectsSaveData",
+            data: JSON.stringify(Projects),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function () {
+                Uploadimage();
+                $("#save").show();
+                $("#next").show();
+            }
+        });
+        });
+
+        var Uploadimage = function () {
+
+            var file = $("#Image").get(0).files;
+
+            var data = new FormData;
+            data.append("Image", file[0]);
+
+            var file = $("#Image2").get(0).files;
+
+            for (var i = 0; i < file.length; i++) {
+                data.append("Image2", file[i]);
+            }
+
+            $.ajax({
+
+                type: "Post",
+                url: "/CompanyProject/ImageUpload",
+                data: data,
+                contentType: false,
+                processData: false
+            });
+        };
+
+
     </script>
 </body>
 

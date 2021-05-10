@@ -16,6 +16,14 @@ namespace MYCVMAKER.Controllers
         private CVMAKER_DBEntities db = new CVMAKER_DBEntities();
         public ActionResult HomePage()
         {
+            //save
+            UsersController hc = new UsersController();
+            hc.AddCount(new HitCounter { IPAddress = Request.UserHostAddress, CreateDate = DateTime.Now });
+
+            object[] o = new object[2];
+            o = GetCount();
+            Session["ViewDaily"] = o[0].ToString();
+            Session["TotalView"] = o[1].ToString();
             return View();
         }
         [HttpPost]
@@ -23,7 +31,29 @@ namespace MYCVMAKER.Controllers
         {
             return RedirectToAction("Login");
         }
-        
+        public void AddCount(HitCounter HC)
+        {
+            DateTime today = DateTime.Now.Date;
+            var v = db.HitCounters.Where(a => a.IPAddress.Equals(HC.IPAddress) && DbFunctions.TruncateTime(a.CreateDate) == today).FirstOrDefault();
+            if (v == null)
+            {
+                db.HitCounters.Add(HC);
+                db.SaveChanges();
+            }
+        }
+        public object[] GetCount()
+        {
+            object[] o = new object[2];
+
+            DateTime today = DateTime.Now.Date;
+            //get Today views
+            o[0] = db.HitCounters.Where(a => DbFunctions.TruncateTime(a.CreateDate) == today).Count();
+
+            // get all views 
+            o[1] = db.HitCounters.Count();
+
+            return o;
+        }
         public ActionResult GoToComapnyReg()
         {
             Session["UserState"] = "2";

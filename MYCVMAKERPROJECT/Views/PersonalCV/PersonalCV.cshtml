@@ -64,10 +64,10 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-                <form class="navbar-form form-inline">
+                <form class="navbar-form form-inline" method="post">
                     <div class="input-group search-box">
-                        <input type="text" id="search" class="form-control" placeholder="Search here...">
-                        <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+                        <input type="text" id="search" class="form-control" placeholder="Search here..." name="search">
+                        <span class="input-group-addon"><button type="submit" class="buttons" style="height: 140%; border: none;"><i class="material-icons">&#xE8B6;</i></button></span>
                     </div>
                 </form>
                 <div class="navbar-nav ml-auto">
@@ -569,34 +569,45 @@
     <script src="~/Scripts/style-switcher.js"></script>
 
     <script>
-        $(function () {
-            $("#search").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '/PersonalCV/AutoComplete/',
-                        data: "{ 'prefix': '" + request.term + "'}",
-                        dataType: "json",
-                        type: "POST",
-                        contentType: "application/json; charset=utf-8",
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return item;
-                            }))
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                select: function (e, i) {
-                    $("#hfCustomer").val(i.item.val);
-                },
-                minLength: 1
-            });
-        });
+        //$(function () {
+        //    $("#search").autocomplete({
+        //        source: function (request, response) {
+        //            $.ajax({
+        //                url: '/PersonalCV/AutoComplete/',
+        //                data: "{ 'prefix': '" + request.term + "'}",
+        //                dataType: "json",
+        //                type: "POST",
+        //                contentType: "application/json; charset=utf-8",
+        //                //success: function (data) {
+        //                //    GetCompanyCV(data);
+                            
+        //                //},
+        //                //error: function (response) {
+        //                //    alert(response.responseText);
+        //                //},
+        //                //failure: function (response) {
+        //                //    alert(response.responseText);
+        //                //}
+        //            });
+        //        },
+        //        select: function (e, i) {
+        //            $("#hfCustomer").val(i.item.val);
+        //        },
+        //        minLength: 1
+        //    });
+        //});
+
+        //function GetCompanyCV(data) {
+        //    alert(data);
+        //    $.ajax({
+        //        url: '/CompanyCV/GetCompanyCV/',
+        //        data: "{ 'id': '" + data + "'}",
+        //        dataType: "json",
+        //        type: "POST",
+        //        contentType: "application/json; charset=utf-8",
+        //    });
+        //}           
+
     </script>
 </body>
 </html>

@@ -10,6 +10,8 @@ namespace MYCVMAKERPROJECT.Models
 
     public partial class CompanyProject
     {
+        //public HttpPostedFileWrapper ImageFile { get; set; }
+        //public HttpPostedFileWrapper ImageFile2 { get; set; }
     }
     public class CompanyProjectMetaData
     {

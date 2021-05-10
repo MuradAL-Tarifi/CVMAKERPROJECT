@@ -467,7 +467,7 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="jobalert">
+                <form id="jobalert" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -487,7 +487,13 @@
                         </div>
                         <div class="form-group">
                             <label>Job Title</label>
-                            <input type="text" class="form-control" required name="J_Title">
+                            <select name="J_Title" id="J_Title" class="form-control StartDate">
+                                <option value="webbapplications" selected>Web applications</option>
+                                <option value="mobileapplications">Mobile applications</option>
+                                <option value="artificialintelligence">Artificial intelligence</option>
+                                <option value="networkadministrator">Network administrator</option>
+                                <option value="computersystemsmanager">Computer systems manager</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Company Industry</label>

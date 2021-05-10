@@ -359,9 +359,15 @@ preloader
   padding: 10px 7px;
   height: 100%;
 }
+
+.search-box .input-group-addon .buttons{
+    border:none;
+    outline:none;
+    height:100%;
+}
 .search-box i {
-  color: #a0a5b1;
-  font-size: 19px;
+    color: #a0a5b1;
+    font-size: 19px;
 }
 .navbar a{
   margin-left: 25px;

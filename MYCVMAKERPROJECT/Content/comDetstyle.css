@@ -692,3 +692,17 @@
   #mediaFile {
     display: none;
 }
+form .user-details .input-box .form-control1 {
+    height: 45px;
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+    padding: 0 15px;
+    background-color: var(--dark-800);
+    border: 1px solid transparent;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--white-900);
+    font-weight: 300;
+    transition: all 0.5s ease;
+}

@@ -16,10 +16,9 @@ namespace MYCVMAKER.Controllers
         private CVMAKER_DBEntities db = new CVMAKER_DBEntities();
         public ActionResult CompanyCV()
         {
-
             CompanyViewModel CVM = new CompanyViewModel();
 
-            //var id = (int)System.Web.HttpContext.Current.Session["CompanyID"];
+           // var id = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             var id = 1;
             CVM.Company = db.Companies.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             CVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
@@ -31,6 +30,7 @@ namespace MYCVMAKER.Controllers
 
             return View(CVM);
         }
+
         public ActionResult CompanyForgotPassword()
         {
             return View();
@@ -56,9 +56,10 @@ namespace MYCVMAKER.Controllers
         }
 
         [HttpPost]
-        public ActionResult JobAlertSaveData(List<JobAlert> Jobs)
+        [Route("CompanyCV/JobAlertSaveData")]
+        public void JobAlertSaveData(List<JobAlert> Jobs)
         {
-            int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
+            //int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
             {
                 //Check for NULL.
@@ -70,12 +71,12 @@ namespace MYCVMAKER.Controllers
                 //Loop and insert records.
                 foreach (JobAlert Job in Jobs)
                 {
-                    Job.CompanyId = userId;
+                    Job.CompanyId = 1;
                     db.JobAlerts.Add(Job);
                 }
                 db.SaveChanges();
 
-                return View("CompanyCV");
+                
             }
         }
 

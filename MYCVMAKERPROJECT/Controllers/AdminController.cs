@@ -16,14 +16,6 @@ namespace MYCVMAKER.Controllers
 
         public ActionResult Admin()
         {
-            //save
-            AdminController hc = new AdminController();
-            hc.AddCount(new HitCounter { IPAddress = Request.UserHostAddress, CreateDate = DateTime.Now });
-
-            object[] o = new object[2];
-            o = GetCount();
-            ViewBag.ViewDaily = o[0].ToString();
-            ViewBag.TotalView = o[1].ToString();
             return View();
         }
         public int PersonalCount()
@@ -38,44 +30,25 @@ namespace MYCVMAKER.Controllers
         {   
             return db.JobAlerts.Count();
         }
-        public void AddCount(HitCounter HC)
-        {
-            DateTime today = DateTime.Now.Date;
-                var v = db.HitCounters.Where(a => a.IPAddress.Equals(HC.IPAddress) && DbFunctions.TruncateTime(a.CreateDate) == today).FirstOrDefault();
-            if (v == null)
-          {
-                db.HitCounters.Add(HC);
-                db.SaveChanges();
-           }
-        }
-        public object[] GetCount()
-        {
-            object[] o = new object[2];
 
-            DateTime today = DateTime.Now.Date;
-            //get Today views
-            o[0] = db.HitCounters.Where(a => DbFunctions.TruncateTime(a.CreateDate) == today).Count();
-
-            // get all views 
-            o[1] = db.HitCounters.Count();
-
-            return o;
-        }
 
         public ActionResult GetAdminList()
         {
-            var AdminList = db.Users.Where(a => a.UserState == 1).ToList();
-            return Json(new { data = AdminList }, JsonRequestBehavior.AllowGet);
+            db.Configuration.ProxyCreationEnabled = false;
+            var AdminList1 = db.Users.Where(a => a.UserState == 1).ToList();
+            return Json(new { data = AdminList1 }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetCompanyList()
         {
-            var AdminList = db.Users.Where(a => a.UserState == 2).ToList();
-            return Json(new { data = AdminList }, JsonRequestBehavior.AllowGet);
+            db.Configuration.ProxyCreationEnabled = false;
+            var AdminList2 = db.Users.Where(a => a.UserState == 2).ToList();
+            return Json(new { data = AdminList2 }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetPersonalList()
         {
-            var AdminList = db.Users.Where(a => a.UserState == 3).ToList();
-            return Json(new { data = AdminList }, JsonRequestBehavior.AllowGet);
+            db.Configuration.ProxyCreationEnabled = false;
+            var AdminList3 = db.Users.Where(a => a.UserState == 3).ToList();
+            return Json(new { data = AdminList3 }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Create()

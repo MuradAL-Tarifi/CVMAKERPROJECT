@@ -33,22 +33,29 @@ namespace MYCVMAKER.Controllers
             return View(PVM);
         }
         [HttpPost]
-        public JsonResult AutoComplete(string Prefix)
-       {
+        public ActionResult PersonalCV(string search)
+        {
 
-            var Companies = (from Companie in db.Companies
-                             where Companie.C_Name.StartsWith(Prefix)
-                             select new
-                             {
-                                 label = Companie.C_Name,
-                                 val = Companie.Id
-                             }).ToList();
+            var id = db.Companies.Where(x => x.C_Name.Equals(search)).FirstOrDefault();
+            Session["CompanyID"] = id.Id;
 
-            return Json(Companies);
-
-
-
+            return RedirectToAction("CompanyCV", "CompanyCV");
         }
+        // [HttpPost]
+        // public ActionResult AutoComplete(string Prefix)
+        //{
+
+        //     var Companies = (from Companie in db.Companies
+        //                      where Companie.C_Name.StartsWith(Prefix)
+        //                      select new
+        //                      {
+        //                          label = Companie.C_Name,
+        //                          val = Companie.Id
+        //                      }).ToList();
+
+        //     //return Json(Companies.FirstOrDefault().val);
+        //     return RedirectToAction("GetCompanyCV", "CompanyCV",new {id=Companies.FirstOrDefault().val});
+        // }
         public ActionResult PersonalForgotPassword()
         {
             return View();

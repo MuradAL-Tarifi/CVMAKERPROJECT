@@ -29,7 +29,5 @@ namespace MYCVMAKERPROJECT.Models
     
         public virtual Company Company { get; set; }
 
-        public HttpPostedFileBase Image { get; set; }
-        public HttpPostedFileBase Image2 { get; set; }
     }
 }

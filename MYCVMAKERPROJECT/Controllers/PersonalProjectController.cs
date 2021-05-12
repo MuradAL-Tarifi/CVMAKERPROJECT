@@ -14,23 +14,18 @@ namespace MYCVMAKER.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ProjectsSaveData(List<PersonalProject> projects)
+        public ActionResult PersonalProject(List<string> ClientName, List<string> Category, List<string> Description, List<string> EndDate, List<string> ProjectName, List<string> Tools, List<string> DomainName, List<HttpPostedFileBase> InterfaceImage, List<HttpPostedFileBase> SubImage)
         {
-            int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+          //  int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
             using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
             {
-                //Check for NULL.
-                if (projects == null)
-                {
-                    projects = new List<PersonalProject>();
-                }
-
+               
                 //Loop and insert records.
-                foreach (PersonalProject project in projects)
-                {
-                    project.PersonalId = userId;
-                    db.PersonalProjects.Add(project);
-                }
+              //  foreach (PersonalProject project in projects)
+              //  {
+              //      project.PersonalId = userId;
+              //      db.PersonalProjects.Add(project);
+              //  }
                 int insertedRecords = db.SaveChanges();
 
                 return RedirectToAction("PersonalCV", "PersonalCV");

@@ -25,7 +25,7 @@ namespace MYCVMAKERPROJECT.Models
         public string InterfaceImage { get; set; }
         public string SubImage { get; set; }
         public Nullable<int> PersonalId { get; set; }
-    
         public virtual Personal Personal { get; set; }
+
     }
 }

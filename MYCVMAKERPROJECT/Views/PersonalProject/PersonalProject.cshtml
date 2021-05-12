@@ -85,7 +85,7 @@
         <div class="container" id="ProjectsForm">
             <div class="title"><i class="fa fa-briefcase"></i>Projects</div>
             <div class="content">
-                <form id="Projects" >
+                <form id="Projects" method="post" enctype="multipart/form-data">
                     <div class="user-details" id="Projectssuser">
                         <div class="input-box full">
                             <span class="details">Client Name</span>
@@ -131,11 +131,16 @@
                             <input type="file" multiple autocomplete='off' name="SubImage" class="SubImage">
                         </div>
                     </div>
+                    <div class="buttonADD" id="button4">
+                        <div class="next">
+                            <input type="submit" value="Finsh" id="Finsh">
+                        </div>
+                    </div>
                 </form>
                 <div class="buttonADD" id="button4">
                     <div class="next">
                         <input type="button" value="Add more fields" id="addproject">
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -187,39 +192,39 @@
             var delete_row = $(this).data("row");
             $('#' + delete_row).remove();
         });
-        $("body").on("click", "#save", function () {
-            //Loop through the Table rows and build a JSON array.
-            $("#save").hide();
-            $("#next").hide();
+        //$("body").on("click", "#save", function () {
+        //    //Loop through the Table rows and build a JSON array.
+        //    $("#save").hide();
+        //    $("#next").hide();
 
-            var Projects = new Array();
-            $("#Projects .user-details").each(function () {
-                var row = $(this);
-                var Project = {};
-                Project.ClientName = row.find("input").eq(0).val();
-                Project.Category = row.find("input").eq(1).val();
-                Project.ProjectName = row.find("input").eq(2).val();
-                Project.Tools = row.find("input").eq(3).val();
-                Project.DomainName = row.find("input").eq(4).val();
-                Project.InterfaceImage = row.find("input").eq(5).val();
-                Project.SubImage = row.find("input").eq(6).val();
-                Project.EndDate = row.find("select").eq(0).val();
-                Project.Description = row.find("textarea").eq(0).val();
-                Projects.push(Project);
-            });
-            $.ajax({
-                method: "POST",
-                url: "/PersonalProject/ProjectsSaveData",
-                data: JSON.stringify(Projects),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function () {
-                    alert("Data Saved.");
-                    $("#save").show();
-                    $("#next").show();
-                }
-            });
-        });
+        //    var Projects = new Array();
+        //    $("#Projects .user-details").each(function () {
+        //        var row = $(this);
+        //        var Project = {};
+        //        Project.ClientName = row.find("input").eq(0).val();
+        //        Project.Category = row.find("input").eq(1).val();
+        //        Project.ProjectName = row.find("input").eq(2).val();
+        //        Project.Tools = row.find("input").eq(3).val();
+        //        Project.DomainName = row.find("input").eq(4).val();
+        //        Project.InterfaceImage = row.find("input").eq(5).val();
+        //        Project.SubImage = row.find("input").eq(6).val();
+        //        Project.EndDate = row.find("select").eq(0).val();
+        //        Project.Description = row.find("textarea").eq(0).val();
+        //        Projects.push(Project);
+        //    });
+        //    $.ajax({
+        //        method: "POST",
+        //        url: "/PersonalProject/ProjectsSaveData",
+        //        data: JSON.stringify(Projects),
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function () {
+        //            alert("Data Saved.");
+        //            $("#save").show();
+        //            $("#next").show();
+        //        }
+        //    });
+        //});
     </script>
 </body>
 

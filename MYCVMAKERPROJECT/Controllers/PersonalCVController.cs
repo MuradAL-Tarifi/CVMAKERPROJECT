@@ -28,8 +28,18 @@ namespace MYCVMAKER.Controllers
             PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-            PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-            PVM.JobAlert = db.JobAlerts.ToList();
+            //PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            //PVM.Nofitication = (List<Nofitication>)(from d in db.Companies
+            //                                                       join c in db.JobAlerts on d.Id equals c.Id
+            //                                                       join s in db.Nofitications on d.Id equals s.Id
+            //                                                       where c.J_Title == PVM.Personal.P_JobTitle
+            //                                                       select new
+            //                                                       {
+            //                                                           logo = d.C_logo,
+            //                                                           Name = d.C_Name,
+            //                                                           JobTitle = c.J_Title
+            //                                                           // other assignments
+            //                                                       });
             return View(PVM);
         }
         [HttpPost]

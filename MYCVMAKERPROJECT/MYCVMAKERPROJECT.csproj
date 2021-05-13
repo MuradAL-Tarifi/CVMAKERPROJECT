@@ -323,8 +323,8 @@
     <Content Include="img\testimonial\1.png" />
     <Content Include="Models\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Entities.Context.cs</LastGenOutput>
       <DependentUpon>Entities.edmx</DependentUpon>
+      <LastGenOutput>Entities.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\Entities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -337,6 +337,7 @@
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
+    <Content Include="CVFile\cv.pdf" />
     <EntityDeploy Include="Models\Entities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Entities.Designer.cs</LastGenOutput>
@@ -344,7 +345,6 @@
     <Content Include="Models\Entities.edmx.diagram">
       <DependentUpon>Entities.edmx</DependentUpon>
     </Content>
-    <Content Include="CVFile\cv.pdf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\ChangePasswordmain.js" />
     <Content Include="Scripts\Companymain.js" />

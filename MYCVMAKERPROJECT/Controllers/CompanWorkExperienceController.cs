@@ -17,7 +17,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ExperiencesSaveData(List<CompanWorkExperience> Experiences)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
                 if (Experiences == null)
@@ -41,7 +41,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ServicesSaveData(List<CompanyService> Services)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
                 if (Services == null)
@@ -67,7 +67,7 @@ namespace MYCVMAKER.Controllers
             try
             {
                 int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-                using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+                using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
                     if (skills == null)

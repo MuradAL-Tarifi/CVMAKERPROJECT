@@ -19,8 +19,10 @@ namespace MYCVMAKERPROJECT.Models
         public Nullable<int> CompanyId { get; set; }
         public bool IsReaded { get; set; }
         public bool Submitted { get; set; }
+        public int JobAlertId { get; set; }
     
         public virtual Company Company { get; set; }
+        public virtual JobAlert JobAlert { get; set; }
         public virtual Personal Personal { get; set; }
     }
 }

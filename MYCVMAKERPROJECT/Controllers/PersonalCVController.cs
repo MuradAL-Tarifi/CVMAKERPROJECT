@@ -13,7 +13,7 @@ namespace MYCVMAKER.Controllers
 {
     public class PersonalCVController : Controller
     {
-        private CVMAKER_DBEntities db = new CVMAKER_DBEntities();
+        private CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4();
         //[Authorize]
         public ActionResult PersonalCV()
         {

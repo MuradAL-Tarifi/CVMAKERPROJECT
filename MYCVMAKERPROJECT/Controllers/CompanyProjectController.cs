@@ -18,7 +18,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ProjectsSaveData(List<CompanyProject> projects)
         {
             // int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
 
                 //Check for NULL.

@@ -11,8 +11,7 @@ namespace MYCVMAKERPROJECT.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class CompanyProject
     {
         public int Id { get; set; }
@@ -28,6 +27,5 @@ namespace MYCVMAKERPROJECT.Models
         public Nullable<int> CompanyId { get; set; }
     
         public virtual Company Company { get; set; }
-
     }
 }

@@ -13,10 +13,10 @@ namespace MYCVMAKERPROJECT.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CVMAKER_DBEntities : DbContext
+    public partial class CVMAKER_DBEntities4 : DbContext
     {
-        public CVMAKER_DBEntities()
-            : base("name=CVMAKER_DBEntities")
+        public CVMAKER_DBEntities4()
+            : base("name=CVMAKER_DBEntities4")
         {
         }
     
@@ -41,7 +41,5 @@ namespace MYCVMAKERPROJECT.Models
         public virtual DbSet<PersonalSkill> PersonalSkills { get; set; }
         public virtual DbSet<PersonalWorkExperience> PersonalWorkExperiences { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
-        public System.Data.Entity.DbSet<MYCVMAKERPROJECT.Models.UsersMetaData> UsersMetaDatas { get; set; }
     }
 }

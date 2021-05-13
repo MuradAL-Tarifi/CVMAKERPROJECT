@@ -13,7 +13,7 @@ namespace MYCVMAKER.Controllers
 {
     public class CompanyCVController : Controller
     {
-        private CVMAKER_DBEntities db = new CVMAKER_DBEntities();
+        private CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4();
         public ActionResult CompanyCV()
         {
             CompanyViewModel CVM = new CompanyViewModel();
@@ -60,7 +60,7 @@ namespace MYCVMAKER.Controllers
         public void JobAlertSaveData(List<JobAlert> Jobs)
         {
             //int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
                 if (Jobs == null)

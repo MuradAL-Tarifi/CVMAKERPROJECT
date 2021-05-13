@@ -19,7 +19,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ExperienceSaveData(List<PersonalWorkExperience> Works)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
                     if (Works == null)
@@ -43,7 +43,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult EducationsSaveData(List<Education> Educations)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
                 if (Educations == null)
@@ -67,7 +67,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ServicesSaveData(List<PersonalService> Services)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
                 if (Services == null)
@@ -93,7 +93,7 @@ namespace MYCVMAKER.Controllers
             try
             {
                 int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-                using (CVMAKER_DBEntities db = new CVMAKER_DBEntities())
+                using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
                     if (skills == null)

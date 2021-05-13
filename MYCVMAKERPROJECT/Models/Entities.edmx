@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CVMAKER_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CVMAKER_DBEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -80,7 +80,9 @@
           <Property Name="Degree" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="StartDate" Type="nvarchar(max)" />
+          <Property Name="StartMonth" Type="nvarchar(max)" />
           <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="EndMonth" Type="nvarchar(max)" />
           <Property Name="PersonalId" Type="int" />
         </EntityType>
         <EntityType Name="HitCounter">
@@ -98,6 +100,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="J_Description" Type="nvarchar(max)" />
+          <Property Name="J_Title" Type="nvarchar(max)" />
           <Property Name="J_location" Type="nvarchar(max)" />
           <Property Name="J_CompanyIndustry" Type="nvarchar(max)" />
           <Property Name="J_CompanyType" Type="nvarchar(max)" />
@@ -115,12 +118,14 @@
         <EntityType Name="Nofitication">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="JobAlertId" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonalId" Type="int" />
           <Property Name="CompanyId" Type="int" />
           <Property Name="IsReaded" Type="bit" Nullable="false" />
           <Property Name="Submitted" Type="bit" Nullable="false" />
+          <Property Name="JobAlertId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Personal">
           <Key>
@@ -174,12 +179,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar(max)" />
           <Property Name="City" Type="nvarchar(max)" />
           <Property Name="Employeer" Type="nvarchar(max)" />
           <Property Name="StartDate" Type="nvarchar(max)" />
+          <Property Name="StartMonth" Type="nvarchar(max)" />
           <Property Name="EndDate" Type="nvarchar(max)" />
+          <Property Name="EndMonth" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="JobTitle" Type="nvarchar(max)" />
           <Property Name="PersonalId" Type="int" />
         </EntityType>
         <EntityType Name="Users">
@@ -319,6 +326,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Nofitication_JobAlert_JobAlertId">
+          <End Role="JobAlert" Type="Self.JobAlert" Multiplicity="1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobAlert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="JobAlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Nofitication_Personal_PersonalId">
           <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
           <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
@@ -391,7 +410,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CVMAKER_DBModelStoreContainer">
+        <EntityContainer Name="CVMAKER_DBEntitiesStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompanWorkExperience" EntityType="Self.CompanWorkExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -448,6 +467,10 @@
             <End Role="Company" EntitySet="Company" />
             <End Role="Nofitication" EntitySet="Nofitication" />
           </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_JobAlert_JobAlertId" Association="Self.FK_Nofitication_JobAlert_JobAlertId">
+            <End Role="JobAlert" EntitySet="JobAlert" />
+            <End Role="Nofitication" EntitySet="Nofitication" />
+          </AssociationSet>
           <AssociationSet Name="FK_Nofitication_Personal_PersonalId" Association="Self.FK_Nofitication_Personal_PersonalId">
             <End Role="Personal" EntitySet="Personal" />
             <End Role="Nofitication" EntitySet="Nofitication" />
@@ -477,7 +500,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CVMAKER_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CVMAKER_DBEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Id" />
@@ -565,7 +588,9 @@
           <Property Name="Degree" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PersonalId" Type="Int32" />
           <NavigationProperty Name="Personal" Relationship="Self.FK_Education_Personal_PersonalId" FromRole="Education" ToRole="Personal" />
         </EntityType>
@@ -585,6 +610,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="J_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="J_Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="J_location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="J_CompanyIndustry" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="J_CompanyType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -599,17 +625,21 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="CompanyId" Type="Int32" />
           <NavigationProperty Name="Company" Relationship="Self.FK_JobAlert_Company_CompanyId" FromRole="JobAlert" ToRole="Company" />
+          <NavigationProperty Name="Nofitications" Relationship="Self.FK_Nofitication_JobAlert_JobAlertId" FromRole="JobAlert" ToRole="Nofitication" />
         </EntityType>
         <EntityType Name="Nofitication">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="JobAlertId" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonalId" Type="Int32" />
           <Property Name="CompanyId" Type="Int32" />
           <Property Name="IsReaded" Type="Boolean" Nullable="false" />
           <Property Name="Submitted" Type="Boolean" Nullable="false" />
+          <Property Name="JobAlertId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Company" Relationship="Self.FK_Nofitication_Company_CompanyId" FromRole="Nofitication" ToRole="Company" />
+          <NavigationProperty Name="JobAlert" Relationship="Self.FK_Nofitication_JobAlert_JobAlertId" FromRole="Nofitication" ToRole="JobAlert" />
           <NavigationProperty Name="Personal" Relationship="Self.FK_Nofitication_Personal_PersonalId" FromRole="Nofitication" ToRole="Personal" />
         </EntityType>
         <EntityType Name="Personal">
@@ -674,12 +704,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Employeer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="StartDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="EndDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EndMonth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="JobTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PersonalId" Type="Int32" />
           <NavigationProperty Name="Personal" Relationship="Self.FK_PersonalWorkExperience_Personal_PersonalId" FromRole="PersonalWorkExperience" ToRole="Personal" />
         </EntityType>
@@ -824,6 +856,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Nofitication_JobAlert_JobAlertId">
+          <End Role="JobAlert" Type="Self.JobAlert" Multiplicity="1" />
+          <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobAlert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nofitication">
+              <PropertyRef Name="JobAlertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Nofitication_Personal_PersonalId">
           <End Role="Personal" Type="Self.Personal" Multiplicity="0..1" />
           <End Role="Nofitication" Type="Self.Nofitication" Multiplicity="*" />
@@ -896,7 +940,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CVMAKER_DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CVMAKER_DBEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="CompanWorkExperiences" EntityType="Self.CompanWorkExperience" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
@@ -953,6 +997,10 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="HitCounter" EntitySet="HitCounters" />
           </AssociationSet>
+          <AssociationSet Name="FK_Nofitication_JobAlert_JobAlertId" Association="Self.FK_Nofitication_JobAlert_JobAlertId">
+            <End Role="JobAlert" EntitySet="JobAlerts" />
+            <End Role="Nofitication" EntitySet="Nofitications" />
+          </AssociationSet>
           <AssociationSet Name="FK_Nofitication_Personal_PersonalId" Association="Self.FK_Nofitication_Personal_PersonalId">
             <End Role="Personal" EntitySet="Personals" />
             <End Role="Nofitication" EntitySet="Nofitications" />
@@ -983,9 +1031,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CVMAKER_DBModelStoreContainer" CdmEntityContainer="CVMAKER_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="CVMAKER_DBEntitiesStoreContainer" CdmEntityContainer="CVMAKER_DBEntities4">
           <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.Admin">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Ad_Name" ColumnName="Ad_Name" />
@@ -1000,7 +1048,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanWorkExperiences">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanWorkExperience">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.CompanWorkExperience">
               <MappingFragment StoreEntitySet="CompanWorkExperience">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1010,7 +1058,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.Company">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.Company">
               <MappingFragment StoreEntitySet="Company">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="C_Name" ColumnName="C_Name" />
@@ -1022,7 +1070,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanyProjects">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanyProject">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.CompanyProject">
               <MappingFragment StoreEntitySet="CompanyProject">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
@@ -1039,7 +1087,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanyServices">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanyService">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.CompanyService">
               <MappingFragment StoreEntitySet="CompanyServices">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1049,7 +1097,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompanySkills">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.CompanySkill">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.CompanySkill">
               <MappingFragment StoreEntitySet="CompanySkills">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Skill" ColumnName="Skill" />
@@ -1058,19 +1106,21 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Educations">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.Education">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.Education">
               <MappingFragment StoreEntitySet="Education">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Degree" ColumnName="Degree" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="StartMonth" ColumnName="StartMonth" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="EndMonth" ColumnName="EndMonth" />
                 <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HitCounters">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.HitCounter">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.HitCounter">
               <MappingFragment StoreEntitySet="HitCounter">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
@@ -1080,10 +1130,11 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobAlerts">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.JobAlert">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.JobAlert">
               <MappingFragment StoreEntitySet="JobAlert">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="J_Description" ColumnName="J_Description" />
+                <ScalarProperty Name="J_Title" ColumnName="J_Title" />
                 <ScalarProperty Name="J_location" ColumnName="J_location" />
                 <ScalarProperty Name="J_CompanyIndustry" ColumnName="J_CompanyIndustry" />
                 <ScalarProperty Name="J_CompanyType" ColumnName="J_CompanyType" />
@@ -1101,18 +1152,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Nofitications">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.Nofitication">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.Nofitication">
               <MappingFragment StoreEntitySet="Nofitication">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
                 <ScalarProperty Name="IsReaded" ColumnName="IsReaded" />
                 <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+                <ScalarProperty Name="JobAlertId" ColumnName="JobAlertId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Personals">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.Personal">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.Personal">
               <MappingFragment StoreEntitySet="Personal">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="P_FirstName" ColumnName="P_FirstName" />
@@ -1126,7 +1178,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonalProjects">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalProject">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.PersonalProject">
               <MappingFragment StoreEntitySet="PersonalProject">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
@@ -1143,7 +1195,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonalServices">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalService">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.PersonalService">
               <MappingFragment StoreEntitySet="PersonalServices">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1153,7 +1205,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonalSkills">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalSkill">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.PersonalSkill">
               <MappingFragment StoreEntitySet="PersonalSkills">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
@@ -1163,21 +1215,23 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PersonalWorkExperiences">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.PersonalWorkExperience">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.PersonalWorkExperience">
               <MappingFragment StoreEntitySet="PersonalWorkExperience">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="Employeer" ColumnName="Employeer" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="StartMonth" ColumnName="StartMonth" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="EndMonth" ColumnName="EndMonth" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="PersonalId" ColumnName="PersonalId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="CVMAKER_DBModel.User">
+            <EntityTypeMapping TypeName="CVMAKER_DBEntities.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

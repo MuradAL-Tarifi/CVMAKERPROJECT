@@ -14,9 +14,15 @@ namespace MYCVMAKERPROJECT.Models
     
     public partial class JobAlert
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JobAlert()
+        {
+            this.Nofitications = new HashSet<Nofitication>();
+        }
+    
         public int Id { get; set; }
-        public string J_Title { get; set; }
         public string J_Description { get; set; }
+        public string J_Title { get; set; }
         public string J_location { get; set; }
         public string J_CompanyIndustry { get; set; }
         public string J_CompanyType { get; set; }
@@ -32,5 +38,7 @@ namespace MYCVMAKERPROJECT.Models
         public Nullable<int> CompanyId { get; set; }
     
         public virtual Company Company { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Nofitication> Nofitications { get; set; }
     }
 }

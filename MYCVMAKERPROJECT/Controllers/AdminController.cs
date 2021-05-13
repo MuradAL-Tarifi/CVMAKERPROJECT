@@ -12,7 +12,7 @@ namespace MYCVMAKER.Controllers
 {
     public class AdminController : Controller
     {
-        private CVMAKER_DBEntities db = new CVMAKER_DBEntities();    
+        private CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4();    
 
         public ActionResult Admin()
         {

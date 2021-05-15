@@ -505,7 +505,7 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="jobalert" method="post">
+                <form id="jobalert">
                     <div class="modal-header">
                         <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -610,7 +610,7 @@
 
                 }
             })
-        }
+        };
         //$(function () {
         //    $("#search").autocomplete({
         //        source: function (request, response) {
@@ -639,16 +639,16 @@
         //    });
         //});
 
-        //function GetCompanyCV(data) {
-        //    alert(data);
-        //    $.ajax({
-        //        url: '/CompanyCV/GetCompanyCV/',
-        //        data: "{ 'id': '" + data + "'}",
-        //        dataType: "json",
-        //        type: "POST",
-        //        contentType: "application/json; charset=utf-8",
-        //    });
-        //}           
+        $("body").on("click", "#save", function (id) {
+
+            $.ajax({
+                url: '/PersonalCV/Sumited?id=' + id,
+                dataType: "json",
+                type: "POST",
+                success:
+                    alert("Updated success")
+            })
+        })
 
     </script>
 </body>

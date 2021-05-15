@@ -32,7 +32,7 @@ namespace MYCVMAKER.Controllers
             PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             var personalid = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             var Pid = personalid.Id;
-            ViewBag.id = Pid;
+            TempData["id"] = Pid;
             PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
 
             return View(PVM);
@@ -56,6 +56,21 @@ namespace MYCVMAKER.Controllers
             });
             return Json(value, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult Sumited(int Id)
+        {
+            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
+            var id = 28;
+            var idp = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
+
+            Nofitication model = db.Nofitications.AsNoTracking().Where(x => x.PersonalId == idp.Id && x.JobAlertId==Id).FirstOrDefault();
+
+            model.Submitted = true;
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
+            return Json(true);
+        }
+
         // [HttpPost]
         // public ActionResult AutoComplete(string Prefix)
         //{

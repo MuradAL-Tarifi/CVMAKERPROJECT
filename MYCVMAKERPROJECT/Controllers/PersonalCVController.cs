@@ -56,8 +56,8 @@ namespace MYCVMAKER.Controllers
             });
             return Json(value, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
-        public JsonResult Sumited(int Id)
+        
+        public JsonResult submited(int Id)
         {
             //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
             var id = 28;
@@ -68,7 +68,7 @@ namespace MYCVMAKER.Controllers
             model.Submitted = true;
             db.Entry(model).State = EntityState.Modified;
             db.SaveChanges();
-            return Json(true);
+            return Json(Id);
         }
 
         // [HttpPost]

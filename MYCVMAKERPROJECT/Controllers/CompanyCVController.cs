@@ -26,7 +26,7 @@ namespace MYCVMAKER.Controllers
             CVM.CompanyProject = db.CompanyProjects.Where(x => x.CompanyId == CVM.Company.Id).ToList();
             CVM.CompanyServices = db.CompanyServices.Where(x => x.CompanyId == CVM.Company.Id).ToList();
             CVM.CompanySkills = db.CompanySkills.Where(x => x.CompanyId == CVM.Company.Id).ToList();
-
+            CVM.Nofitication = db.Nofitications.Where(x => x.CompanyId == CVM.Company.Id && x.Submitted==true).ToList();
 
             return View(CVM);
         }

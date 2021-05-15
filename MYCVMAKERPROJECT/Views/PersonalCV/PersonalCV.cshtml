@@ -78,7 +78,7 @@
                     <!-- <a href="#testimonial" class="nav-item nav-link"><i class="fa fa-users"></i><span>Testimonial</span></a> -->
                     <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
                     <!-- <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a>		 -->
-                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">17</span></i><span>Notifications</span></a>
+                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.PersonalId == Model.Personal.Id).Count()</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
@@ -116,7 +116,7 @@
     </section>
     <!-- home section end -->
     <div class="notifi-box" id="box">
-        <h2>Notifications <span>17</span></h2>
+        <h2>Notifications <span>@Model.Nofitication.Where(x => x.PersonalId == Model.Personal.Id).Count()</span></h2>
 
         @foreach (var item in Model.Nofitication)
         {
@@ -128,13 +128,6 @@
                 </div>
             </div>
         }
-        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
-            <img src="#" alt="img">
-            <div class="text">
-                <h4>dfdsf</h4>
-                <p> asdasdad</p>
-            </div>
-        </div>
     </div>
     <!-- about section start -->
     <section class="about-section section active" id="about">
@@ -574,7 +567,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-success" value="Submit" id="save">
+                        <input type="button" class="btn btn-success" value="Submit" id="save">
                     </div>
                 </form>
             </div>
@@ -639,16 +632,16 @@
         //    });
         //});
 
-        $("body").on("click", "#save", function (id) {
-
+        $("body").on('click', '#save', function (id){
+            var url = "/PersonalCV/submited?id=" + id;
             $.ajax({
-                url: '/PersonalCV/Sumited?id=' + id,
-                dataType: "json",
-                type: "POST",
-                success:
-                    alert("Updated success")
+                url: url,
+                dataType: "json"  ,
+                    contentType: 'application/json; charset=utf-8',
+                type: "GET",
+                success: alert("Hello")
             })
-        })
+        });
 
     </script>
 </body>

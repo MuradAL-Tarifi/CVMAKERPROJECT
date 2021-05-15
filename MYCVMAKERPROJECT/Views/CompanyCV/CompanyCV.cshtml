@@ -65,7 +65,7 @@
                     <a href="#home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
                     <a href="#portfolio" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
                     <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
-                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">17</span></i><span>Notifications</span></a>
+                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
@@ -99,46 +99,18 @@
     </section>
     <!-- home section end -->
     <div class="notifi-box" id="box">
-        <h2>Notifications <span>17</span></h2>
-        <div class="notifi-item unread" id="0" onclick="unread(this);">
-            <img src="~/img/avatar1.png" alt="img">
-            <div class="text">
-                <h4>Elias Abdurrahman</h4>
-                <p>lorem1 ipsum dolor sit amet</p>
+        <h2>Notifications <span>@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></h2>
+        @foreach (var item in Model.Nofitication)
+        {
+            <div class="notifi-item unread">
+                <img src="@item.Personal.P_Image" alt="img">
+                <div class="text">
+                    <h4>@item.Personal.P_FirstName @item.Personal.P_LastName</h4>
+                    <p> @item.Personal.P_JobTitle</p>
+                </div>
             </div>
-        </div>
+        }
 
-        <div class="notifi-item unread" id="1" onclick="unread(this);">
-            <img src="~/img/avatar2.png" alt="img">
-            <div class="text">
-                <h4>John Doe</h4>
-                <p>lorem1 ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" id="2" onclick="unread(this);">
-            <img src="~/img/avatar3.png" alt="img">
-            <div class="text">
-                <h4>Emad Ali</h4>
-                <p>lorem1 ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" id="3" onclick="unread(this);">
-            <img src="~/img/avatar4.png" alt="img">
-            <div class="text">
-                <h4>Ekram Abu </h4>
-                <p>lorem1 ipsum dolor sit amet</p>
-            </div>
-        </div>
-
-        <div class="notifi-item unread" id="4" onclick="unread(this);">
-            <img src="~/img/avatar5.png" alt="img">
-            <div class="text">
-                <h4>Jane Doe</h4>
-                <p>lorem1 ipsum dolor sit amet</p>
-            </div>
-        </div>
     </div>
     <!-- about section start -->
     <section class="about-section section active" id="about">

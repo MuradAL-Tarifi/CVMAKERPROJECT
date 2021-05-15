@@ -120,7 +120,7 @@
 
         @foreach (var item in Model.Nofitication)
         {
-            <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
+            <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="EditShowRecord(@item.JobAlertId)">
                 <img src="@item.Company.C_logo" alt="img">
                 <div class="text">
                     <h4>@item.Company.C_Name</h4>
@@ -505,66 +505,76 @@
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form>
+                <form id="jobalert" method="post">
                     <div class="modal-header">
                         <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Job Description :</label>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad pariatur nesciunt odio, animi sint voluptatem voluptatibus veniam perspiciatis qui consectetur?</p>
+                            <label>Job Description</label>
+                            <p   name="J_Description" id="J_Description"></p>
                         </div>
                         <div class="form-group">
                             <h4 class="modal-title">Job Details</h4>
                         </div>
+
                         <div class="form-group">
-                            <label>Job Location : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Job Location</label>
+                            <p   name="J_location" id="J_location"></p>
                         </div>
                         <div class="form-group">
-                            <label>Company Industry : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Job Title</label>
+                            <p   name="J_Title" id="J_Title"></p>
                         </div>
                         <div class="form-group">
-                            <label>Company Type : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Company Industry</label>
+                            <p   name="J_CompanyIndustry" id="J_CompanyIndustry"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Type</label>
+                            <p   name="J_CompanyType" id="J_CompanyType"></p>
                         </div>
                         <div class="form-group">
-                            <label>Job Role : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Job Role</label>
+                            <p   name="J_JobRole" id="J_JobRole"></p>
                         </div>
                         <div class="form-group">
-                            <label>Emplement Type : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Emplement Type</label>
+                            <p   name="ImplementType" id="ImplementType"></p>
                         </div>
                         <div class="form-group">
-                            <label>Monthly Salary Range : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Monthly Salary Range</label>
+                            <p  name="MonthlySalaryRange" id="MonthlySalaryRange"></p>
                         </div>
                         <div class="form-group">
-                            <label>Number of vacancies : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Number of vacancies</label>
+                            <p  name="NumberOfVacancies" id="NumberOfVacancies"></p>
                         </div>
                         <div class="form-group">
                             <h4 class="modal-title">Preferred Candidate</h4>
                         </div>
                         <div class="form-group">
-                            <label>Career Level : </label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Career Level</label>
+                            <p   name="Careerlevel" id="Careerlevel"></p>
                         </div>
                         <div class="form-group">
-                            <label>Years of Experience :</label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Years of Experience</label>
+                            <p  name="YearsOfExperience" id="YearsOfExperience"></p>
                         </div>
                         <div class="form-group">
-                            <label>Degree :</label>
-                            <p>Lorem ipsum dolor sit amet.</p>
+                            <label>Degree</label>
+                            <p  name="Degree" id="Degree"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <p  name="Address" id="Address"></p>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-success" value="Submit">
+                        <input type="submit" class="btn btn-success" value="Submit" id="save">
                     </div>
                 </form>
             </div>
@@ -576,6 +586,31 @@
     <script src="~/Scripts/style-switcher.js"></script>
 
     <script>
+        function EditShowRecord(id) {
+            var url = "/PersonalCV/GetJobtById?id=" + id;
+        
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    $("#J_Description").html(obj.J_Description); 
+                    $("#J_location").html(obj.J_location);
+                    $("#J_Title").html(obj.J_Title);
+                    $("#J_CompanyIndustry").html(obj.J_CompanyIndustry);
+                    $("#J_CompanyType").html(obj.J_CompanyType);
+                    $("#J_JobRole").html(obj.J_JobRole);
+                    $("#ImplementType").html(obj.ImplementType);
+                    $("#MonthlySalaryRange").html(obj.MonthlySalaryRange);
+                    $("#NumberOfVacancies").html(obj.NumberOfVacancies);
+                    $("#Careerlevel").html(obj.Careerlevel);
+                    $("#YearsOfExperience").html(obj.YearsOfExperience);
+                    $("#Degree").html(obj.Degree);
+                    $("#Address").html(obj.Address);
+
+                }
+            })
+        }
         //$(function () {
         //    $("#search").autocomplete({
         //        source: function (request, response) {

@@ -1,5 +1,6 @@
 ﻿using MYCVMAKERPROJECT.Models;
 using MYCVMAKERPROJECT.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,6 +45,16 @@ namespace MYCVMAKER.Controllers
             Session["CompanyID"] = id.Id;
 
             return RedirectToAction("CompanyCV", "CompanyCV");
+        }
+        public JsonResult GetJobtById(int Id)
+        {
+            JobAlert model = db.JobAlerts.Where(x => x.Id == Id).SingleOrDefault();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
         }
         // [HttpPost]
         // public ActionResult AutoComplete(string Prefix)

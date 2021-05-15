@@ -10,6 +10,7 @@ namespace MYCVMAKERPROJECT.ViewModel
     {
         public User User { get; set; }
         public Personal Personal { get; set; }
+        public List<Company> Company { get; set; }
         public List<Nofitication> Nofitication { get; set; }
         public List<PersonalWorkExperience> PersonalWorkExperience { get; set; }
         public List<PersonalProject> PersonalProject { get; set; }

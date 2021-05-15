@@ -71,7 +71,20 @@ namespace MYCVMAKER.Controllers
                 //Loop and insert records.
                 foreach (JobAlert Job in Jobs)
                 {
+                    
                     Job.CompanyId = 1;
+                    var Personal = db.Personals.Where(x => x.P_JobTitle.Equals(Job.J_Title)).ToList();
+                    for (int i = 0; i < Personal.Count; i++)
+                    {
+                        Nofitication not = new Nofitication();
+                        not.JobAlertId = Job.Id;
+                        not.CompanyId = Job.CompanyId;
+                        not.PersonalId = Personal[i].Id;
+                        not.IsReaded = false;
+                        not.Submitted = false;
+                        db.Nofitications.Add(not);
+                    }
+
                     db.JobAlerts.Add(Job);
                 }
                 db.SaveChanges();

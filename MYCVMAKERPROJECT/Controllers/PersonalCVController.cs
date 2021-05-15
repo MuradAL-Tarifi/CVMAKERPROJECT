@@ -3,6 +3,7 @@ using MYCVMAKERPROJECT.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -28,18 +29,11 @@ namespace MYCVMAKER.Controllers
             PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-            //PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-            //PVM.Nofitication = (List<Nofitication>)(from d in db.Companies
-            //                                                       join c in db.JobAlerts on d.Id equals c.Id
-            //                                                       join s in db.Nofitications on d.Id equals s.Id
-            //                                                       where c.J_Title == PVM.Personal.P_JobTitle
-            //                                                       select new
-            //                                                       {
-            //                                                           logo = d.C_logo,
-            //                                                           Name = d.C_Name,
-            //                                                           JobTitle = c.J_Title
-            //                                                           // other assignments
-            //                                                       });
+            var personalid = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
+            var Pid = personalid.Id;
+            ViewBag.id = Pid;
+            PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+
             return View(PVM);
         }
         [HttpPost]

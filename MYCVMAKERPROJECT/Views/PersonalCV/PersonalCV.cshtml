@@ -118,16 +118,23 @@
     <div class="notifi-box" id="box">
         <h2>Notifications <span>17</span></h2>
 
-        @foreach (var item in Model.JobAlert.Where(x => x.J_Title == Model.Personal.P_JobTitle))
+        @foreach (var item in Model.Nofitication)
         {
             <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
                 <img src="@item.Company.C_logo" alt="img">
                 <div class="text">
                     <h4>@item.Company.C_Name</h4>
-                    <p> @item.J_Title</p>
+                    <p> @item.Company.C_JobTitle</p>
                 </div>
             </div>
         }
+        <div class="notifi-item unread" href="#addEmployeeModal" data-toggle="modal" onclick="unread(this);">
+            <img src="#" alt="img">
+            <div class="text">
+                <h4>dfdsf</h4>
+                <p> asdasdad</p>
+            </div>
+        </div>
     </div>
     <!-- about section start -->
     <section class="about-section section active" id="about">

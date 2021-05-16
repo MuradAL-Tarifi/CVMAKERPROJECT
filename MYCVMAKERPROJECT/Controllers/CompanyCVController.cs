@@ -103,7 +103,7 @@ namespace MYCVMAKER.Controllers
         [NonAction]
         public void SendPasswrodLinkEmail(string email)
         {
-            var verifyUrl = "/HomePage/ForgotPassword/";
+            var verifyUrl = "/CompanyCV/CompanyForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
             var fromEmail = new MailAddress("muradshaltaf123@gmail.com", "Murad Awad");

@@ -65,7 +65,7 @@
                     <a href="#home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
                     <a href="#portfolio" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
                     <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
-                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></i><span>Notifications</span></a>
+                    <a class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
@@ -102,7 +102,7 @@
         <h2>Notifications <span>@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></h2>
         @foreach (var item in Model.Nofitication)
         {
-            <div class="notifi-item unread" onclick="ShowPersoanlView(@item.PersonalId)">
+            <div class="notifi-item unread" onclick="ShowPersoanlView(@item.PersonalId);">
                 <img src="@item.Personal.P_Image" alt="img">
                 <div class="text">
                     <h4>@item.Personal.P_FirstName @item.Personal.P_LastName</h4>
@@ -520,8 +520,6 @@
             </div>
         </div>
     </div>
-
-
     <!-- style switcher start-->
     <div class="style-switcher outer-shadow">
         <div class="style-switcher-toggler s-icon outer-shadow hover-in-shadow">
@@ -584,10 +582,9 @@
         });
 
         function ShowPersoanlView(Id) {
-            var url = "/PersonalCV/PersonalView?id="+Id;
             $.ajax({
-                url: url,
-                type: "POST"
+                type: "GET",
+                success: window.location.href = "/PersonalCV/PersonalView?id=" + Id
             })
         }
     </script>

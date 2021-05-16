@@ -78,7 +78,7 @@
                     <!-- <a href="#testimonial" class="nav-item nav-link"><i class="fa fa-users"></i><span>Testimonial</span></a> -->
                     <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
                     <!-- <a href="#" class="nav-item nav-link"><i class="fa fa-envelope"></i><span>Messages</span></a>		 -->
-                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.PersonalId == Model.Personal.Id).Count()</span></i><span>Notifications</span></a>
+                    <a class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.PersonalId == Model.Personal.Id).Count()</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>

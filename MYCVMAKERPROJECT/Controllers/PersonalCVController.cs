@@ -37,7 +37,7 @@ namespace MYCVMAKER.Controllers
 
             return View(PVM);
         }
-        [HttpPost]
+        
         public ActionResult PersonalView(int Id)
         {
             PersonalViewModel PVM = new PersonalViewModel();

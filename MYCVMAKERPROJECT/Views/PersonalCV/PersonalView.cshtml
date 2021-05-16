@@ -1,16 +1,18 @@
-﻿@model MYCVMAKERPROJECT.ViewModel.CompanyViewModel
+﻿@model MYCVMAKERPROJECT.ViewModel.PersonalViewModel
 @{
-    ViewData["Title"] = "CompanyCV";
+    ViewBag.Title = "PersonalView";
     Layout = null;
 }
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
+
     <meta charset="utf-8">
     <title>Personal Portfolio Website</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -19,7 +21,7 @@
     <!-- font awesome -->
     <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css">
     <!-- main css -->
-    <link rel="stylesheet" type="text/css" href="~/Content/Companystyle.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Personalstyle.css">
     <!-- responsive css -->
     <link rel="stylesheet" type="text/css" href="~/Content/responsive.css">
     <!-- default color skin -->
@@ -39,7 +41,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 <body class="dark">
 
@@ -50,68 +54,25 @@
         </div>
     </div>
     <!-- preloader end -->
-    <!-- navigation menu end -->
     <!-- home section start -->
-    <section class="home-section section active" id="home">
-        <!-- navigation menu start -->
-        <nav class="navbar navbar-expand-xl navbar-dark">
-            <a href="#" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-                <div class="navbar-nav ml-auto">
-                    <a href="#home" class="nav-item nav-link active"><i class="fa fa-home"></i><span>Home</span></a>
-                    <a href="#portfolio" class="nav-item nav-link"><i class="fa fa-gears"></i><span>Projects</span></a>
-                    <a href="#contact" class="nav-item nav-link"><i class="fa fa-briefcase"></i><span>Contact</span></a>
-                    <a href="#" class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></i><span>Notifications</span></a>
-
-                    <div class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
-                        <div class="dropdown-menu">
-                            <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
-                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
-                            <div class="divider dropdown-divider"></div>
-                            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+    <section class="home-section section active" id="home" style="background-image:url(/img/bkp.jpg)">
         <div class="container">
             <div class="row full-screen align-items-center">
-
                 <div class="home-text">
                     <p>Hello</p>
-                    <h2>I'm @Model.Company.C_Name</h2>
-                    <h1>@Model.Company.C_JobTitle</h1>
+                    <h2>I'm @Model.Personal.P_FirstName @Model.Personal.P_LastName</h2>
+                    <h1>@Model.Personal.P_JobTitle</h1>
                     <a href="#about" class="link-item btn-1 outer-shadow hover-in-shadow">More About Me</a>
-                    <a href="#addEmployeeModal" data-toggle="modal" class="link-item btn-1 outer-shadow hover-in-shadow">Upload Post For Job</a>
                 </div>
                 <div class="home-img">
                     <div class="img-box inner-shadow">
-                        <img src="@Model.Company.C_logo" class="outer-shadow" alt="profile-pic">
+                        <img src="@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- home section end -->
-    <div class="notifi-box" id="box">
-        <h2>Notifications <span>@Model.Nofitication.Where(x => x.CompanyId == Model.Company.Id).Count()</span></h2>
-        @foreach (var item in Model.Nofitication)
-        {
-            <div class="notifi-item unread" onclick="ShowPersoanlView(@item.PersonalId)">
-                <img src="@item.Personal.P_Image" alt="img">
-                <div class="text">
-                    <h4>@item.Personal.P_FirstName @item.Personal.P_LastName</h4>
-                    <p> @item.Personal.P_JobTitle</p>
-                </div>
-            </div>
-        }
-
-    </div>
     <!-- about section start -->
     <section class="about-section section active" id="about">
         <div class="container">
@@ -123,7 +84,7 @@
             <div class="row">
                 <div class="about-img">
                     <div class="img-box inner-shadow">
-                        <img src="@Model.Company.C_logo" class="outer-shadow" alt="profile-pic">
+                        <img src="@Model.Personal.P_Image" class="outer-shadow" alt="profile-pic">
                     </div>
                     <!-- social links start -->
                     <div class="social-links">
@@ -135,10 +96,8 @@
                     <!-- social links end -->
                 </div>
                 <div class="about-info">
-                    <p><span>Hi! My company name is @Model.Company.C_Name. We work @Model.Company.C_JobTitle.
-                    </span>@Model.User.Description</p>
-                   
-                    <!-- <a href="cv.pdf" class="btn-1 outer-shadow hover-in-shadow">Download CV</a> -->
+                    <p><span>Hi! My name is @Model.Personal.P_FirstName @Model.Personal.P_LastName. I am a @Model.Personal.P_JobTitle.</span>@Model.User.Description </p>
+                    <a href="@Model.Personal.P_FileCV" class="btn-1 outer-shadow hover-in-shadow">Download CV</a>
                     <a href="#contact" class="link-item btn-1 outer-shadow hover-in-shadow">Hire Me</a>
                 </div>
             </div>
@@ -147,7 +106,7 @@
                 <div class="about-tabs">
                     <span class="tab-item outer-shadow active" data-target=".skills">skills</span>
                     <span class="tab-item" data-target=".experience">experience</span>
-                    <!-- <span class="tab-item" data-target=".education">education</span> -->
+                    <span class="tab-item" data-target=".education">education</span>
                 </div>
             </div>
             <!-- about tabs end -->
@@ -156,16 +115,18 @@
                 <div class="skills tab-content active">
                     <div class="row">
                         <!-- skill item start -->
-                        @foreach (var item in Model.CompanySkills)
+                        @foreach (var item in Model.PersonalSkill)
                         {
                             <div class="skill-item">
-                                <p class="outer-shadow">@item.Skill</p>
+                                <p>@item.Skill</p>
+                                <div class="progress inner-shadow">
+                                    <div class="progress-bar" style="width: calc(50% - 14px)">
+                                        <span>@item.Level%</span>
+                                    </div>
+                                </div>
                             </div>
                         }
-
-
                         <!-- skill item end -->
-
                     </div>
                 </div>
             </div>
@@ -177,17 +138,18 @@
                         <div class="timeline">
                             <div class="row">
                                 <!-- timeline item start -->
-                                @foreach (var item1 in Model.CompanWorkExperience)
+                                @foreach (var item in Model.PersonalWorkExperience)
                                 {
                                     <div class="timeline-item">
                                         <div class="timeline-item-inner outer-shadow">
                                             <i class="fas fa-briefcase icon"></i>
-                                            <h3>@item1.JobTitle</h3>
-                                            <p>@item1.Description</p>
+                                            <span>@item.StartMonth, @item.EndDate - Present</span>
+                                            <h3>@item.JobTitle</h3>
+                                            <h4>@item.Employeer, @item.City </h4>
+                                            <p>@item.Description</p>
                                         </div>
                                     </div>
                                 }
-
                                 <!-- timeline item end -->
                             </div>
                         </div>
@@ -195,6 +157,31 @@
                 </div>
             </div>
             <!-- experience end -->
+            <!-- education start -->
+            <div class="row">
+                <div class="education tab-content">
+                    <div class="row">
+                        <div class="timeline">
+                            <div class="row">
+                                <!-- timeline item start -->
+                                @foreach (var item in Model.Education)
+                                {
+                                    <div class="timeline-item">
+                                        <div class="timeline-item-inner outer-shadow">
+                                            <i class="fas fa-graduation-cap icon"></i>
+                                            <span>@item.StartMonth, @item.StartDate - @item.EndMonth, @item.EndDate</span>
+                                            <h3>@item.Degree</h3>
+                                            <p>@item.Description</p>
+                                        </div>
+                                    </div>
+                                }
+                                <!-- timeline item end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- education end -->
         </div>
     </section>
     <!-- about section end -->
@@ -208,20 +195,19 @@
             </div>
             <div class="row">
                 <!-- service item start -->
-                @foreach (var item2 in Model.CompanyServices)
+                @foreach (var item in Model.PersonalService)
                 {
                     <div class="service-item">
                         <div class="service-item-inner outer-shadow">
                             <div class="icon inner-shadow">
                                 <i class="fas fa-mobile-alt"></i>
                             </div>
-                            <h3>@item2.JobTitle</h3>
-                            <p>@item2.Description</p>
+                            <h3>@item.JobTitle</h3>
+                            <p>@item.Description</p>
                         </div>
                     </div>
                 }
                 <!-- service item end -->
-
             </div>
         </div>
     </section>
@@ -242,10 +228,9 @@
             </div>
             <!-- portfolio filter end -->
             <!-- portfolio items start -->
-
             <div class="row portfolio-items">
                 <!-- portfolio item start -->
-                @foreach (var item3 in Model.CompanyProject)
+                @foreach (var item3 in Model.PersonalProject)
                 {
                     <div class="portfolio-item" data-category="web-application">
                         <div class="portfolio-item-inner outer-shadow">
@@ -277,9 +262,7 @@
                             <!-- portfolio item details end -->
                         </div>
                     </div>
-                }
-
-                <!-- portfolio item end -->
+                }<!-- portfolio item end -->
 
             </div>
             <!-- portfolio items end -->
@@ -404,6 +387,7 @@
             </div>
         </div>
     </section>
+    <!-- contact section end -->
     <!-- portfolio popup start -->
     <div class="pp portfolio-popup">
         <div class="pp-details">
@@ -435,93 +419,6 @@
         </div>
     </div>
     <!-- portfolio popup end -->
-    <!-- Add Modal HTML -->
-    <div id="addEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="jobalert" method="post">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Job Description</label>
-                            <textarea class="form-control" required name="J_Description"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <h4 class="modal-title">Job Details</h4>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Job Location</label>
-                            <input type="text" class="form-control" required name="J_location">
-                        </div>
-                        <div class="form-group">
-                            <label>Job Title</label>
-                            <select name="J_Title" id="J_Title" class="form-control StartDate">
-                                <option value="webbapplications" selected>Web applications</option>
-                                <option value="mobileapplications">Mobile applications</option>
-                                <option value="artificialintelligence">Artificial intelligence</option>
-                                <option value="networkadministrator">Network administrator</option>
-                                <option value="computersystemsmanager">Computer systems manager</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Company Industry</label>
-                            <input type="text" class="form-control" required name="J_CompanyIndustry">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Company Type</label>
-                            <input type="text" class="form-control" required name="J_CompanyType">
-                        </div>
-                        <div class="form-group">
-                            <label>Job Role</label>
-                            <input type="text" class="form-control" required name="J_JobRole">
-                        </div>
-                        <div class="form-group">
-                            <label>Emplement Type</label>
-                            <input type="text" class="form-control" required name="ImplementType">
-                        </div>
-                        <div class="form-group">
-                            <label>Monthly Salary Range</label>
-                            <input type="text" class="form-control" required name="MonthlySalaryRange">
-                        </div>
-                        <div class="form-group">
-                            <label>Number of vacancies</label>
-                            <input type="text" class="form-control" required name="NumberOfVacancies">
-                        </div>
-                        <div class="form-group">
-                            <h4 class="modal-title">Preferred Candidate</h4>
-                        </div>
-                        <div class="form-group">
-                            <label>Career Level</label>
-                            <input type="text" class="form-control" required name="Careerlevel">
-                        </div>
-                        <div class="form-group">
-                            <label>Years of Experience</label>
-                            <input type="text" class="form-control" required name="YearsOfExperience">
-                        </div>
-                        <div class="form-group">
-                            <label>Degree</label>
-                            <input type="text" class="form-control" required name="Degree">
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <input type="text" class="form-control" required name="Address">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="submit" class="btn btn-success" value="Submit" id="save">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
     <!-- style switcher start-->
     <div class="style-switcher outer-shadow">
         <div class="style-switcher-toggler s-icon outer-shadow hover-in-shadow">
@@ -541,57 +438,155 @@
         </div>
     </div>
     <!-- style switcher end -->
+    <!-- Add Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="jobalert">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Please complete the following to start receiving this Job Alert</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Job Description</label>
+                            <p name="J_Description" id="J_Description"></p>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="modal-title">Job Details</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Job Location</label>
+                            <p name="J_location" id="J_location"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Job Title</label>
+                            <p name="J_Title" id="J_Title"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Company Industry</label>
+                            <p name="J_CompanyIndustry" id="J_CompanyIndustry"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Type</label>
+                            <p name="J_CompanyType" id="J_CompanyType"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Job Role</label>
+                            <p name="J_JobRole" id="J_JobRole"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Emplement Type</label>
+                            <p name="ImplementType" id="ImplementType"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Monthly Salary Range</label>
+                            <p name="MonthlySalaryRange" id="MonthlySalaryRange"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Number of vacancies</label>
+                            <p name="NumberOfVacancies" id="NumberOfVacancies"></p>
+                        </div>
+                        <div class="form-group">
+                            <h4 class="modal-title">Preferred Candidate</h4>
+                        </div>
+                        <div class="form-group">
+                            <label>Career Level</label>
+                            <p name="Careerlevel" id="Careerlevel"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Years of Experience</label>
+                            <p name="YearsOfExperience" id="YearsOfExperience"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Degree</label>
+                            <p name="Degree" id="Degree"></p>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <p name="Address" id="Address"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <button class="btn btn-success" id="save" onclick="submited()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- main js -->
-    <script src="~/Scripts/Companymain.js"></script>
+    <script src="~/Scripts/Personalmain.js"></script>
     <!-- style switcher js -->
     <script src="~/Scripts/style-switcher.js"></script>
-    <script>
-        $("body").on("click", "#save", function () {
-            //Loop through the Table rows and build a JSON array.
-            $("#save").hide();
 
-            var jobs = new Array();
-            $(" .modal-body").each(function () {
-                var row = $(this);
-                var job = {};
-                job.J_Description = row.find("textarea").eq(0).val();
-                job.J_Title = row.find("select").eq(0).val();
-                job.J_location = row.find("input").eq(1).val();
-                job.J_CompanyIndustry = row.find("input").eq(2).val();
-                job.J_CompanyType = row.find("input").eq(3).val();
-                job.J_JobRole = row.find("input").eq(4).val();
-                job.ImplementType = row.find("input").eq(5).val();
-                job.MonthlySalaryRange = row.find("input").eq(6).val();
-                job.NumberOfVacancies = row.find("input").eq(7).val();
-                job.Careerlevel = row.find("input").eq(8).val();
-                job.YearsOfExperience = row.find("input").eq(9).val();
-                job.Degree = row.find("input").eq(10).val();
-                job.Address = row.find("input").eq(11).val();
-                jobs.push(job);
-            });
+    <script>
+        function EditShowRecord(id) {
+            var url = "/PersonalCV/GetJobtById?id=" + id;
+
             $.ajax({
-                method: "POST",
-                url: "/CompanyCV/JobAlertSaveData",
-                data: JSON.stringify(jobs),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function () {
-                    alert("Data Saved.");
-                    $("#save").show();
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    $("#J_Description").html(obj.J_Description);
+                    $("#J_location").html(obj.J_location);
+                    $("#J_Title").html(obj.J_Title);
+                    $("#J_CompanyIndustry").html(obj.J_CompanyIndustry);
+                    $("#J_CompanyType").html(obj.J_CompanyType);
+                    $("#J_JobRole").html(obj.J_JobRole);
+                    $("#ImplementType").html(obj.ImplementType);
+                    $("#MonthlySalaryRange").html(obj.MonthlySalaryRange);
+                    $("#NumberOfVacancies").html(obj.NumberOfVacancies);
+                    $("#Careerlevel").html(obj.Careerlevel);
+                    $("#YearsOfExperience").html(obj.YearsOfExperience);
+                    $("#Degree").html(obj.Degree);
+                    $("#Address").html(obj.Address);
 
                 }
-            }); 
-        });
+            })
+        };
+        //$(function () {
+        //    $("#search").autocomplete({
+        //        source: function (request, response) {
+        //            $.ajax({
+        //                url: '/PersonalCV/AutoComplete/',
+        //                data: "{ 'prefix': '" + request.term + "'}",
+        //                dataType: "json",
+        //                type: "POST",
+        //                contentType: "application/json; charset=utf-8",
+        //                //success: function (data) {
+        //                //    GetCompanyCV(data);
 
-        function ShowPersoanlView(Id) {
-            var url = "/PersonalCV/PersonalView?id="+Id;
+        //                //},
+        //                //error: function (response) {
+        //                //    alert(response.responseText);
+        //                //},
+        //                //failure: function (response) {
+        //                //    alert(response.responseText);
+        //                //}
+        //            });
+        //        },
+        //        select: function (e, i) {
+        //            $("#hfCustomer").val(i.item.val);
+        //        },
+        //        minLength: 1
+        //    });
+        //});
+
+        function submited(){
+            var url = "/PersonalCV/submited";
             $.ajax({
                 url: url,
-                type: "POST"
+                dataType: "json"  ,
+                contentType: 'application/json; charset=utf-8',
+                type: "GET"
             })
         }
+
     </script>
 </body>
 </html>
-
 

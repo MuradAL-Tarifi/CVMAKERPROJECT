@@ -38,6 +38,22 @@ namespace MYCVMAKER.Controllers
             return View(PVM);
         }
         [HttpPost]
+        public ActionResult PersonalView(int Id)
+        {
+            PersonalViewModel PVM = new PersonalViewModel();
+
+            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
+            var id = 28;
+            PVM.Personal = db.Personals.Where(x => x.Id == Id).ToList().FirstOrDefault();
+            PVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
+            PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalProject = db.PersonalProjects.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            return View(PVM);
+        }
+        [HttpPost]
         public ActionResult PersonalCV(string search)
         {
 
@@ -49,6 +65,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult GetJobtById(int Id)
         {
             JobAlert model = db.JobAlerts.Where(x => x.Id == Id).SingleOrDefault();
+            Session["id"] = Id;
             string value = string.Empty;
             value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
             {
@@ -57,18 +74,19 @@ namespace MYCVMAKER.Controllers
             return Json(value, JsonRequestBehavior.AllowGet);
         }
         
-        public JsonResult submited(int Id)
+        public JsonResult submited()
         {
             //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
             var id = 28;
-            var idp = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
-
-            Nofitication model = db.Nofitications.AsNoTracking().Where(x => x.PersonalId == idp.Id && x.JobAlertId==Id).FirstOrDefault();
+            int jobid = (int)System.Web.HttpContext.Current.Session["id"];
+            var idp = db.Personals.AsNoTracking().Where(x => x.UsersId == id).ToList().FirstOrDefault();
+            
+            Nofitication model = db.Nofitications.AsNoTracking().Where(x => x.PersonalId == idp.Id && x.JobAlertId== jobid).FirstOrDefault();
 
             model.Submitted = true;
             db.Entry(model).State = EntityState.Modified;
             db.SaveChanges();
-            return Json(Id);
+            return Json(true);
         }
 
         // [HttpPost]

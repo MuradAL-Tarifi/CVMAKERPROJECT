@@ -567,7 +567,7 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="button" class="btn btn-success" value="Submit" id="save">
+                        <button class="btn btn-success" id="save" onclick="submited()">Submit</button>
                     </div>
                 </form>
             </div>
@@ -632,16 +632,15 @@
         //    });
         //});
 
-        $("body").on('click', '#save', function (id){
-            var url = "/PersonalCV/submited?id=" + id;
+        function submited(){
+            var url = "/PersonalCV/submited";
             $.ajax({
                 url: url,
                 dataType: "json"  ,
-                    contentType: 'application/json; charset=utf-8',
-                type: "GET",
-                success: alert("Hello")
+                contentType: 'application/json; charset=utf-8',
+                type: "GET"
             })
-        });
+        }
 
     </script>
 </body>

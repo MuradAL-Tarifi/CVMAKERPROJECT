@@ -59,7 +59,7 @@
 
         <!-- navigation menu start -->
         <nav class="navbar navbar-expand-xl navbar-dark ">
-            <a href="#" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
+            <a href="" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,13 +84,10 @@
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
                         <div class="dropdown-menu">
                             <!-- <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a> -->
-                            <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
-                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
+                            <a href="@Url.Action("PersonalForgotPassword","PersonalCV",null)" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
+                            <a href="" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
                             <div class="divider dropdown-divider"></div>
-                            @using (Html.BeginForm("Logout", "Users", FormMethod.Post, new { id = "logoutForm" }))
-                            {
-                                <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
-                            }
+                            <a href="@Url.Action("Users","Users",null)" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -145,7 +142,7 @@
                     <!-- social links start -->
                     <div class="social-links">
                         <a href="@Model.User.FacebookLink" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
-                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
+                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-github"></i></a>
                         <a href="@Model.User.InstagramLink" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
                         <a href="@Model.User.LinkedInLink" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
                     </div>
@@ -256,7 +253,7 @@
                     <div class="service-item">
                         <div class="service-item-inner outer-shadow">
                             <div class="icon inner-shadow">
-                                <i class="fas fa-mobile-alt"></i>
+                                <i class="fas fa-briefcase"></i>
                             </div>
                             <h3>@item.JobTitle</h3>
                             <p>@item.Description</p>
@@ -604,33 +601,31 @@
                 }
             })
         };
-        //$(function () {
-        //    $("#search").autocomplete({
-        //        source: function (request, response) {
-        //            $.ajax({
-        //                url: '/PersonalCV/AutoComplete/',
-        //                data: "{ 'prefix': '" + request.term + "'}",
-        //                dataType: "json",
-        //                type: "POST",
-        //                contentType: "application/json; charset=utf-8",
-        //                //success: function (data) {
-        //                //    GetCompanyCV(data);
-                            
-        //                //},
-        //                //error: function (response) {
-        //                //    alert(response.responseText);
-        //                //},
-        //                //failure: function (response) {
-        //                //    alert(response.responseText);
-        //                //}
-        //            });
-        //        },
-        //        select: function (e, i) {
-        //            $("#hfCustomer").val(i.item.val);
-        //        },
-        //        minLength: 1
-        //    });
-        //});
+        $(function () {
+            $("#search").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/PersonalCV/AutoComplete/',
+                        data: "{ 'prefix': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                minLength: 1
+            });
+        });
 
         function submited(){
             var url = "/PersonalCV/submited";

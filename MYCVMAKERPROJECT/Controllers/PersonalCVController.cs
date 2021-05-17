@@ -89,21 +89,20 @@ namespace MYCVMAKER.Controllers
             return Json(true);
         }
 
-        // [HttpPost]
-        // public ActionResult AutoComplete(string Prefix)
-        //{
+        [HttpPost]
+        public ActionResult AutoComplete(string Prefix)
+        {
 
-        //     var Companies = (from Companie in db.Companies
-        //                      where Companie.C_Name.StartsWith(Prefix)
-        //                      select new
-        //                      {
-        //                          label = Companie.C_Name,
-        //                          val = Companie.Id
-        //                      }).ToList();
+            var Companies = (from Companie in db.Companies
+                             where Companie.C_Name.StartsWith(Prefix)
+                             select new
+                             {
+                                 label = Companie.C_Name,
+                                 val = Companie.Id
+                             }).ToList();
 
-        //     //return Json(Companies.FirstOrDefault().val);
-        //     return RedirectToAction("GetCompanyCV", "CompanyCV",new {id=Companies.FirstOrDefault().val});
-        // }
+            return Json(Companies, JsonRequestBehavior.AllowGet);
+        }
         public ActionResult PersonalForgotPassword()
         {
             return View();

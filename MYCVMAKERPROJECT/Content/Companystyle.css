@@ -702,7 +702,7 @@ about section
   color: var(--text-black-600);
   text-transform: capitalize;
   width: 100px;
-  padding: 14px;
+  padding: 14px 0;
   border-radius: 30px;
   text-align: center;
 }

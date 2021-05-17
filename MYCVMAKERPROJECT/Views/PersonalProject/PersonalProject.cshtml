@@ -32,28 +32,26 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Home</a>
+                <a href="" class="nav-item nav-link">Home</a>
                 <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Why us</a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Web Design</a>
-                        <a href="#" class="dropdown-item">Web Development</a>
-                        <a href="#" class="dropdown-item">Graphic Design</a>
-                        <a href="#" class="dropdown-item">Digital Marketing</a>
+                        <a href="" class="dropdown-item">Web Design</a>
+                        <a href="" class="dropdown-item">Web Development</a>
+                        <a href="" class="dropdown-item">Graphic Design</a>
+                        <a href="" class="dropdown-item">Digital Marketing</a>
                     </div>
                 </div>
-                <a href="#" class="nav-item nav-link active">Team</a>
-                <a href="#" class="nav-item nav-link active">Clients Saying</a>
-                <a href="#" class="nav-item nav-link">Contact</a>
+                <a href="" class="nav-item nav-link active">Team</a>
+                <a href="" class="nav-item nav-link active">Clients Saying</a>
+                <a href="" class="nav-item nav-link">Contact</a>
 
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4 ">For Seekers</a>
-                <a href="#" class="btn btn-1 nav-item nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
-                <a href="#" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
-
+                <a href="@Url.Action("GoToComapnyReg","Users",null)" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
+                <a href="@Url.Action("GoToLogin","Users",null)" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
+                <a href="@Url.Action("GoToPersonalReg","Users",null)" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
             </div>
         </div>
     </nav>
@@ -67,10 +65,10 @@
                         <div class="col-md-10">
                             <div class="social-bar">
                                 <div class="social-icons mb-3 iconpad text-center">
-                                    <a href="PersonalReg.html" id="reg" class="slider-nav-item " onclick="activeshadowreg()"><span class="material-icons">app_registration</span></a>
-                                    <a href="PersonalDet.html" id="det" class="slider-nav-item " onclick="activeshadowdet()"><span class="material-icons">account_circle</span></a>
-                                    <a href="PersoanlExp.html" id="exp" class="slider-nav-item " onclick="activeshadowexp()"><span class="material-icons">description</span></a>
-                                    <a href="PersoanlProject.html" id="proj" class="slider-nav-item active" onclick="activeshadowproj()"><span class="material-icons">camera</span></a>
+                                    <a href="" id="reg" class="slider-nav-item "><span class="material-icons">app_registration</span></a>
+                                    <a href="" id="det" class="slider-nav-item "><span class="material-icons">account_circle</span></a>
+                                    <a href="" id="exp" class="slider-nav-item "><span class="material-icons">description</span></a>
+                                    <a href="" id="proj" class="slider-nav-item active"><span class="material-icons">camera</span></a>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +149,7 @@
                 <span class="material-icons">
                     arrow_back
                 </span>
-                <input type="button" value="Back">
+                <input type="button" value="Back" onclick="location.href='@Url.Action("PersonalWorkExperience", "PersonalWorkExperience")'">
             </div>
 
             <div class="next">

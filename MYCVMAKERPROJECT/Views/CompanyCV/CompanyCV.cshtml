@@ -55,7 +55,7 @@
     <section class="home-section section active" id="home">
         <!-- navigation menu start -->
         <nav class="navbar navbar-expand-xl navbar-dark">
-            <a href="#" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
+            <a href="" class="navbar-brand"><img src="~/img/Logo.png" alt="logo"></a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -70,10 +70,10 @@
                     <div class="nav-item dropdown">
                         <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="~/img/profile-pic.jpg" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
                         <div class="dropdown-menu">
-                            <a href="#changepassword" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
-                            <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
+                            <a href="@Url.Action("CompanyForgotPassword","CompanyCV",null)" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>
+                            <a href="" class="dropdown-item"><i class="fa fa-sliders"></i> Edit Data</a>
                             <div class="divider dropdown-divider"></div>
-                            <a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
+                            <a href="@Url.Action("Users","Users",null)" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                     <!-- social links start -->
                     <div class="social-links">
                         <a href="@Model.User.FacebookLink" class="outer-shadow hover-in-shadow"><i class="fab fa-facebook-f"></i></a>
-                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-twitter"></i></a>
+                        <a href="@Model.User.GetHupLink" class="outer-shadow hover-in-shadow"><i class="fab fa-github"></i></a>
                         <a href="@Model.User.InstagramLink" class="outer-shadow hover-in-shadow"><i class="fab fa-instagram"></i></a>
                         <a href="@Model.User.LinkedInLink" class="outer-shadow hover-in-shadow"><i class="fab fa-linkedin-in"></i></a>
                     </div>
@@ -213,7 +213,7 @@
                     <div class="service-item">
                         <div class="service-item-inner outer-shadow">
                             <div class="icon inner-shadow">
-                                <i class="fas fa-mobile-alt"></i>
+                                <i class="fas fa-briefcase"></i>
                             </div>
                             <h3>@item2.JobTitle</h3>
                             <p>@item2.Description</p>

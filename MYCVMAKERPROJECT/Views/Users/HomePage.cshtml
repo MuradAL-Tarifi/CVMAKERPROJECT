@@ -35,24 +35,22 @@
         <!-- Collection of nav links, forms, and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
             <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link">Home</a>
+                <a href="#home" class="nav-item nav-link">Home</a>
                 <div class="nav-item dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle">Why us</a>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Web Design</a>
-                        <a href="#" class="dropdown-item">Web Development</a>
-                        <a href="#" class="dropdown-item">Graphic Design</a>
-                        <a href="#" class="dropdown-item">Digital Marketing</a>
+                        <a href="#why-us" class="dropdown-item">Web Design</a>
+                        <a href="#why-us" class="dropdown-item">Web Development</a>
+                        <a href="#why-us" class="dropdown-item">Graphic Design</a>
                     </div>
                 </div>
-                <a href="#" class="nav-item nav-link active">Team</a>
-                <a href="#" class="nav-item nav-link active">Clients Saying</a>
-                <a href="#" class="nav-item nav-link">Contact</a>
+                <a href="#team" class="nav-item nav-link active">Team</a>
+                <a href="#reviews" class="nav-item nav-link active">Clients Saying</a>
+                <a href="#contact" class="nav-item nav-link">Contact</a>
 
             </div>
 
             <div class="navbar-nav ml-auto action-buttons">
-
                     <a href="@Url.Action("GoToComapnyReg","Users",null)" id="company" class="btn btn-1 nav-item  sign-up-btn nav-link mr-4 ">For Employers</a>
                     <a href="@Url.Action("GoToLogin","Users",null)" class="btn btn-1 nav-item sign-up-btn nav-link mr-4">&nbsp;&nbsp; Login &nbsp;&nbsp;</a>
                     <a href="@Url.Action("GoToPersonalReg","Users",null)" class="btn btn-1  nav-item sign-up-btn">Sign up</a>
@@ -69,7 +67,7 @@
                 <div class="home-text">
                     <h1>The Online Resume Builder <span>YOU DESERVE</span></h1>
                     <h2>Post Your Job and Find The<br /> Talents you need</h2>
-                    <a href="#courses" class="btn btn-1">get started</a>
+                    <a href="@Url.Action("GoToLogin","Users",null)" class="btn btn-1">get started</a>
                 </div>
             </div>
         </div>
@@ -110,7 +108,7 @@
     </section>
     <!-- Why Us  Section End -->
     <!-- Team Section Start -->
-    <section class="team">
+    <section class="team" id="team">
         <div class="container">
             <div class="row">
                 <div class="section-title">
@@ -120,10 +118,8 @@
                     <div class="img-box">
                         <img src="~/img/1.jpg" alt="team img">
                         <div class="social-links">
-                            <a href="#">facebook</a>
-                            <a href="#">twitter</a>
-                            <a href="#">instagram</a>
-                            <a href="#">youtube</a>
+                            <a href="https://web.facebook.com/profile.php?id=100008905359676">facebook</a>
+                            <a href="https://www.instagram.com/murad_al_tarefe/">instagram</a>
                         </div>
                     </div>
                     <h3>Murad Awad</h3>
@@ -134,25 +130,21 @@
                         <img src="~/img/2.jpg" alt="team img">
                         <div class="social-links">
                             <a href="#">facebook</a>
-                            <a href="#">twitter</a>
-                            <a href="#">instagram</a>
-                            <a href="#">youtube</a>
+                            <a href="https://www.instagram.com/ghadeer_husein/">instagram</a>
                         </div>
                     </div>
-                    <h3>Tawfeeq Hussein</h3>
+                    <h3>Ghadeer Shaban</h3>
                     <p>web developer</p>
                 </div>
                 <div class="team-item">
                     <div class="img-box">
                         <img src="~/img/a3.jpg" alt="team img">
                         <div class="social-links">
-                            <a href="#">facebook</a>
-                            <a href="#">twitter</a>
-                            <a href="#">instagram</a>
-                            <a href="#">youtube</a>
+                            <a href="https://web.facebook.com/TawfeeqHussein99">facebook</a>
+                            <a href="https://www.instagram.com/tawfeeq_husseinn/">instagram</a>
                         </div>
                     </div>
-                    <h3>Ghadeer Shaban</h3>
+                    <h3>Tawfeeq Hussein</h3>
                     <p>web developer</p>
                 </div>
             </div>
@@ -262,11 +254,11 @@
                 <div class="footer-item footer-quick-links">
                     <h2>quick links</h2>
                     <ul>
-                        <li><a href="#">courses</a></li>
-                        <li><a href="#">stories</a></li>
-                        <li><a href="#">blog</a></li>
-                        <li><a href="#">log in</a></li>
-                        <li><a href="#">sign up</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#why-us">Why us</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#reviews">Clients Saying</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-item footer-contact">
@@ -275,7 +267,7 @@
                     <p><i class="fas fa-phone"></i>07888888888</p>
                     <p><i class="fas fa-envelope"></i>Murad@gmail.com</p>
                 </div>
-                <div class="footer-item footer-newsletter">
+                @*<div class="footer-item footer-newsletter">
                     <h2>newsletter</h2>
                     <form>
                         <div class="input-group">
@@ -283,7 +275,7 @@
                         </div>
                         <button type="button" class="btn btn-1" >send</button>
                     </form>
-                </div>
+                </div>*@
             </div>
         </div>
     </footer>

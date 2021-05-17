@@ -16,6 +16,7 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public ActionResult PersonalProject(List<string> ClientName, List<string> Category, List<string> Description, List<string> EndDate, List<string> ProjectName, List<string> Tools, List<string> DomainName, List<HttpPostedFileBase> InterfaceImage, List<HttpPostedFileBase> SubImage)
         {
+            
           //  int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {

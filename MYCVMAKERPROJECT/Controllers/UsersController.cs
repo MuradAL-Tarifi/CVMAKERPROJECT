@@ -182,10 +182,10 @@ namespace MYCVMAKER.Controllers
             try
             {
                 var userstate = Session["UserState"];
-                int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+                var userId = Session["PersoanlID"];
                 Personal personal = new Personal();
 
-                var userInfo = db.Users.AsNoTracking().Where(x => x.Id == userId).ToList().FirstOrDefault();
+                var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
                 if (userstate.Equals("3"))
                 {
 
@@ -207,7 +207,7 @@ namespace MYCVMAKER.Controllers
                     if (CvFile != null)
                     {
                         cvpath = "/CVFile/" + CvFile.FileName;
-                        CvFile.SaveAs(Server.MapPath(cvpath));//save image to folder
+                        CvFile.SaveAs(Server.MapPath(cvpath));//save file to folder
                     }
                     personal.P_FileCV = cvpath;
 
@@ -290,10 +290,10 @@ namespace MYCVMAKER.Controllers
         public ActionResult CompanyDet( string CoumpanyName, string JobTitle, int PhoneNumber, string CompanyLocation, string CompanyType, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase mediaFile)
         {
             var userstate = Session["UserState"];
-            var userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+            var userId = Session["ComapnyID"];
             Company company = new Company();
 
-            var userInfo = db.Users.Where(x => x.Id == userId).ToList().FirstOrDefault();
+            var userInfo = db.Users.Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
             if (userstate.Equals("2"))
             {
                 userInfo.PhoneNumber = PhoneNumber;

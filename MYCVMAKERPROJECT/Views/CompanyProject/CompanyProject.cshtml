@@ -100,11 +100,11 @@
                             <div class="input-box margin0 full">
                                 <span class="details">End Date</span>
                                 <select name="EndDate" id="date" class="form-control EndDate">
-                                    <option value="15" selected>15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
+                                    <option value="2021" selected>2021</option>
+                                    @for (int i = 2020; i >= 1990; i--)
+                                    {
+                                        <option value="@i">@i</option>
+                                    }
                                 </select>
                             </div>
                             <div class="input-box ">

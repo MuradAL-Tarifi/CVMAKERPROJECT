@@ -14,22 +14,45 @@ namespace MYCVMAKER.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult PersonalProject(List<string> ClientName, List<string> Category, List<string> Description, List<string> EndDate, List<string> ProjectName, List<string> Tools, List<string> DomainName, List<HttpPostedFileBase> InterfaceImage, List<HttpPostedFileBase> SubImage)
+        public ActionResult PersonalProject(string ClientName, string Category, string Description, string EndDate, string ProjectName, string Tools, string DomainName, HttpPostedFileBase InterfaceImage, List<HttpPostedFileBase> SubImage)
         {
             
-          //  int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+            int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
-               
-                //Loop and insert records.
-              //  foreach (PersonalProject project in projects)
-              //  {
-              //      project.PersonalId = userId;
-              //      db.PersonalProjects.Add(project);
-              //  }
-                int insertedRecords = db.SaveChanges();
 
-                return RedirectToAction("PersonalCV", "PersonalCV");
+                PersonalProject pp = new PersonalProject();
+                pp.PersonalId = userId;
+                pp.ClientName = ClientName;
+                pp.Category = Category;
+                pp.Description = Description;
+                pp.EndDate = EndDate;
+                pp.ProjectName = ProjectName;
+                pp.Tools = Tools;
+                pp.DomainName = DomainName;
+                string InImg = "";
+                if (InterfaceImage != null)
+                {
+                    InImg = "/img/portfolio/thumb/" + InterfaceImage.FileName;
+                    InterfaceImage.SaveAs(Server.MapPath(InImg));//save file to folder
+                }
+                pp.InterfaceImage = InImg;
+                string SpImg = "";
+                string fullpath = "";
+                foreach (HttpPostedFileBase photo in SubImage)
+                {
+                    if (photo != null)
+                    {
+                        SpImg = "/img/portfolio/large/" + photo.FileName;
+                        photo.SaveAs(Server.MapPath(SpImg));//save file to folder
+                    }
+                    fullpath =  SpImg + ","+ fullpath;
+                }
+                pp.SubImage = fullpath;
+
+
+
+                return View();
             }
 
         }

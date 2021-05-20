@@ -85,11 +85,23 @@
         </div>
     </div>
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-        @Html.ActionLink("Edit", "Edit")
-        @Html.ActionLink("Delete", "Delete")
-    </p>
+    <p style="margin-left:500px">
+        <a href='@Html.ActionLink("Create New", "Create")' class="btn btn-success" target="_blank">
+            <span class="glyphicon glyphicon-plus">
+            </span>
+            New Member
+        </a>
+        <a href='@Html.ActionLink("Edit", "Edit")' class="btn btn-success" target="_blank">
+            <span class="glyphicon glyphicon-edit">
+            </span>
+            Edit Member
+        </a>
+        <a href='@Html.ActionLink("Delete", "Delete")' class="btn btn-danger" target="_blank">
+            <span class="glyphicon glyphicon-minus">
+            </span>
+            Delete Member
+        </a>           
+</p>
     <div class="container-xl">
         <div class="table-responsive">
             <div class="table-wrapper">

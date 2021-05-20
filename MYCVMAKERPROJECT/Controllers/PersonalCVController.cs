@@ -60,7 +60,7 @@ namespace MYCVMAKER.Controllers
             var id = db.Companies.Where(x => x.C_Name.Equals(search)).FirstOrDefault();
             Session["CompanyID"] = id.Id;
 
-            return RedirectToAction("CompanyCV", "CompanyCV");
+            return RedirectToAction("CompanyCV", "CompanyCVView");
         }
         public JsonResult GetJobtById(int Id)
         {

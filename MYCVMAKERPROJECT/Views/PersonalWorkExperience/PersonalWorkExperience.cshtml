@@ -128,8 +128,8 @@
                         <div class="input-box margin0">
                             <span class="details">End Date</span>
                             <select name="EndDate" id="date" class="form-control EndDate">
-                                <option value="2021" selected>2021</option>
-                                @for (int i = 2020; i >= 1990; i--)
+                                <option value="1990" selected>2021</option>
+                                @for (int i = 2021; i > 1990; i--)
                                 {
                                     <option value="@i">@i</option>
                                 }
@@ -485,12 +485,7 @@
                 url: "/PersonalWorkExperience/PersonalWorkExperience",
                 data: JSON.stringify(skills),
                 contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                error: function () {
-                    alert("Error in record(s) inserted.");
-                    $("#save").show();
-                    $("#next").show();
-                }
+                dataType: "json"
             });
         });
 

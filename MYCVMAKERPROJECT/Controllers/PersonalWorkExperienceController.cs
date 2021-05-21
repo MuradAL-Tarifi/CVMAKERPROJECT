@@ -9,8 +9,8 @@ namespace MYCVMAKER.Controllers
 {
     public class PersonalWorkExperienceController : Controller
     {
-        
 
+        private CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4();
         public ActionResult PersonalWorkExperience()
         {
             return View();
@@ -19,6 +19,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ExperienceSaveData(List<PersonalWorkExperience> Works)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
@@ -30,7 +31,7 @@ namespace MYCVMAKER.Controllers
                     //Loop and insert records.
                     foreach (PersonalWorkExperience work in Works)
                     {
-                    work.PersonalId = userId;
+                    work.PersonalId = userInfo.Id;
                     db.PersonalWorkExperiences.Add(work);
                     }
                     int insertedRecords = db.SaveChanges();
@@ -42,7 +43,8 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public JsonResult EducationsSaveData(List<Education> Educations)
         {
-            int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+           int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
@@ -54,7 +56,7 @@ namespace MYCVMAKER.Controllers
                 //Loop and insert records.
                 foreach (Education Education in Educations)
                 {
-                    Education.PersonalId = userId;
+                    Education.PersonalId = userInfo.Id;
                     db.Educations.Add(Education);
                 }
                 int insertedRecords = db.SaveChanges();
@@ -67,6 +69,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ServicesSaveData(List<PersonalService> Services)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
@@ -78,7 +81,7 @@ namespace MYCVMAKER.Controllers
                 //Loop and insert records.
                 foreach (PersonalService Service in Services)
                 {
-                    Service.PersonalId = userId;
+                    Service.PersonalId = userInfo.Id;
                     db.PersonalServices.Add(Service);
                 }
                 int insertedRecords = db.SaveChanges();
@@ -90,10 +93,10 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public ActionResult PersonalWorkExperience(List<PersonalSkill> skills)
         {
-            try
-            {
+          
                 int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-                using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
+            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
+            using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
                     if (skills == null)
@@ -104,19 +107,13 @@ namespace MYCVMAKER.Controllers
                     //Loop and insert records.
                     foreach (PersonalSkill skill in skills)
                     {
-                        skill.PersonalId = userId;
-                        db.PersonalSkills.Add(skill);
+                        skill.PersonalId = userInfo.Id;
+                    db.PersonalSkills.Add(skill);
                     }
                     int insertedRecords = db.SaveChanges();
 
                     return RedirectToAction("PersonalProject", "PersonalProject");
                 }
-            }
-            catch (Exception)
-            {
-
-                return Json(false);
-            }
 
 
         }

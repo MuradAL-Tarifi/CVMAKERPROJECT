@@ -18,11 +18,13 @@ namespace MYCVMAKER.Controllers
         {
             
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
+            
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
+                var userInfo = db.Personals.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
 
                 PersonalProject pp = new PersonalProject();
-                pp.PersonalId = userId;
+                pp.PersonalId = userInfo.Id;
                 pp.ClientName = ClientName;
                 pp.Category = Category;
                 pp.Description = Description;
@@ -50,11 +52,14 @@ namespace MYCVMAKER.Controllers
                 }
                 pp.SubImage = fullpath;
 
-
+                db.PersonalProjects.Add(pp);
+                db.SaveChanges();
 
                 return View();
             }
 
         }
+
+
     }
 }

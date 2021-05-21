@@ -485,7 +485,8 @@
                 url: "/PersonalWorkExperience/PersonalWorkExperience",
                 data: JSON.stringify(skills),
                 contentType: "application/json; charset=utf-8",
-                dataType: "json"
+                dataType: "json",
+                success: window.location.href = "/PersonalProject/PersonalProject"
             });
         });
 

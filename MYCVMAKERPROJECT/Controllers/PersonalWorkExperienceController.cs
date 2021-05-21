@@ -19,7 +19,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ExperienceSaveData(List<PersonalWorkExperience> Works)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
+            var userInfo = db.Personals.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
@@ -44,7 +44,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult EducationsSaveData(List<Education> Educations)
         {
            int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
+            var userInfo = db.Personals.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
@@ -69,7 +69,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult ServicesSaveData(List<PersonalService> Services)
         {
             int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
+            var userInfo = db.Personals.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 //Check for NULL.
@@ -91,11 +91,11 @@ namespace MYCVMAKER.Controllers
 
         }
         [HttpPost]
-        public ActionResult PersonalWorkExperience(List<PersonalSkill> skills)
+        public JsonResult PersonalWorkExperience(List<PersonalSkill> skills)
         {
           
                 int userId = (int)System.Web.HttpContext.Current.Session["PersoanlID"];
-            var userInfo = db.Users.AsNoTracking().Where(x => x.Id == (int)userId).ToList().FirstOrDefault();
+            var userInfo = db.Personals.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     //Check for NULL.
@@ -112,8 +112,8 @@ namespace MYCVMAKER.Controllers
                     }
                     int insertedRecords = db.SaveChanges();
 
-                    return RedirectToAction("PersonalProject", "PersonalProject");
-                }
+                return Json(insertedRecords);
+            }
 
 
         }

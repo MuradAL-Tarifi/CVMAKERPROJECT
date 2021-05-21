@@ -21,18 +21,14 @@ namespace MYCVMAKER.Controllers
         {
             PersonalViewModel PVM = new PersonalViewModel();
 
-            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
-            var id = 28;
-            PVM.Personal = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
-            PVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
+            var id = Session["PersoanlID"];
+            PVM.Personal = db.Personals.Where(x => x.UsersId == (int)id).ToList().FirstOrDefault();
+            PVM.User = db.Users.Where(x => x.Id == (int)id).ToList().FirstOrDefault();
             PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalProject = db.PersonalProjects.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
-            var personalid = db.Personals.Where(x => x.UsersId == id).ToList().FirstOrDefault();
-            var Pid = personalid.Id;
-            TempData["id"] = Pid;
             PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
 
             return View(PVM);
@@ -42,8 +38,8 @@ namespace MYCVMAKER.Controllers
         {
             PersonalViewModel PVM = new PersonalViewModel();
 
-            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
-            var id = 28;
+            var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
+            //var id = 28;
             PVM.Personal = db.Personals.Where(x => x.Id == Id).ToList().FirstOrDefault();
             PVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
             PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();

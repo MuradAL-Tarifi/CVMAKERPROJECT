@@ -26,7 +26,6 @@ namespace MYCVMAKER.Controllers
             Session["TotalView"] = o[1].ToString();
             return View();
         }
-        [HttpPost]
         public ActionResult GoToLogin()
         {
             return RedirectToAction("Login");
@@ -95,6 +94,7 @@ namespace MYCVMAKER.Controllers
                     }
                     else
                     {
+                        Session["PersoanlID"] = userInfo.Id;
                         return RedirectToAction("PersonalCV", "PersonalCV");
                     }
          
@@ -115,7 +115,8 @@ namespace MYCVMAKER.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("CompanyCV", "CompanyCV");
+                    Session["CompanyID"] = userInfo.Id;
+                    return RedirectToAction("CompanyCV", "CompanyCV");
                     }
 
                     

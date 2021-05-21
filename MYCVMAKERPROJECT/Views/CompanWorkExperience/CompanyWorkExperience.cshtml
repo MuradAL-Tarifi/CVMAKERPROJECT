@@ -282,11 +282,7 @@
                 data: JSON.stringify(skills),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                error: function () {
-                    alert("Error in record(s) inserted.");
-                    $("#save").show();
-                    $("#next").show();
-                }
+                success: window.location.href = "/CompanyProject/CompanyProject"
             });
         });
     </script>

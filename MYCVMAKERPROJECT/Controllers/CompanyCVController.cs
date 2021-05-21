@@ -18,8 +18,8 @@ namespace MYCVMAKER.Controllers
         {
             CompanyViewModel CVM = new CompanyViewModel();
 
-           // var id = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-            var id = 1;
+            var id = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+            //var id = 1;
             CVM.Company = db.Companies.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             CVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
             CVM.CompanWorkExperience = db.CompanWorkExperiences.Where(x => x.CompanyId == CVM.Company.Id).ToList();
@@ -74,9 +74,10 @@ namespace MYCVMAKER.Controllers
         [Route("CompanyCV/JobAlertSaveData")]
         public void JobAlertSaveData(List<JobAlert> Jobs)
         {
-            //int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
+           int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
+                var cid=db.Companies.Where(x => x.UsersId == userId).ToList().FirstOrDefault();
                 //Check for NULL.
                 if (Jobs == null)
                 {
@@ -87,7 +88,7 @@ namespace MYCVMAKER.Controllers
                 foreach (JobAlert Job in Jobs)
                 {
                     
-                    Job.CompanyId = 1;
+                    Job.CompanyId = cid.Id;
                     var Personal = db.Personals.Where(x => x.P_JobTitle.Equals(Job.J_Title)).ToList();
                     for (int i = 0; i < Personal.Count; i++)
                     {
@@ -121,9 +122,9 @@ namespace MYCVMAKER.Controllers
             var verifyUrl = "/CompanyCV/CompanyForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("muradshaltaf123@gmail.com", "Murad Awad");
+            var fromEmail = new MailAddress("cvmk90@gmail.com", "CV Maker");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "*******";//we set here real passwrod for the email
+            var fromEmailPassword = "Pass:cvmaker@2152021";//we set here real passwrod for the email
             var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
             db.Entry(userInfo).State = EntityState.Modified;

@@ -15,45 +15,49 @@ namespace MYCVMAKER.Controllers
             return View();
         }
         [HttpPost]
-        public JsonResult ProjectsSaveData(List<CompanyProject> projects)
+        public ActionResult CompanyProject(string ClientName, string Category, string Description, string EndDate, string ProjectName, string Tools, string DomainName, HttpPostedFileBase InterfaceImage, List<HttpPostedFileBase> SubImage)
         {
-            // int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
+
+            int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
+                var userInfo = db.Companies.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
 
-                //Check for NULL.
-                if (projects == null)
+                CompanyProject pp = new CompanyProject();
+                pp.CompanyId = userInfo.Id;
+                pp.ClientName = ClientName;
+                pp.Category = Category;
+                pp.Description = Description;
+                pp.EndDate = EndDate;
+                pp.ProjectName = ProjectName;
+                pp.Tools = Tools;
+                pp.DomainName = DomainName;
+                string InImg = "";
+                if (InterfaceImage != null)
                 {
-                    projects = new List<CompanyProject>();
+                    InImg = "/img/portfolio/thumb/" + InterfaceImage.FileName;
+                    InterfaceImage.SaveAs(Server.MapPath(InImg));//save file to folder
                 }
-                //var id = new List<int>();
-                //Loop and insert records.
-                foreach (CompanyProject project in projects)
+                pp.InterfaceImage = InImg;
+                string SpImg = "";
+                string fullpath = "";
+                foreach (HttpPostedFileBase photo in SubImage)
                 {
-                    
-                    //id.Add(project.Id);
-                    project.CompanyId = 1;
-                    db.CompanyProjects.Add(project);
+                    if (photo != null)
+                    {
+                        SpImg = "/img/portfolio/large/" + photo.FileName;
+                        photo.SaveAs(Server.MapPath(SpImg));//save file to folder
+                    }
+                    fullpath = SpImg + "," + fullpath;
                 }
-                //var myArray = id.ToArray();
-                int insertedRecords = db.SaveChanges();
-                return Json(true);
+                pp.SubImage = fullpath;
+
+                db.CompanyProjects.Add(pp);
+                db.SaveChanges();
+
+                return View();
             }
-
-
-        }
-        [HttpPost]
-        public JsonResult ImageUpload()
-        {
-            string path = Server.MapPath("~/img");
-            HttpFileCollectionBase file2 = Request.Files;
-            for (int i = 0; i < file2.Count; i++)
-            {
-                HttpPostedFileBase file1 = file2[i];
-                file1.SaveAs(path + file1.FileName);
-            }
-
-            return Json(file2.Count + " Files Uploaded!");
 
         }
 

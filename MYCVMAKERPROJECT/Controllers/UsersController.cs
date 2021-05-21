@@ -312,14 +312,14 @@ namespace MYCVMAKER.Controllers
                 string Imgpath = "";
                 if (mediaFile != null)
                 {
-                    Imgpath = "~/img/" + mediaFile.FileName;
+                    Imgpath = "/img/" + mediaFile.FileName;
                     mediaFile.SaveAs(Server.MapPath(Imgpath));//save image to folder
                 }
                 company.C_logo = Imgpath;
                 db.Entry(userInfo).State = EntityState.Modified;
                 db.Companies.Add(company);
                 db.SaveChanges();
-                return RedirectToAction("CompanyWorkExperience", "CompanyWorkExperience"); ;
+                return RedirectToAction("CompanyWorkExperience", "CompanWorkExperience");
             }
             else
             {
@@ -363,10 +363,9 @@ namespace MYCVMAKER.Controllers
         {
             var verifyUrl = "/Users/ForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-
-            var fromEmail = new MailAddress("muradshaltaf123@gmail.com","Murad Awad");
+            var fromEmail = new MailAddress("cvmk90@gmail.com", "CV Maker");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "*******";//we set here real passwrod for the email
+            var fromEmailPassword = "Pass:cvmaker@2152021";//we set here real passwrod for the email
             var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
             db.Entry(userInfo).State = EntityState.Modified;
@@ -415,7 +414,7 @@ namespace MYCVMAKER.Controllers
                     MailMessage msz = new MailMessage();
                     msz.From = new MailAddress(mail);//Email which you are getting 
                                                          //from contact us page 
-                    msz.To.Add("emailaddrss@gmail.com");//Where mail will be sent 
+                    msz.To.Add("cvmk90@gmail.com");//Where mail will be sent 
                     msz.Subject = Subject;
                     msz.Body = Name + "  "+Message;
                     SmtpClient smtp = new SmtpClient();
@@ -425,7 +424,7 @@ namespace MYCVMAKER.Controllers
                     smtp.Port = 587;
 
                     smtp.Credentials = new System.Net.NetworkCredential
-                    ("muradshaltaf123@gmail.com", "password");
+                    ("cvmk90@gmail.com", "cvmaker@2152021");
 
                     smtp.EnableSsl = true;
 

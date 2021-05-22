@@ -139,9 +139,9 @@ namespace MYCVMAKER.Controllers
             var verifyUrl = "/PersonalCV/PersonalForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var fromEmail = new MailAddress("muradshaltaf123@gmail.com", "Murad Awad");
+            var fromEmail = new MailAddress("cvmk90@gmail.com", "CV Maker");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "*******";//we set here real passwrod for the email
+            var fromEmailPassword = "Pass:cvmaker@2152021";//we set here real passwrod for the email
             var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
             userInfo.UserPassword = CreateRandomPassword(9);
             db.Entry(userInfo).State = EntityState.Modified;

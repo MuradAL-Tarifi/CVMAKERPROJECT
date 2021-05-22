@@ -315,8 +315,8 @@
                 html_code += "<div class='input-box'><span class='details'>Job Title</span><input type='text' autocomplete='off' name='JobTitle' class='JobTitle'></div>";
                 html_code += "<div class='input-box'><span class='details'>City/Town</span><input type='text' autocomplete='off' name='City' class='City'></div>";
                 html_code += "<div class='input-box full'><span class='details'>Employer</span><input type='text' autocomplete='off' name='Employeer' class='Employeer'></div>";
-                html_code += "<div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' class='form-control StartDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='StartMonth'  class='form-control StartMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
-                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += " <div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' id='date' class='form-control StartDate'><option value='2021' selected>2021</option>@for (int i = 2020; i >= 1990 ; i--){<option value='@i'>@i</option>}</select><select name='startMonth' id='month' class='form-control startMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option></select></div>";
+                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='2021' selected>2021</option>@for (int i = 2020; i >= 1990 ; i--){<option value='@i'>@i</option>}</select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option></select></div >";
                 html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
                 html_code += "</div>";
                 $('#Experience').append(html_code);
@@ -329,7 +329,7 @@
         $("body").on("click", "#savework", function () {
             //Loop through the Table rows and build a JSON array.
             $("#savework").hide();
-            
+
             var Works = new Array();
             $("#Experience .user-details").each(function () {
                 var row = $(this);
@@ -353,7 +353,7 @@
                 success: function () {
                     alert("Data Saved.");
                     $("#savework").show();
-                   
+
                 }
             });
         });
@@ -367,8 +367,8 @@
                 var html_code = "<div class='user-details' id='row" + count + "'>";
                 html_code += "<div class='delete' style=' width: 100%; height: 30px; display: block;'><button type='button' name='remove' data-row='row" + count + "' class='btn-danger btn-xs remove' style='width:25px;height:25px'>-</button></div>";
                 html_code += "<div class='input-box full'><span class='details'>Degree</span><input type='text' autocomplete='off' name='Degree' class='Degree'></div>";
-                html_code += "<div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' class='form-control StartDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='StartMonth'  class='form-control StartMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
-                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='15' selected>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option></select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option></select></div >";
+                html_code += " <div class='input-box margin0'><span class='details'>Start Date</span><select name='StartDate' id='date' class='form-control StartDate'><option value='2021' selected>2021</option>@for (int i = 2020; i >= 1990 ; i--){<option value='@i'>@i</option>}</select><select name='startMonth' id='month' class='form-control startMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option></select></div>";
+                html_code += "<div class='input-box margin0'><span class='details'> End Date</span> <select name='EndDate' class='form-control EndDate'><option value='2021' selected>2021</option>@for (int i = 2020; i >= 1990 ; i--){<option value='@i'>@i</option>}</select><select name='EndMonth'  class='form-control EndMonth'><option value='Jan' selected>Jan</option><option value='Feb'>Feb</option><option value='Mar'>Mar</option><option value='Apr'>Apr</option><option value='May'>May</option><option value='Jun'>Jun</option><option value='Jul'>Jul</option><option value='Aug'>Aug</option><option value='Sep'>Sep</option><option value='Oct'>Oct</option><option value='Nov'>Nov</option><option value='Dec'>Dec</option></select></div >";
                 html_code += "<div class='input-box full'><span class='details'> Description</span><textarea autocomplete='off' name='Description' class='Description'></textarea></div >";
                 html_code += "</div>";
                 $('#Education').append(html_code);
@@ -401,7 +401,7 @@
                 dataType: "json",
                 success: function () {
                     alert("Data Saved.");
-                    $("#saveed").show(); 
+                    $("#saveed").show();
                 }
             });
         });

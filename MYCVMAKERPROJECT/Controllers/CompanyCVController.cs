@@ -55,7 +55,7 @@ namespace MYCVMAKER.Controllers
         {
             if (IsEmailExist(email))
             {
-                var userInfo = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
+                var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
                 SendPasswrodLinkEmail(userInfo.UserEmail);
                 var message = "Send new paswword successfully done. has been sent to your email " + userInfo.UserEmail;
                 ViewBag.Message = message;
@@ -119,18 +119,18 @@ namespace MYCVMAKER.Controllers
         [NonAction]
         public void SendPasswrodLinkEmail(string email)
         {
-            var verifyUrl = "/CompanyCV/CompanyForgotPassword/";
+            var verifyUrl = "/Users/ForgotPassword/";
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
-
             var fromEmail = new MailAddress("cvmk90@gmail.com", "CV Maker");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "Pass:cvmaker@2152021";//we set here real passwrod for the email
-            var userInfo = db.Users.AsNoTracking().Where(x => x.UserEmail == email).ToList().FirstOrDefault();
-            userInfo.UserPassword = CreateRandomPassword(9);
-            db.Entry(userInfo).State = EntityState.Modified;
-            string subject = "We send you new password!" + userInfo.UserEmail;
+            var fromEmailPassword = "cvmaker@2152021";//we set here real passwrod for the email
+            var userPass = db.Users.Where(x => x.UserEmail == email).ToList().FirstOrDefault();
+            userPass.UserPassword = CreateRandomPassword(9);
+            db.Entry(userPass).State = EntityState.Modified;
+            db.SaveChanges();
+            string subject = "We send you new password!" + userPass.UserEmail;
 
-            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" + "Your New Password : " + userInfo.UserPassword;
+            string body = "<br/><br/> We are excited to tell you that your password chanded successfully.<br/><br/>" + "Your New Password : " + userPass.UserPassword;
 
             var smtp = new SmtpClient
             {
@@ -141,6 +141,7 @@ namespace MYCVMAKER.Controllers
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
             };
+
             using (var message = new MailMessage(fromEmail, toEmail)
             {
                 Subject = subject,

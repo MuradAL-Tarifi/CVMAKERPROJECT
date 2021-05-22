@@ -407,42 +407,42 @@ namespace MYCVMAKER.Controllers
             }
             return new string(chars);
         }
-        [HttpPost]
-        public ActionResult contact(string Name, string mail, string Subject, string Message)
-        {
+        //[HttpPost]
+        //public ActionResult HomePage(string Name, string mail, string Subject, string Message)
+        //{
 
-                try
-                {
-                    MailMessage msz = new MailMessage();
-                    msz.From = new MailAddress(mail);//Email which you are getting 
-                                                         //from contact us page 
-                    msz.To.Add("cvmk90@gmail.com");//Where mail will be sent 
-                    msz.Subject = Subject;
-                    msz.Body = Name + "  "+Message;
-                    SmtpClient smtp = new SmtpClient();
+        //        try
+        //        {
+        //            MailMessage msz = new MailMessage();
+        //            msz.From = new MailAddress(mail);//Email which you are getting 
+        //                                                 //from contact us page 
+        //            msz.To.Add("cvmk90@gmail.com");//Where mail will be sent 
+        //            msz.Subject = Subject;
+        //            msz.Body = Name + "  "+Message;
+        //            SmtpClient smtp = new SmtpClient();
 
-                    smtp.Host = "smtp.gmail.com";
+        //            smtp.Host = "smtp.gmail.com";
 
-                    smtp.Port = 587;
+        //            smtp.Port = 587;
 
-                    smtp.Credentials = new System.Net.NetworkCredential
-                    ("cvmk90@gmail.com", "cvmaker@2152021");
+        //            smtp.Credentials = new System.Net.NetworkCredential
+        //            ("cvmk90@gmail.com", "cvmaker@2152021");
 
-                    smtp.EnableSsl = true;
+        //            smtp.EnableSsl = true;
 
-                    smtp.Send(msz);
+        //            smtp.Send(msz);
 
-                    ModelState.Clear();
-                    ViewBag.Message = "Thank you for Contacting us ";
-                }
-                catch (Exception ex)
-                {
-                    ModelState.Clear();
-                    ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
-                }
+        //            ModelState.Clear();
+        //            ViewBag.Message = "Thank you for Contacting us ";
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ModelState.Clear();
+        //            ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
+        //        }
 
-            return View();
-        }
+        //    return View();
+        //}
 
     }
 

@@ -17,7 +17,7 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public JsonResult ExperiencesSaveData(List<CompanWorkExperience> Experiences)
         {
-            int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+            int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             var userInfo = db.Companies.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
@@ -43,7 +43,7 @@ namespace MYCVMAKER.Controllers
         [HttpPost]
         public JsonResult ServicesSaveData(List<CompanyService> Services)
         {
-            int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+            int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 var userInfo = db.Companies.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
@@ -69,7 +69,7 @@ namespace MYCVMAKER.Controllers
         public JsonResult SkillsSaveData(List<CompanySkill> skills)
         {
 
-                int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+                int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
                 using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
                 {
                     var userInfo = db.Companies.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();

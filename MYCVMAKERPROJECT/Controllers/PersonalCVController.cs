@@ -38,10 +38,10 @@ namespace MYCVMAKER.Controllers
         {
             PersonalViewModel PVM = new PersonalViewModel();
 
-            var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
-            //var id = 28;
+            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
+            //var id 28;
             PVM.Personal = db.Personals.Where(x => x.Id == Id).ToList().FirstOrDefault();
-            PVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
+            PVM.User = db.Users.Where(x => x.Id == Id).ToList().FirstOrDefault();
             PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalProject = db.PersonalProjects.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
             PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
@@ -56,7 +56,7 @@ namespace MYCVMAKER.Controllers
             var id = db.Companies.Where(x => x.C_Name.Equals(search)).FirstOrDefault();
             Session["CompanyID"] = id.Id;
 
-            return RedirectToAction("CompanyCV", "CompanyCVView");
+            return RedirectToAction("CompanyCVView", "CompanyCV");
         }
         public JsonResult GetJobtById(int Id)
         {
@@ -72,10 +72,10 @@ namespace MYCVMAKER.Controllers
         
         public JsonResult submited()
         {
-            //var id = (int)System.Web.HttpContext.Current.Session["PersonalID"];
-            var id = 28;
+            var id = Session["PersoanlID"];
+           
             int jobid = (int)System.Web.HttpContext.Current.Session["id"];
-            var idp = db.Personals.AsNoTracking().Where(x => x.UsersId == id).ToList().FirstOrDefault();
+            var idp = db.Personals.AsNoTracking().Where(x => x.UsersId ==(int)id).ToList().FirstOrDefault();
             
             Nofitication model = db.Nofitications.AsNoTracking().Where(x => x.PersonalId == idp.Id && x.JobAlertId== jobid).FirstOrDefault();
 
@@ -114,7 +114,7 @@ namespace MYCVMAKER.Controllers
                 SendPasswrodLinkEmail(userInfo.UserEmail);
                 var message = "Send new paswword successfully done. has been sent to your email " + userInfo.UserEmail;
                 ViewBag.Message = message;
-                return View("Login");
+                return View("PersonalCV");
             }
             else
             {

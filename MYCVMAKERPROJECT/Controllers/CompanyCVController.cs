@@ -18,7 +18,7 @@ namespace MYCVMAKER.Controllers
         {
             CompanyViewModel CVM = new CompanyViewModel();
 
-            var id = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+            var id = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             //var id = 1;
             CVM.Company = db.Companies.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             CVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
@@ -59,7 +59,7 @@ namespace MYCVMAKER.Controllers
                 SendPasswrodLinkEmail(userInfo.UserEmail);
                 var message = "Send new paswword successfully done. has been sent to your email " + userInfo.UserEmail;
                 ViewBag.Message = message;
-                return View("Login");
+                return View("CompanyCV");
             }
             else
             {
@@ -74,7 +74,7 @@ namespace MYCVMAKER.Controllers
         [Route("CompanyCV/JobAlertSaveData")]
         public void JobAlertSaveData(List<JobAlert> Jobs)
         {
-           int userId = (int)System.Web.HttpContext.Current.Session["ComapnyID"];
+           int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 var cid=db.Companies.Where(x => x.UsersId == userId).ToList().FirstOrDefault();

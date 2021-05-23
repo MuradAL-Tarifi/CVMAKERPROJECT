@@ -81,7 +81,7 @@
                     <a class="nav-item nav-link" onclick="toggleNotifi()"><i class="fa fa-bell"><span class="number">@Model.Nofitication.Where(x => x.PersonalId == Model.Personal.Id).Count()</span></i><span>Notifications</span></a>
 
                     <div class="nav-item dropdown">
-                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar"> Murad Aawd <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="@Model.Personal.P_Image" class="avatar" alt="Avatar">@Model.Personal.P_FirstName @Model.Personal.P_LastName  <b class="caret"></b></a>
                         <div class="dropdown-menu">
                             <!-- <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a> -->
                             <a href="@Url.Action("PersonalForgotPassword","PersonalCV",null)" class="dropdown-item"><i class="fa fa-lock"></i> Chenge Password</a>

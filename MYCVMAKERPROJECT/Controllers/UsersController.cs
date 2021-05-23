@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -411,39 +413,92 @@ namespace MYCVMAKER.Controllers
         //public ActionResult HomePage(string Name, string mail, string Subject, string Message)
         //{
 
-        //        try
-        //        {
-        //            MailMessage msz = new MailMessage();
-        //            msz.From = new MailAddress(mail);//Email which you are getting 
-        //                                                 //from contact us page 
-        //            msz.To.Add("cvmk90@gmail.com");//Where mail will be sent 
-        //            msz.Subject = Subject;
-        //            msz.Body = Name + "  "+Message;
-        //            SmtpClient smtp = new SmtpClient();
+        //    //prepare email
+        //    var mail1 = new MailMessage();
+        //    mail1.To.Add(new MailAddress(mail));
+        //    mail1.Subject = Subject;
+        //    mail1.Body = string.Format("<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>", Name, mail, Message);
+        //    mail1.IsBodyHtml = true;
+        //    using (var smtp = new SmtpClient())
+        //    {
+        //        smtp.SendMailAsync(mail1);
+        //        return View();
+        //    }
 
-        //            smtp.Host = "smtp.gmail.com";
-
-        //            smtp.Port = 587;
-
-        //            smtp.Credentials = new System.Net.NetworkCredential
-        //            ("cvmk90@gmail.com", "cvmaker@2152021");
-
-        //            smtp.EnableSsl = true;
-
-        //            smtp.Send(msz);
-
-        //            ModelState.Clear();
-        //            ViewBag.Message = "Thank you for Contacting us ";
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            ModelState.Clear();
-        //            ViewBag.Message = $" Sorry we are facing Problem here {ex.Message}";
-        //        }
-
-        //    return View();
+            
         //}
+        //public void SendEmail(string toAddress, string fromAddress,
+        //              string subject, string message)
+        //{
+        //    try
+        //    {
+        //        using (var mail = new MailMessage())
+        //        {
+        //            const string email = "username@yahoo.com";
+        //            const string password = "password!";
 
+        //            var loginInfo = new NetworkCredential(email, password);
+
+
+        //            mail.From = new MailAddress(fromAddress);
+        //            mail.To.Add(new MailAddress(toAddress));
+        //            mail.Subject = subject;
+        //            mail.Body = message;
+        //            mail.IsBodyHtml = true;
+
+        //            try
+        //            {
+        //                using (var smtpClient = new SmtpClient(
+        //                                                 "smtp.mail.yahoo.com", 465))
+        //                {
+        //                    smtpClient.EnableSsl = true;
+        //                    smtpClient.UseDefaultCredentials = false;
+        //                    smtpClient.Credentials = loginInfo;
+        //                    smtpClient.Send(mail);
+        //                }
+
+        //            }
+
+        //            finally
+        //            {
+        //                //dispose the client
+        //                mail.Dispose();
+        //            }
+
+        //        }
+        //    }
+        //    catch (SmtpFailedRecipientsException ex)
+        //    {
+        //        foreach (SmtpFailedRecipientException t in ex.InnerExceptions)
+        //        {
+        //            var status = t.StatusCode;
+        //            if (status == SmtpStatusCode.MailboxBusy ||
+        //                status == SmtpStatusCode.MailboxUnavailable)
+        //            {
+        //                Response.Write("Delivery failed - retrying in 5 seconds.");
+        //                System.Threading.Thread.Sleep(5000);
+        //                //resend
+        //                //smtpClient.Send(message);
+        //            }
+        //            else
+        //            {
+        //               // Response.Write("Failed to deliver message to {0}",
+        //                                //  t.FailedRecipient);
+        //            }
+        //        }
+        //    }
+        //    catch (SmtpException Se)
+        //    {
+        //        // handle exception here
+        //        Response.Write(Se.ToString());
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        Response.Write(ex.ToString());
+        //    }
+
+        //}
     }
 
 }

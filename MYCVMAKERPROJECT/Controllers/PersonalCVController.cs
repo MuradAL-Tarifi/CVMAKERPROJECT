@@ -101,7 +101,19 @@ namespace MYCVMAKER.Controllers
         }
         public ActionResult PersonalForgotPassword()
         {
-            return View();
+            PersonalViewModel PVM = new PersonalViewModel();
+
+            var id = Session["PersoanlID"];
+            PVM.Personal = db.Personals.Where(x => x.UsersId == (int)id).ToList().FirstOrDefault();
+            PVM.User = db.Users.Where(x => x.Id == (int)id).ToList().FirstOrDefault();
+            PVM.PersonalWorkExperience = db.PersonalWorkExperiences.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalProject = db.PersonalProjects.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalService = db.PersonalServices.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.PersonalSkill = db.PersonalSkills.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.Education = db.Educations.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+            PVM.Nofitication = db.Nofitications.Where(x => x.PersonalId == PVM.Personal.Id).ToList();
+
+            return View(PVM);
         }
 
         [HttpPost]

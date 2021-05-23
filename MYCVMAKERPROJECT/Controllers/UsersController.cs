@@ -7,6 +7,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 using MYCVMAKERPROJECT.Models;
@@ -409,24 +410,40 @@ namespace MYCVMAKER.Controllers
             }
             return new string(chars);
         }
-        //[HttpPost]
-        //public ActionResult HomePage(string Name, string mail, string Subject, string Message)
-        //{
+        [HttpPost]
+        public ActionResult HomePage(string Name, string mail, string Subject, string Message)
+        {
 
-        //    //prepare email
-        //    var mail1 = new MailMessage();
-        //    mail1.To.Add(new MailAddress(mail));
-        //    mail1.Subject = Subject;
-        //    mail1.Body = string.Format("<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>", Name, mail, Message);
-        //    mail1.IsBodyHtml = true;
-        //    using (var smtp = new SmtpClient())
-        //    {
-        //        smtp.SendMailAsync(mail1);
-        //        return View();
-        //    }
+            try
+            {
+                //Configuring webMail class to send emails  
+                //gmail smtp server  
+                WebMail.SmtpServer = "smtp.gmail.com";
+                //gmail port to send emails  
+                WebMail.SmtpPort = 587;
+                WebMail.SmtpUseDefaultCredentials = true;
+                //sending emails with secure protocol  
+                WebMail.EnableSsl = true;
+                //EmailId used to send emails from application  
+                WebMail.UserName = "cvmk90@gmail.com";
+                WebMail.Password = "cvmaker@2152021";
 
-            
-        //}
+                //Sender email address.  
+                WebMail.From = mail;
+
+                //Send email  
+                WebMail.Send(to: "cvmk90@gmail.com" , subject: Subject , body: mail + " Is send to u <br/> " +Message, isBodyHtml: true);
+                ViewBag.Status = "Email Sent Successfully.";
+            }
+            catch (Exception)
+            {
+                ViewBag.Status = "Problem while sending email, Please check details.";
+
+            }
+            return View();
+
+
+        }
         //public void SendEmail(string toAddress, string fromAddress,
         //              string subject, string message)
         //{

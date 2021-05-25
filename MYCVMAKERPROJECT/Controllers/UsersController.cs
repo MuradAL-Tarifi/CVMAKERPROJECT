@@ -272,7 +272,7 @@ namespace MYCVMAKER.Controllers
                     user.ConfirmPassword = ConfirmPassword;
                     db.Users.Add(user);
                     db.SaveChanges();
-                    Session["ComapnyID"] = user.Id;
+                    Session["CompanyID"] = user.Id;
                     return RedirectToAction("CompanyDet");
                 }
                 else
@@ -294,7 +294,7 @@ namespace MYCVMAKER.Controllers
         public ActionResult CompanyDet( string CoumpanyName, string JobTitle, int PhoneNumber, string CompanyLocation, string CompanyType, string Description, string GitHupLink, string FaceBookLink, string LinkedinLink, string InstagramLink, HttpPostedFileBase mediaFile)
         {
             var userstate = Session["UserState"];
-            var userId = Session["ComapnyID"];
+            var userId = Session["CompanyID"];
             Company company = new Company();
 
             var userInfo = db.Users.Where(x => x.Id == (int)userId).ToList().FirstOrDefault();

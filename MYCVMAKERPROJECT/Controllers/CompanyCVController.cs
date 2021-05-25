@@ -54,10 +54,6 @@ namespace MYCVMAKER.Controllers
             //var id = 1;
             CVM.Company = db.Companies.Where(x => x.UsersId == id).ToList().FirstOrDefault();
             CVM.User = db.Users.Where(x => x.Id == id).ToList().FirstOrDefault();
-            CVM.CompanWorkExperience = db.CompanWorkExperiences.Where(x => x.CompanyId == CVM.Company.Id).ToList();
-            CVM.CompanyProject = db.CompanyProjects.Where(x => x.CompanyId == CVM.Company.Id).ToList();
-            CVM.CompanyServices = db.CompanyServices.Where(x => x.CompanyId == CVM.Company.Id).ToList();
-            CVM.CompanySkills = db.CompanySkills.Where(x => x.CompanyId == CVM.Company.Id).ToList();
             CVM.Nofitication = db.Nofitications.Where(x => x.CompanyId == CVM.Company.Id && x.Submitted == true).ToList();
 
             return View(CVM);

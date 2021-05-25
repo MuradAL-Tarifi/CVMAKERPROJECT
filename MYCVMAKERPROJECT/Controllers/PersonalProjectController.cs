@@ -41,6 +41,7 @@ namespace MYCVMAKER.Controllers
                 pp.InterfaceImage = InImg;
                 string SpImg = "";
                 string fullpath = "";
+                var last = SubImage.LastOrDefault();
                 foreach (HttpPostedFileBase photo in SubImage)
                 {
                     if (photo != null)
@@ -48,9 +49,18 @@ namespace MYCVMAKER.Controllers
                         SpImg = "/img/portfolio/large/" + photo.FileName;
                         photo.SaveAs(Server.MapPath(SpImg));//save file to folder
                     }
-                    fullpath =  SpImg + ","+ fullpath;
+                    if (photo.Equals(last))
+                    {
+                        fullpath = fullpath + SpImg;
+                    }
+                    else
+                    {
+                        fullpath = SpImg + "," + fullpath;
+                    }
                 }
                 pp.SubImage = fullpath;
+
+
 
                 db.PersonalProjects.Add(pp);
                 db.SaveChanges();

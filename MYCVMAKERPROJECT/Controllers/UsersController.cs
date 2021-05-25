@@ -270,6 +270,7 @@ namespace MYCVMAKER.Controllers
                     user.UserEmail = Email;
                     user.UserPassword = Password;
                     user.ConfirmPassword = ConfirmPassword;
+                    user.UserState = 2;
                     db.Users.Add(user);
                     db.SaveChanges();
                     Session["CompanyID"] = user.Id;

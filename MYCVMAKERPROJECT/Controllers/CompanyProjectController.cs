@@ -19,7 +19,7 @@ namespace MYCVMAKER.Controllers
         {
 
             int userId = (int)System.Web.HttpContext.Current.Session["CompanyID"];
-
+            
             using (CVMAKER_DBEntities4 db = new CVMAKER_DBEntities4())
             {
                 var userInfo = db.Companies.AsNoTracking().Where(x => x.UsersId == (int)userId).ToList().FirstOrDefault();
@@ -42,6 +42,7 @@ namespace MYCVMAKER.Controllers
                 pp.InterfaceImage = InImg;
                 string SpImg = "";
                 string fullpath = "";
+                var last = SubImage.LastOrDefault();
                 foreach (HttpPostedFileBase photo in SubImage)
                 {
                     if (photo != null)
@@ -49,7 +50,13 @@ namespace MYCVMAKER.Controllers
                         SpImg = "/img/portfolio/large/" + photo.FileName;
                         photo.SaveAs(Server.MapPath(SpImg));//save file to folder
                     }
+                    if (photo.Equals(last))
+                    {
+                        fullpath =  fullpath+ SpImg;
+                    }
+                    else { 
                     fullpath = SpImg + "," + fullpath;
+                }
                 }
                 pp.SubImage = fullpath;
 
